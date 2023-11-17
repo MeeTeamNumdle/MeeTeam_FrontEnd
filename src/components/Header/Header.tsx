@@ -71,7 +71,7 @@ const Header = () => {
 						fill='none'
 						className='header__logo--bridge'
 					>
-						<path d='M3 2C6.02469 6.52774 14.2593 12.8666 23 2' stroke='#9400EF' stroke-width='5' />
+						<path d='M3 2C6.02469 6.52774 14.2593 12.8666 23 2' stroke='#9400EF' strokeWidth='5' />
 					</svg>
 				</div>
 				<div className='header__navigation'>

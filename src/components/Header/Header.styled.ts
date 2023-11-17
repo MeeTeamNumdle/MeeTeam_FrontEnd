@@ -17,7 +17,6 @@ const Header = styled.div`
 		justify-content: flex-end;
 		align-items: center;
 		flex-shrink: 0;
-
 		margin-left: 11%;
 		cursor: pointer;
 
