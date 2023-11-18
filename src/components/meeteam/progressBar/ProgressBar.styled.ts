@@ -2,28 +2,33 @@ import styled from 'styled-components';
 import { SlArrowRight } from 'react-icons/sl';
 
 const ProgressBarRow = styled.div`
-	display: inline-flex;
+	display: flex;
 	align-items: center;
-	gap: 1.5rem;
+	margin-top: 2.552vw;
+	margin-bottom: 2.708vw;
+	margin-left: 15.052vw;
+	margin-right: 15.052vw;
+	gap: 0.95vw;
 `;
 
-const ProgressBarBox = styled.div<{ color?: boolean }>`
+const ProgressBarBox = styled.div<{ $color?: boolean }>`
 	display: flex;
-	width: 14.375rem;
-	height: 4.0625rem;
-	padding: 0.625rem;
+	width: 11.979vw;
+	height: 3.385vw;
 	justify-content: center;
 	align-items: center;
-	gap: 0.625rem;
-	border-radius: 0.5rem;
-	background: ${props => (props.color ? '#5877FC' : '#eeecff')};
-	color: var(--light-black, ${props => (props.color ? '#FFFFFF' : '#373f41')});
+	border-radius: 0.417vw;
+	background: ${props => (props.$color ? '#5877FC' : '#eeecff')};
+	color: var(--light-black, ${props => (props.$color ? '#FFFFFF' : '#373f41')});
 	font-family: Pretendard;
-	font-size: 1.5rem;
+	font-size: 1.1rem;
 	font-style: normal;
 	font-weight: 600;
 	line-height: 1.125rem; /* 75% */
 	letter-spacing: 0.0125rem;
+`;
+const ProgressBarButton = styled(ProgressBarBox)`
+	margin-left: 30.885vw;
 `;
 
 const ProgressBarIcon = styled(SlArrowRight)`
@@ -33,6 +38,6 @@ const ProgressBarIcon = styled(SlArrowRight)`
 	stroke: #000;
 `;
 
-const S = { ProgressBarRow, ProgressBarBox, ProgressBarIcon };
+const S = { ProgressBarRow, ProgressBarBox, ProgressBarButton, ProgressBarIcon };
 
 export default S;
