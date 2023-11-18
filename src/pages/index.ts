@@ -5,4 +5,4 @@ import MemberPage from './MemberPage';
 import InformationUsePage from './InformationUsePage';
 import ManagementPage from './ManagementPage';
 
-export { MainPage, RecruitPage, MemberPage, GalaryPage, InformationUsePage, ManagementPage };
+export { MainPage, RecruitPage, MemberPage, GalaryPage, InformationUsePage, ManagementPage};

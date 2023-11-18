@@ -1,7 +1,16 @@
 import React from 'react';
+import { ProgressBar } from '../components';
+import { Menu } from '../components';
+import { Main } from '../components';
 
 const ManagementPage = () => {
-	return <div>밋팀 관리 페이지입니다.</div>;
+	return (
+		<>
+			<ProgressBar />
+			<Menu />
+			<Main />
+		</>
+	);
 };
 
 export default ManagementPage;
