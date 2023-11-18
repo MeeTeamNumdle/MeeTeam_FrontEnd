@@ -1,4 +1,5 @@
 import { Dot, CustomSelect } from '..';
+import DateSelect from '../dateSelect/DateSelect';
 import S from './InfoItem.styled';
 
 interface IInfoItem {
@@ -12,7 +13,11 @@ const InfoItem = (props: IInfoItem) => {
 		<S.InfoItem>
 			<span>{props.title}</span>
 			{props.isDot === 'true' && <Dot />}
-			<CustomSelect optionData={props.optionData} />
+			{props.title === '밋팀 기간' ? (
+				<DateSelect />
+			) : (
+				<CustomSelect optionData={props.optionData} />
+			)}
 		</S.InfoItem>
 	);
 };

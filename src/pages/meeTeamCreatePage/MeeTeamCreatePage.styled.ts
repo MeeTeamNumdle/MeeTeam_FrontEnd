@@ -58,7 +58,7 @@ const MeeTeamCreatePage = styled.div`
 
 			input {
 				width: 20rem;
-				height: 2rem;
+				height: 2.5rem;
 				border-radius: 8px;
 				border: none;
 				outline: none;
