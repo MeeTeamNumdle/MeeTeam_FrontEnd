@@ -44,7 +44,7 @@ const MeeTeamCreatePage = styled.div`
 
 	.wrapper {
 		height: 200vh;
-		background-color: #74baffde;
+		background-color: #dcdde1;
 		margin-top: 50px;
 		border-radius: 15px;
 

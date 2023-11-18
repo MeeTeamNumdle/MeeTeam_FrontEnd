@@ -1,4 +1,4 @@
-import { Subtitle, Dot, InfoItem } from '../../components';
+import { Subtitle, Dot, InfoItem, Tag } from '../../components';
 import S from './MeeTeamCreatePage.styled';
 
 const MeeTeamCreatePage = () => {
@@ -41,6 +41,9 @@ const MeeTeamCreatePage = () => {
 					<div className='container__tag'>
 						<div>
 							<Subtitle>{'밋팀 태그'}</Subtitle>
+						</div>
+						<div>
+							<Tag />
 						</div>
 					</div>
 					<div className='container__intro'>
