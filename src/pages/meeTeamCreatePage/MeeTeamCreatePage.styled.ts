@@ -68,7 +68,11 @@ const MeeTeamCreatePage = styled.div`
 		}
 
 		.container__info {
-			margin-top: 50px;
+			margin-top: 70px;
+
+			.info-wrapper {
+				padding: 20px;
+			}
 
 			.container__info-select {
 				display: flex;
@@ -79,13 +83,21 @@ const MeeTeamCreatePage = styled.div`
 			}
 		}
 		.container__tag {
-			margin-top: 50px;
+			margin-top: 70px;
 		}
 		.container__intro {
-			margin-top: 50px;
+			margin-top: 70px;
+
+			div:nth-child(2) {
+				padding: 20px;
+				.editor {
+					background-color: #fff;
+					border-radius: 10px;
+				}
+			}
 		}
 		.container__member {
-			margin-top: 50px;
+			margin-top: 70px;
 		}
 	}
 `;

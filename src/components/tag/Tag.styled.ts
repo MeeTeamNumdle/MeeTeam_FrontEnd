@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Tag = styled.div`
 	padding: 10px;
-	height: 100vh;
+	height: 70px;
 
 	.tag__box {
 		display: flex;
@@ -13,6 +13,7 @@ const Tag = styled.div`
 		padding: 0 10px;
 		border: 1px solid rgba(0, 0, 0, 0.3);
 		border-radius: 10px;
+		background-color: #fff;
 
 		&:focus-within {
 			border-color: #00a8ff;
@@ -25,7 +26,7 @@ const Tag = styled.div`
 			margin: 5px;
 			padding: 5px;
 			background-color: #54a0ff;
-			border-radius: 5px;
+			border-radius: 3px;
 			color: #fff;
 			font-size: 13px;
 
