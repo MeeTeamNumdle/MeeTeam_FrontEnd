@@ -1,19 +1,18 @@
-import { Dot } from '..';
+import { Dot, CustomSelect } from '..';
 import S from './InfoItem.styled';
 
 interface IInfoItem {
 	isDot: string;
 	title: string;
+	optionData: string[];
 }
 
 const InfoItem = (props: IInfoItem) => {
 	return (
 		<S.InfoItem>
 			<span>{props.title}</span>
-			{props.isDot && <Dot />}
-			<div>
-				<input placeholder='밋팀 팀명을 입력해주세요.' type='text' />
-			</div>
+			{props.isDot === 'true' && <Dot />}
+			<CustomSelect optionData={props.optionData} />
 		</S.InfoItem>
 	);
 };
