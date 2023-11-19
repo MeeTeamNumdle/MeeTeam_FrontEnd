@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Tag = styled.div`
-	padding: 10px;
+	padding: 5px 10px;
 	height: 70px;
 
 	.tag__box {
@@ -10,10 +10,12 @@ const Tag = styled.div`
 		flex-wrap: wrap;
 		min-height: 50px;
 		margin: 10px;
+		width: 97.5%;
 		padding: 0 10px;
 		border: 1px solid rgba(0, 0, 0, 0.3);
 		border-radius: 10px;
 		background-color: #fff;
+		box-sizing: border-box;
 
 		&:focus-within {
 			border-color: #00a8ff;

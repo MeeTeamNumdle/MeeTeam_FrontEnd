@@ -1,4 +1,4 @@
-export const modules = {
+const modules = {
 	toolbar: {
 		container: [
 			[{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -54,3 +54,5 @@ export const modules = {
 		],
 	},
 };
+
+export default modules;

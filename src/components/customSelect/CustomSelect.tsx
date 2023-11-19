@@ -8,12 +8,10 @@ interface ICustomSelect {
 const CustomSelect = ({ optionData }: ICustomSelect) => {
 	const [currentValue, setCurrentValue] = useState('선택');
 	const [showOptions, setShowOptions] = useState(false);
-	console.log(optionData);
 
 	const handleOnChangeSelectValue = (e: React.MouseEvent<HTMLElement>) => {
 		const { innerText } = e.target as HTMLElement;
 		setCurrentValue(innerText);
-		console.log(innerText);
 	};
 
 	return (

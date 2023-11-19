@@ -38,7 +38,7 @@ const router = createBrowserRouter([
 				element: <InformationUsePage />,
 			},
 			{
-				path: 'meeteam', // meeteam/create
+				path: 'create', // meeteam/create
 				element: <MeeTeamCreatePage />,
 			},
 		],

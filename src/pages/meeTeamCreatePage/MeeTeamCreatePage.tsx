@@ -1,69 +1,34 @@
-import { useRef } from 'react';
-import { Subtitle, Dot, InfoItem, Tag } from '../../components';
+import React, { useRef, useState } from 'react';
+import { Subtitle, Dot, InfoItem, Tag, MemberSelect } from '../../components';
+import { MdOutlineAddCircleOutline } from 'react-icons/md';
+import { modules } from '../../utils/index';
+import { useNavigate } from 'react-router-dom';
 import S from './MeeTeamCreatePage.styled';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-// import { modules } from '../../utils/editorModule';
 
 const MeeTeamCreatePage = () => {
+	const navigate = useNavigate();
 	const quillRef = useRef<ReactQuill | null>(null);
+	const [memberList, setMemberList] = useState([<MemberSelect />]);
 
-	const modules = {
-		toolbar: {
-			container: [
-				[{ header: [1, 2, 3, 4, 5, 6, false] }],
-				[{ font: [] }],
-				[{ align: [] }],
-				['bold', 'italic', 'underline', 'strike', 'blockquote'],
-				[{ list: 'ordered' }, { list: 'bullet' }, 'link'],
-				[
-					{
-						color: [
-							'#000000',
-							'#e60000',
-							'#ff9900',
-							'#ffff00',
-							'#008a00',
-							'#0066cc',
-							'#9933ff',
-							'#ffffff',
-							'#facccc',
-							'#ffebcc',
-							'#ffffcc',
-							'#cce8cc',
-							'#cce0f5',
-							'#ebd6ff',
-							'#bbbbbb',
-							'#f06666',
-							'#ffc266',
-							'#ffff66',
-							'#66b966',
-							'#66a3e0',
-							'#c285ff',
-							'#888888',
-							'#a10000',
-							'#b26b00',
-							'#b2b200',
-							'#006100',
-							'#0047b2',
-							'#6b24b2',
-							'#444444',
-							'#5c0000',
-							'#663d00',
-							'#666600',
-							'#003700',
-							'#002966',
-							'#3d1466',
-							'custom-color',
-						],
-					},
-					{ background: [] },
-				],
-				['image'],
-				['clean'],
-			],
-		},
+	const onClickMember = (event: React.MouseEvent<HTMLButtonElement>) => {
+		let updatedMemberList = [...memberList];
+		updatedMemberList.push(<MemberSelect />);
+		setMemberList(updatedMemberList);
 	};
+
+	const onClickDelete = (event: React.MouseEvent<HTMLButtonElement>) => {
+		const deletedMember = memberList[+event.target.value];
+		const filteredMemberList = memberList.filter(member => member !== deletedMember);
+		setMemberList(filteredMemberList);
+	};
+
+	const onClickCancel = (event: React.MouseEvent<HTMLButtonElement>) => {
+		// 모달창 띄워서 한 번 더 확인시키고 이동하기
+		navigate('/');
+	};
+
 	return (
 		<S.MeeTeamCreatePage>
 			<div className='procedure'>
@@ -79,7 +44,9 @@ const MeeTeamCreatePage = () => {
 							<Subtitle>{'밋팀 팀명'}</Subtitle>
 							<Dot />
 						</div>
-						<input placeholder='밋팀 팀명을 입력해주세요.' type='text' />
+						<div className='container__teamname-input'>
+							<input placeholder='밋팀 팀명을 입력해주세요.' type='text' />
+						</div>
 					</div>
 					<div className='container__info'>
 						<div>
@@ -120,6 +87,33 @@ const MeeTeamCreatePage = () => {
 						<div>
 							<Subtitle>{'멤버'}</Subtitle>
 						</div>
+						<div>
+							{memberList.map((memberItem, index) => {
+								return (
+									<>
+										<div className='controll'>
+											{memberItem}
+											<button>초대하기</button>
+											<button onClick={onClickDelete} value={index}>
+												삭제하기
+											</button>
+										</div>
+									</>
+								);
+							})}
+
+							<div className='container__member-add'>
+								{memberList.length !== 6 && (
+									<div className='addition' onClick={onClickMember}>
+										<MdOutlineAddCircleOutline />
+									</div>
+								)}
+							</div>
+						</div>
+					</div>
+					<div className='container__controller'>
+						<button onClick={onClickCancel}>취소</button>
+						<button>등록하기</button>
 					</div>
 				</div>
 			</div>
