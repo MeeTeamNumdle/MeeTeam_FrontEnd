@@ -9,6 +9,7 @@ const InformationColumn = styled.div`
 const InformationGrid = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 1fr;
+	column-gap: 2.604vw;
 `;
 
 const InformationTitle = styled.div`
@@ -18,16 +19,11 @@ const InformationTitle = styled.div`
 	font-weight: 600;
 	line-height: 3.5rem; /* 175% */
 	letter-spacing: 0.0125rem;
-	padding-top: 1.302vw;
-	padding-bottom: 1.302vw;
-	padding-left: 2.604vw;
-	paddings-right: 2.604vw;
 `;
 
 const InformationSection = styled.section`
-	padding-left: 2.604vw;
-	padding-right: 2.604vw;
-	padding-bottom: 2.604vw;
+	padding-top: 1.302vw;
+	padding-bottom: 1.302vw;
 `;
 
 const InformationHead = styled.h1`
@@ -50,9 +46,7 @@ const InformationParagraph = styled.p`
 `;
 
 const InformationOptionIcon = styled(SlOptionsVertical)`
-	margin-top: 2.604vw;
-	margin-left: 65.044vw;
-	margin-right: 2.604vw;
+	margin-left: 62.44vw;
 `;
 
 const S = {

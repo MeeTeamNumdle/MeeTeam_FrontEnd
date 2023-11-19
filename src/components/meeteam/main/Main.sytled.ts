@@ -11,6 +11,7 @@ const MainLayout = styled.div`
 	border-left: solid #eeecff;
 	border-right: solid #eeecff;
 	border-bottom: solid #eeecff;
+	padding: 2.604vw;
 `;
 
 const S = { MainLayout };
