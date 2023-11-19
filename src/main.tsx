@@ -9,6 +9,7 @@ import {
 	MemberPage,
 	InformationUsePage,
 	MeeTeamCreatePage,
+	ManagementPage,
 } from './pages/index.ts';
 import './globalStyle.css';
 
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
 			{
 				path: 'create', // meeteam/create
 				element: <MeeTeamCreatePage />,
+			},
+			{
+				path: 'meeteam/:meeteamId?',
+				element: <ManagementPage />,
 			},
 		],
 	},
