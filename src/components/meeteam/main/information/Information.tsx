@@ -3,7 +3,7 @@ import S from './Information.styled';
 
 const Information = () => {
 	return (
-		<S.InformationColumn>
+		<>
 			<S.InformationOptionIcon />
 			<S.InformationTitle>[팀원 구인 웹 서비스] MeeTeam</S.InformationTitle>
 			<S.InformationGrid>
@@ -49,7 +49,7 @@ const Information = () => {
 					<S.InformationParagraph>개발</S.InformationParagraph>
 				</S.InformationSection>
 			</S.InformationGrid>
-		</S.InformationColumn>
+		</>
 	);
 };
 

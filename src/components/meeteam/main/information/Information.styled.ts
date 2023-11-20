@@ -1,11 +1,6 @@
 import styled from 'styled-components';
 import { SlOptionsVertical } from 'react-icons/sl';
 
-const InformationColumn = styled.div`
-	display: flex;
-	flex-direction: column;
-`;
-
 const InformationGrid = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 1fr;
@@ -50,7 +45,6 @@ const InformationOptionIcon = styled(SlOptionsVertical)`
 `;
 
 const S = {
-	InformationColumn,
 	InformationGrid,
 	InformationTitle,
 	InformationSection,

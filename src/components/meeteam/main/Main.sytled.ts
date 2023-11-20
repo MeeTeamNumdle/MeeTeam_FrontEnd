@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const MainLayout = styled.div`
 	display: flex;
-	align-items: center;
+	flex-direction: column;
 	margin-left: 15.052vw;
 	margin-right: 15.052vw;
 	margin-bottom: 6.354vw;
