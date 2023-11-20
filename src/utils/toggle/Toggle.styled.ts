@@ -3,30 +3,31 @@ import styled from 'styled-components';
 const ToggleLabel = styled.label`
 	position: relative;
 	display: inline-block;
-	width: 47.7px;
-	height: 23.33px;
+	width: 3.229vw;
+	height: 1.562vw;
 `;
 
-const ToggleSpan = styled.span`
+const ToggleSpan = styled.span<{ checked?: boolean }>`
 	position: absolute;
 	cursor: pointer;
 	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background-color: #ccc;
+	background-color: ${props => (props.checked ? '#5877FC' : '#FFFFFF')};
 	-webkit-transition: 0.4s;
 	transition: 0.4s;
-	border-radius: 34px;
+	border-radius: 3.229vw;
+	border: solid ${props => (props.checked ? '#5877FC' : '#D9D9D9')};
 
 	&:before {
 		position: absolute;
 		content: '';
-		height: 15px;
-		width: 15px;
-		left: 4px;
-		bottom: 4px;
-		background-color: white;
+		height: 1vw;
+		width: 1vw;
+		left: 0.181vw;
+		bottom: 0.181vw;
+		background-color: ${props => (props.checked ? '#FFFFFF' : '#5877FC')};
 		-webkit-transition: 0.4s;
 		transition: 0.4s;
 		border-radius: 50%;
@@ -34,22 +35,18 @@ const ToggleSpan = styled.span`
 `;
 
 const ToggleCheckBox = styled.input`
-	opacity: 0;
-	width: 0;
-	height: 0;
-
 	&:checked + ${ToggleSpan} {
-		background-color: #20c72b;
+		background-color: #5877fc;
 	}
 
 	&:focus + ${ToggleSpan} {
-		box-shadow: 0 0 1px #c7cdd6;
+		box-shadow: #d9d9d9;
 	}
 
 	&:checked + ${ToggleSpan}:before {
-		-webkit-transform: translateX(26px);
-		-ms-transform: translateX(26px);
-		transform: translateX(26px);
+		-webkit-transform: translateX(3vw);
+		-ms-transform: translateX(3vw);
+		transform: translateX(1.6vw);
 	}
 `;
 

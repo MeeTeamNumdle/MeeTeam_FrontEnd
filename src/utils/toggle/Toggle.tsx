@@ -11,7 +11,7 @@ const Toggle = () => {
 	return (
 		<S.ToggleLabel>
 			<S.ToggleCheckBox type='checkbox' checked={isActive} onChange={toggleHandler} />
-			<S.ToggleSpan />
+			<S.ToggleSpan checked={isActive} />
 		</S.ToggleLabel>
 	);
 };
