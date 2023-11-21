@@ -37,7 +37,10 @@ const Information = () => {
 	return (
 		<>
 			<S.InformationOptionIcon />
-			<S.InformationTitle>[팀원 구인 웹 서비스] MeeTeam</S.InformationTitle>
+			<S.InformationRow>
+				<S.InformationTitle>[팀원 구인 웹 서비스] MeeTeam</S.InformationTitle>
+				<S.InformationStatusIcon>진행중</S.InformationStatusIcon>
+			</S.InformationRow>
 			<S.InformationGrid>
 				{informationList.map((information, index) => (
 					<section key={index}>

@@ -17,7 +17,7 @@ const SettingHead = styled.h1`
 	color: #000;
 	font-size: 1.2rem;
 	font-style: normal;
-	font-weight: 600;
+	font-weight: 500;
 	line-height: 1.5rem; /* 100% */
 	letter-spacing: -0.03rem;
 	margin-bottom: 0.521vw;
@@ -27,7 +27,7 @@ const SettingParagraph = styled.p`
 	color: #373f41;
 	font-size: 1rem;
 	font-style: normal;
-	font-weight: 500;
+	font-weight: 400;
 	line-height: 150%; /* 1.875rem */
 	letter-spacing: 0.0125rem;
 `;
@@ -44,7 +44,7 @@ const SettingChangeButton = styled.button`
 	color: var(--light-black, #373f41);
 	font-size: 1rem;
 	font-style: normal;
-	font-weight: 600;
+	font-weight: 500;
 	letter-spacing: 0.0125rem;
 `;
 
@@ -63,7 +63,7 @@ const SettingStopButton = styled.button`
 	font-family: Pretendard;
 	font-size: 1rem;
 	font-style: normal;
-	font-weight: 600;
+	font-weight: 500;
 	letter-spacing: 0.0125rem;
 	margin: 1.302vw auto;
 `;
