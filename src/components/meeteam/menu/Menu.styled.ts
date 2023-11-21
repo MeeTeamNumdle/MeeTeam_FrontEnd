@@ -7,7 +7,7 @@ const MenuRow = styled.div`
 	margin-right: 15.052vw;
 `;
 
-const MenuBox = styled.div<{ $color?: boolean }>`
+const MenuBox = styled.button<{ $color?: boolean }>`
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -17,7 +17,7 @@ const MenuBox = styled.div<{ $color?: boolean }>`
 	border-top: ${props => (props.$color ? `solid #EEECFF` : `0.052vw solid #cbcbcb`)};
 	border-right: ${props => (props.$color ? `solid #EEECFF` : `0.052vw solid #cbcbcb`)};
 	border-left: ${props => (props.$color ? `solid #EEECFF` : `0.052vw solid #cbcbcb`)};
-	border-bottom: ${props => (props.$color ? `` : `solid #EEECFF`)};
+	border-bottom: ${props => (props.$color ? `0` : `solid #EEECFF`)};
 	background: ${props => (props.$color ? '#FFF' : '#F6F6F6')};
 	color: var(--light-black, ${props => (props.$color ? '#5877FC' : '#373f41')});
 	font-family: Pretendard;

@@ -1,19 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import S from './Main.sytled';
 import Information from './information/Information';
 import Member from './member/Member';
 import WorkRegistration from './workRegistration/WorkRegistration';
 import Setting from './setting/Setting';
 
-const Main = () => {
-	const [content, setContent] = useState();
+const Main = (props: { content: string }) => {
+	interface ComponentProps {
+		'📁 정보': JSX.Element;
+		'👥 멤버': JSX.Element;
+		'📁 작업물 등록': JSX.Element;
+		'⚙️ 설정': JSX.Element;
+	}
+
+	const selectComponent: ComponentProps = {
+		'📁 정보': <Information />,
+		'👥 멤버': <Member />,
+		'📁 작업물 등록': <WorkRegistration />,
+		'⚙️ 설정': <Setting />,
+	} as const;
 
 	return (
 		<S.MainLayout>
-			<Information />
-			{/* <WorkRegistration /> */}
-			{/* <Member /> */}
-			{/* <Setting /> */}
+			{props.content && selectComponent[props.content as keyof ComponentProps]}
 		</S.MainLayout>
 	);
 };
