@@ -12,14 +12,19 @@ const Header = styled.div`
 
 	.header__logo {
 		display: flex;
-		width: 70px;
-		height: 32px;
+		width: 10.79338rem;
+		height: 1.29563rem;
 		justify-content: flex-end;
 		align-items: center;
 		flex-shrink: 0;
-		font-size: 30px;
-		margin-left: 15%;
+		margin-left: 11%;
 		cursor: pointer;
+
+		.header__logo--bridge {
+			position: absolute;
+			left: 14.5rem;
+			top: 2.6rem;
+		}
 	}
 
 	.header__navigation {
