@@ -1,6 +1,6 @@
 import React from 'react';
 import S from './Setting.styled';
-import MemberRadioBox from '../members/MemberRadioBox';
+import MemberRadioBox from '../member/MemberRadioBox';
 import Toggle from '../../../../utils/toggle/Toggle';
 
 const Setting = () => {

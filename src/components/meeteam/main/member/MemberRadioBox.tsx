@@ -11,7 +11,7 @@ const MemberRadioBox = () => {
 						<input type='radio' />
 						<S.MemberProfileIcon />
 						{member}
-						<S.MemberButton>탈퇴</S.MemberButton>
+						<S.MemberRadioButton>탈퇴</S.MemberRadioButton>
 					</S.MemberRadioLabel>
 				))}
 			</li>
