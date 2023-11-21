@@ -103,11 +103,6 @@ const MemberRow = styled.div`
 	text-overflow: ellipsis;
 	overflow: auto;
 	white-space: nowrap;
-	-ms-overflow-style: none; /* IE, Edge */
-	scrollbar-width: none; /* Firefox */
-	&::-webkit-scrollbar {
-		display: none; /* Chrome, Safari, Opera */
-	}
 	color: var(--light-black, #373f41);
 `;
 
