@@ -46,6 +46,7 @@ const SettingChangeButton = styled.button`
 	font-style: normal;
 	font-weight: 500;
 	letter-spacing: 0.0125rem;
+	cursor: pointer;
 `;
 
 const SettingRangeToggle = styled.input``;
@@ -66,6 +67,7 @@ const SettingStopButton = styled.button`
 	font-weight: 500;
 	letter-spacing: 0.0125rem;
 	margin: 1.302vw auto;
+	cursor: pointer;
 `;
 
 const S = {

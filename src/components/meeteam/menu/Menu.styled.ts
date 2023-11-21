@@ -26,6 +26,7 @@ const MenuBox = styled.button<{ $color?: boolean }>`
 	font-weight: 500;
 	line-height: 1.125rem; /* 75% */
 	letter-spacing: 0.0125rem;
+	cursor: pointer;
 `;
 
 const S = { MenuRow, MenuBox };

@@ -29,6 +29,7 @@ const ProgressBarBox = styled.div<{ $color?: boolean }>`
 `;
 const ProgressBarButton = styled(ProgressBarBox)`
 	margin-left: 30.885vw;
+	cursor: pointer;
 `;
 
 const ProgressBarIcon = styled(SlArrowRight)`

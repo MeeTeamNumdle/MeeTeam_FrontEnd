@@ -25,6 +25,7 @@ const MemberRadioButton = styled.button`
 	background-color: transparent;
 	border-radius: 0.417vw;
 	border: 0.072vw solid #f88;
+	cursor: pointer;
 `;
 
 const MemberColumn = styled.div`
@@ -75,6 +76,7 @@ const MemberLayout = styled(MemberColumn)`
 		font-weight: 400;
 		letter-spacing: 0.0125rem;
 		font-size: 0.7rem;
+		cursor: pointer;
 	}
 
 	.member__tag-icon {
@@ -167,6 +169,7 @@ const MemberButton = styled.button<{ $clicked?: boolean }>`
 	font-style: normal;
 	font-weight: 400;
 	letter-spacing: 0.0125rem;
+	cursor: pointer;
 `;
 
 const S = {

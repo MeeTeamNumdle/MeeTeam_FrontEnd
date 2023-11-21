@@ -60,6 +60,7 @@ const InformationStatusIcon = styled.div`
 
 const InformationOptionIcon = styled(SlOptionsVertical)`
 	margin-left: 62.44vw;
+	cursor: pointer;
 `;
 
 const S = {
