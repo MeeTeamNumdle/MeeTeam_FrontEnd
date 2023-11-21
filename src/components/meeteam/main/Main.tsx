@@ -1,9 +1,6 @@
 import React from 'react';
 import S from './Main.sytled';
-import Information from './information/Information';
-import Member from './member/Member';
-import WorkRegistration from './workRegistration/WorkRegistration';
-import Setting from './setting/Setting';
+import { Information, Member, WorkRegistration, Setting } from '../..';
 
 const Main = (props: { content: string }) => {
 	interface ComponentProps {

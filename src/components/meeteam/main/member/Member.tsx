@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import S from './Member.styled';
 import { CgClose } from 'react-icons/cg';
-import MemberProfile from './MemberProfile';
+import { MemberProfile } from '../../..';
 
 export interface memberProps {
 	nickName: string;

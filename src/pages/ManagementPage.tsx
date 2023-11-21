@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { ProgressBar } from '../components';
-import { Menu } from '../components';
-import { Main } from '../components';
+import { ProgressBar, Menu, Main } from '../components';
 
 const ManagementPage = () => {
 	const [content, setContent] = useState('📁 정보');
