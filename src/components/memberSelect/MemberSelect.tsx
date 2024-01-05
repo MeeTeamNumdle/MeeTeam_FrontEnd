@@ -26,7 +26,7 @@ const MemberSelect = (id: IMemberSelect) => {
 					<div className='role-info'>
 						<CustomSelect
 							optionData={['프론트엔드 개발자', '백엔드 개발자', '디자이너', '기획자']}
-							isMember={true}
+							$isMember={true}
 							key={id as any}
 						/>
 					</div>

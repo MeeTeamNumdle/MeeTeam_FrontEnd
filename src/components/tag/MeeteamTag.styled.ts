@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Tag = styled.div`
+const MeeteamTag = styled.div`
 	height: auto;
 
 	.tag__box {
@@ -64,6 +64,6 @@ const Tag = styled.div`
 	}
 `;
 
-const S = { Tag };
+const S = { MeeteamTag };
 
 export default S;

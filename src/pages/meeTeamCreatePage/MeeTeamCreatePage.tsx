@@ -1,5 +1,5 @@
 import React, { useRef, useState, useCallback } from 'react';
-import { Subtitle, Dot, InfoItem, Tag, MemberSelect, AddButton } from '../../components';
+import { Subtitle, Dot, InfoItem, MeeteamTag, MemberSelect, AddButton } from '../../components';
 import { modules } from '../../utils/index';
 import { useNavigate } from 'react-router-dom';
 import S from './MeeTeamCreatePage.styled';
@@ -183,7 +183,7 @@ const MeeTeamCreatePage = () => {
 								<Subtitle>{'밋팀 태그'}</Subtitle>
 							</div>
 							<div>
-								<Tag />
+								<MeeteamTag />
 							</div>
 						</div>
 						<div className='container__intro'>
