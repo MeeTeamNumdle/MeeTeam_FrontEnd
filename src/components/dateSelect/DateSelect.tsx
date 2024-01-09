@@ -1,4 +1,3 @@
-import { useState, useEffect, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 import { dateState } from '../../atom';
 import DatePicker from 'react-datepicker';
@@ -20,6 +19,7 @@ const DateSelect = () => {
 			<DatePicker
 				selectsRange={true}
 				startDate={startDate}
+				showPopperArrow={false}
 				endDate={endDate}
 				onChange={update => {
 					setDate(update as any);

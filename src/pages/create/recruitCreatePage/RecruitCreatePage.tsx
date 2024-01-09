@@ -1,23 +1,30 @@
 import React, { useRef, useState, useCallback } from 'react';
-import { Subtitle, Dot, InfoItem, Tag, MemberSelect, AddButton } from '../../components';
-import { modules } from '../../utils/index';
-import { useNavigate } from 'react-router-dom';
-import S from './MeeTeamCreatePage.styled';
+import { useRecoilValue } from 'recoil';
+import { Subtitle, Dot, InfoItem, MeeteamTag, AddButton } from '../../../components/index';
+import {
+	areaRecruitState,
+	fieldRecruitState,
+	dateRecruitState,
+	deadlineState,
+	categoryRecruitState,
+} from '../../../atom';
+import { modules } from '../../../utils/index';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { useRecoilValue } from 'recoil';
-import { areaState, categoryState, dateState, fieldState } from '../../atom';
+import S from './recruitCreatePage.styled';
 
-const MeeTeamCreatePage = () => {
-	const navigate = useNavigate();
-	const area = useRecoilValue(areaState);
-	const field = useRecoilValue(fieldState);
-	const category = useRecoilValue(categoryState);
-	const [startDate, endDate] = useRecoilValue(dateState);
+const RecruitCreatePage = () => {
+	const area = useRecoilValue(areaRecruitState);
+	const field = useRecoilValue(fieldRecruitState);
+	const category = useRecoilValue(categoryRecruitState);
+	const deadline = useRecoilValue(deadlineState);
 	const quillRef = useRef<ReactQuill | null>(null);
-	const [memberList, setMemberList] = useState([<MemberSelect id={0} />]);
+	const [memberList, setMemberList] = useState([]);
 	const copyMemberList = [...memberList];
 	const [teamName, setTeamName] = useState<string>('');
+	const [startDate, endDate] = useRecoilValue(dateRecruitState);
+	const [file, setFile] = useState<string>('');
+	const [fileName, setFileName] = useState<string>('');
 
 	const [isValidName, setIsValidName] = useState({
 		validName: false,
@@ -39,11 +46,15 @@ const MeeTeamCreatePage = () => {
 		validDate: false,
 		validMessage: '',
 	});
+	const [isValidDeadline, setIsValidDeadline] = useState({
+		validDeadline: false,
+		validMessage: '',
+	});
 
 	const onClickMember = () => {
-		let updatedMemberList = [...memberList];
-		updatedMemberList.push(<MemberSelect id={memberList.length} />);
-		setMemberList(updatedMemberList);
+		// let updatedMemberList = [...memberList];
+		// updatedMemberList.push(<MemberSelect id={memberList.length} />);
+		// setMemberList(updatedMemberList);
 	};
 
 	const onClickDelete = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -54,12 +65,20 @@ const MeeTeamCreatePage = () => {
 
 	const onClickCancel = (event: React.MouseEvent<HTMLButtonElement>) => {
 		// 모달창 띄워서 한 번 더 확인시키고 이동하기
-		navigate('/');
+		// navigate('/');
 	};
 
 	const onChangeTeamName = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		setTeamName(event.target.value);
 		setIsValidName({ validName: true, validMessage: '' });
+	}, []);
+
+	const onChangeImg = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+		if (event.target.files !== null) {
+			setFileName(event.target.files[0].name);
+			const selectedFiles = event.target.files as FileList;
+			setFile(URL.createObjectURL(selectedFiles?.[0]));
+		}
 	}, []);
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -97,7 +116,7 @@ const MeeTeamCreatePage = () => {
 			setIsValidCategory({ validCategory: true, validMessage: '' });
 		}
 
-		// 밋팀 기간 검사
+		// 기간 검사
 		if (endDate < new Date()) {
 			setIsValidDate({
 				validDate: false,
@@ -110,14 +129,27 @@ const MeeTeamCreatePage = () => {
 				validMessage: '',
 			});
 		}
-	};
 
+		// 구인 마감일 검사
+		if (deadline < new Date()) {
+			setIsValidDeadline({
+				validDeadline: false,
+				validMessage: '* 날짜를 다시 설정해주세요.',
+			});
+		}
+		if (deadline > new Date()) {
+			setIsValidDeadline({
+				validDeadline: true,
+				validMessage: '',
+			});
+		}
+	};
 	return (
-		<S.MeeTeamCreatePage>
+		<S.RecruitCreatePage>
 			<div className='procedure'>
-				<div className='procedure__subtitle'>새 밋팀 생성</div>
+				<div className='procedure__subtitle'>구인 글 작성</div>
 				<div className='procedure__intro'>
-					<p>밋팀에 대한 정보를 입력하시고 소개해주세요.</p>
+					<p>구인에 대한 정보를 입력하시고 소개해주세요.</p>
 				</div>
 			</div>
 			<div className='wrapper'>
@@ -125,7 +157,7 @@ const MeeTeamCreatePage = () => {
 					<div className='container'>
 						<div className='container__teamname'>
 							<div className='container__teamname-subtitle'>
-								<Subtitle>{'밋팀 팀명'}</Subtitle>
+								<Subtitle>{'구인 글 제목'}</Subtitle>
 								<Dot />
 							</div>
 							<div className='container__teamname-input'>
@@ -169,37 +201,60 @@ const MeeTeamCreatePage = () => {
 								</div>
 								<div className='container__info-select'>
 									<div>
-										<InfoItem isDot='true' title='밋팀 기간' optionData={[]} type='기간' />
+										<InfoItem isDot='true' title='기간' optionData={[]} type='기간' />
 										{!isValidDate.validDate && <p>{isValidDate.validMessage}</p>}
 									</div>
 									<div className='fix'>
 										<InfoItem isDot='false' title='공개 여부' optionData={['공개', '비공개']} />
 									</div>
 								</div>
+								<div className='container__info-select'>
+									<div>
+										<InfoItem isDot='true' title='구인 마감일' optionData={[]} type='구인 마감일' />
+										{!isValidDeadline.validDeadline && <p>{isValidDeadline.validMessage}</p>}
+									</div>
+								</div>
 							</div>
 						</div>
 						<div className='container__tag'>
 							<div>
-								<Subtitle>{'밋팀 태그'}</Subtitle>
+								<Subtitle>{'구인 태그'}</Subtitle>
 							</div>
 							<div>
-								<Tag />
+								<MeeteamTag />
 							</div>
 						</div>
 						<div className='container__intro'>
 							<div>
-								<Subtitle>{'밋팀 소개'}</Subtitle>
+								<Subtitle>{'구인 글'}</Subtitle>
 							</div>
 							<div>
 								<ReactQuill className='editor' ref={quillRef} theme='snow' modules={modules} />
+							</div>
+						</div>
+						<div className='container__img'>
+							<div>
+								<Subtitle>{'구인 이미지'}</Subtitle>
+							</div>
+							<div className='container__img-input'>
+								<input
+									type='file'
+									accept='image/*'
+									id='meeteamImg'
+									placeholder='이미지를 업로드해주세요.'
+									onChange={onChangeImg}
+								/>
+								<label className={file ? 'haveFile' : ''} htmlFor='meeteamImg'>
+									{file ? `${fileName}` : '이미지를 업로드해주세요.'}
+								</label>
 							</div>
 						</div>
 						<div className='container__member'>
 							<div>
 								<Subtitle>{'멤버'}</Subtitle>
 							</div>
-							<div>
-								{memberList.map((memberItem, index) => {
+							<div className='container__member-area'>
+								{/* {memberList.map((memberItem, index) => {
 									return (
 										<div className='controll' key={index}>
 											{React.cloneElement(memberItem, { key: index })}
@@ -209,15 +264,14 @@ const MeeTeamCreatePage = () => {
 											</button>
 										</div>
 									);
-								})}
-
-								<div className='container__member-add'>
-									{memberList.length !== 6 && (
-										<div className='addition' onClick={onClickMember}>
-											<AddButton />
-										</div>
-									)}
-								</div>
+								})} */}
+							</div>
+							<div className='container__member-add'>
+								{memberList.length !== 6 && (
+									<div className='addition' onClick={onClickMember}>
+										<AddButton />
+									</div>
+								)}
 							</div>
 						</div>
 						<div className='container__controller'>
@@ -227,8 +281,8 @@ const MeeTeamCreatePage = () => {
 					</div>
 				</form>
 			</div>
-		</S.MeeTeamCreatePage>
+		</S.RecruitCreatePage>
 	);
 };
 
-export default MeeTeamCreatePage;
+export default RecruitCreatePage;

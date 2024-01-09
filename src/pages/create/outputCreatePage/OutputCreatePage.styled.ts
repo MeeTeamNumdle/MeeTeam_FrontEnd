@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const MeeTeamCreatePage = styled.div`
+const OutputCreatePage = styled.div`
 	width: clamp(45%, 108rem, 75%);
 	margin: 0 auto;
 	margin-bottom: 30px;
@@ -151,9 +151,91 @@ const MeeTeamCreatePage = styled.div`
 			}
 		}
 
+		.container__file {
+			margin-top: 7rem;
+
+			.container__file-input {
+				padding: 10px 0px;
+
+				input {
+					display: none;
+				}
+
+				label {
+					display: block;
+					width: 100%;
+					height: 4.875rem;
+					flex-shrink: 0;
+					border-radius: 0.75rem;
+					border: 0.75px solid #e3e3e3;
+					background: #fff;
+					outline: none;
+					padding-left: 2.1rem;
+					box-sizing: border-box;
+					color: #a7a7a7;
+					font-size: 1.3rem;
+					font-style: normal;
+					font-weight: 400;
+					line-height: 1.8rem; /* 90% */
+					letter-spacing: 0.02rem;
+					display: flex;
+					align-items: center;
+				}
+
+				.haveFile {
+					color: #000;
+				}
+			}
+		}
+
+		.container__img {
+			margin-top: 7rem;
+
+			.container__img-input {
+				padding: 10px 0px;
+
+				input {
+					display: none;
+				}
+
+				label {
+					display: block;
+					width: 100%;
+					height: 4.875rem;
+					flex-shrink: 0;
+					border-radius: 0.75rem;
+					border: 0.75px solid #e3e3e3;
+					background: #fff;
+					outline: none;
+					padding-left: 2.1rem;
+					box-sizing: border-box;
+					color: #a7a7a7;
+					font-size: 1.3rem;
+					font-style: normal;
+					font-weight: 400;
+					line-height: 1.8rem; /* 90% */
+					letter-spacing: 0.02rem;
+					display: flex;
+					align-items: center;
+				}
+
+				.haveImgFile {
+					color: #000;
+				}
+			}
+		}
+
 		.container__member {
 			margin-top: 70px;
 			width: 100%;
+
+			.container__member-area {
+				min-height: 24rem;
+				width: 100%;
+				background-color: #fff;
+				border: 1px solid #dcdcdc;
+				border-radius: 1rem;
+			}
 
 			.controll {
 				/* display: flex; */
@@ -207,34 +289,39 @@ const MeeTeamCreatePage = styled.div`
 			margin-top: 70px;
 			display: flex;
 			justify-content: center;
-			gap: 1rem;
+			gap: 2rem;
 
 			button {
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				width: 12rem;
-				height: 3.5rem;
-				padding: 0.625rem;
-				gap: 0.625rem;
-				border-radius: 0.5rem;
-				border: 0.5px solid #ababab;
+				width: 15rem;
+				height: 5rem;
+				padding: 1rem 1rem;
+				border: none;
+				gap: 1rem;
+				border-radius: 0.8rem;
 				cursor: pointer;
-				font-size: 1rem;
+				color: #373f41;
+				font-size: 1.5rem;
+				font-style: normal;
+				font-weight: 400;
+				line-height: 1.8rem; /* 75% */
+				letter-spacing: 0.02rem;
 			}
 
 			button:nth-child(1) {
-				background: #a9a9a9;
+				background: #e0e6ff;
 			}
 
 			button:nth-child(2) {
-				background: #00b894;
+				background: #5877fc;
 				color: #fff;
 			}
 		}
 	}
 `;
 
-const S = { MeeTeamCreatePage };
+const S = { OutputCreatePage };
 
 export default S;

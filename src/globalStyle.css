@@ -88,6 +88,15 @@ video {
 	font: inherit;
 	vertical-align: baseline;
 	box-sizing: border-box;
+	user-select: none;
+	-webkit-user-select: none;
+	/* (safari, chrome) browsers */
+	-moz-user-select: none;
+	/* mozilla browsers */
+	-khtml-user-select: none;
+	/* konqueror browsers */
+
+	-ms-user-select: none; /* IE10+ */
 }
 /* HTML5 display-role reset for older browsers */
 article,

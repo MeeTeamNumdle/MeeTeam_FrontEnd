@@ -1,4 +1,4 @@
-import { Dot, CustomSelect, Subtitle } from '..';
+import { Dot, CustomSelect, Subtitle, DeadlineSelect } from '..';
 import DateSelect from '../dateSelect/DateSelect';
 import S from './InfoItem.styled';
 
@@ -14,8 +14,10 @@ const InfoItem = (props: IInfoItem) => {
 		<S.InfoItem>
 			<Subtitle>{props.title}</Subtitle>
 			{props.isDot === 'true' && <Dot />}
-			{props.title === '밋팀 기간' ? (
+			{props.title === '기간' ? (
 				<DateSelect />
+			) : props.title === '구인 마감일' ? (
+				<DeadlineSelect />
 			) : (
 				<CustomSelect optionData={props.optionData} type={props.type} />
 			)}

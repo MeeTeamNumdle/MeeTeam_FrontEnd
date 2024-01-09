@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const DateSelect = styled.div`
+const DeadlineSelect = styled.div`
 	.date-picker {
 		width: 40.125rem;
 		height: 4.875rem;
@@ -19,6 +19,11 @@ const DateSelect = styled.div`
 		font-weight: 400;
 		line-height: 1.35rem; /* 90% */
 		letter-spacing: 0.015rem;
+	}
+
+	.react-datepicker-popper {
+		width: 40.125rem;
+		z-index: 105;
 	}
 
 	.react-datepicker-wrapper {
@@ -55,17 +60,14 @@ const DateSelect = styled.div`
 	.react-datepicker__month-container {
 		width: 100%;
 	}
-	.react-datepicker-popper {
-		width: 40.125rem;
-		z-index: 105;
-	}
+
 	.react-datepicker {
 		font-family: 'Helvetica Neue', helvetica, arial, sans-serif;
 		font-size: 1.2rem;
 		background-color: #f7fafe;
 		color: #000;
 		border: 1px solid #bcd7fe;
-		border-radius: 0.3rem;
+		border-radius: 0.8rem;
 		display: inline-block;
 		position: relative;
 		width: 100%;
@@ -94,6 +96,6 @@ const DateSelect = styled.div`
 	}
 `;
 
-const S = { DateSelect };
+const S = { DeadlineSelect };
 
 export default S;

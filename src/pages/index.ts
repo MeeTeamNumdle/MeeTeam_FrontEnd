@@ -3,8 +3,14 @@ import RecruitPage from './RecruitPage';
 import GalaryPage from './GalaryPage';
 import MemberPage from './MemberPage';
 import InformationUsePage from './InformationUsePage';
-import MeeTeamCreatePage from './meeTeamCreatePage/MeeTeamCreatePage';
+import MeeTeamCreatePage from './create/meeTeamCreatePage/MeeTeamCreatePage';
 import ManagementPage from './ManagementPage';
+import ManagePage from './manage/ManagePage';
+import ManageMeeteamPage from './manage/meeteam/ManageMeeteamPage';
+import ManageRecruitPage from './manage/recruit/ManageRecruitPage';
+import ManagePortpolioPage from './manage/portpolio/ManagePortpolioPage';
+import RecruitCreatePage from './create/recruitCreatePage/RecruitCreatePage';
+import OutputCreatePage from './create/outputCreatePage/OutputCreatePage';
 
 export {
 	MainPage,
@@ -14,4 +20,10 @@ export {
 	InformationUsePage,
 	MeeTeamCreatePage,
 	ManagementPage,
+	ManagePage,
+	ManageMeeteamPage,
+	ManageRecruitPage,
+	ManagePortpolioPage,
+	RecruitCreatePage,
+	OutputCreatePage,
 };
