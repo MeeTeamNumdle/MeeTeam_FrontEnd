@@ -1,10 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import S from './Header.styled';
 import { BiSearch, BiBell, BiUser } from 'react-icons/bi';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Header = () => {
 	const navigate = useNavigate();
+	const location = useLocation();
+	const dropdownRef = useRef<HTMLDivElement | null>(null);
+	const alarmRef = useRef<HTMLDivElement | null>(null);
+	const [openDrop, setOpenDrop] = useState<boolean>(false);
+	const [openDropAlarm, setOpenDropAlarm] = useState<boolean>(false);
+	const [newAlarm, setNewAlarm] = useState<boolean>(true);
+	const [isHere, setIsHere] = useState({
+		recruit: false,
+		galary: false,
+		member: false,
+		inform: false,
+	});
+
 	const goHome = () => {
 		navigate('/');
 	};
@@ -20,6 +33,38 @@ const Header = () => {
 	const goInformationUse = () => {
 		navigate('/information');
 	};
+
+	useEffect(() => {
+		if (location.pathname == '/recruit') {
+			setIsHere({ recruit: true, galary: false, member: false, inform: false });
+		}
+		if (location.pathname === '/galary') {
+			setIsHere({ recruit: false, galary: true, member: false, inform: false });
+		}
+		if (location.pathname === '/member') {
+			setIsHere({ recruit: false, galary: false, member: true, inform: false });
+		}
+		if (location.pathname === '/information') {
+			setIsHere({ recruit: false, galary: false, member: false, inform: true });
+		}
+	}, [location]);
+
+	useEffect(() => {
+		const outsideClick = (event: MouseEvent) => {
+			const { target } = event;
+			if (openDrop && dropdownRef.current && !dropdownRef.current.contains(target as Node)) {
+				setOpenDrop(false);
+			}
+			if (openDropAlarm && alarmRef.current && !alarmRef.current.contains(target as Node)) {
+				setOpenDropAlarm(false);
+			}
+		};
+		document.addEventListener('mousedown', outsideClick);
+		return () => {
+			document.removeEventListener('mousedown', outsideClick);
+		};
+	}, [openDrop, openDropAlarm]);
+
 	return (
 		<S.Header>
 			<div className='header'>
@@ -66,16 +111,28 @@ const Header = () => {
 					</svg>
 				</div>
 				<div className='header__navigation'>
-					<div className='header__navigation--navi-text' onClick={goRecruit}>
+					<div
+						className={`header__navigation--navi-text ${isHere.recruit ? 'here' : ''}`}
+						onClick={goRecruit}
+					>
 						구인 밋팀
 					</div>
-					<div className='header__navigation--navi-text' onClick={goGalary}>
+					<div
+						className={`header__navigation--navi-text ${isHere.galary ? 'here' : ''}`}
+						onClick={goGalary}
+					>
 						밋팀 갤러리
 					</div>
-					<div className='header__navigation--navi-text' onClick={goMember}>
+					<div
+						className={`header__navigation--navi-text ${isHere.member ? 'here' : ''}`}
+						onClick={goMember}
+					>
 						멤버
 					</div>
-					<div className='header__navigation--navi-text' onClick={goInformationUse}>
+					<div
+						className={`header__navigation--navi-text ${isHere.inform ? 'here' : ''}`}
+						onClick={goInformationUse}
+					>
 						이용안내
 					</div>
 				</div>
@@ -83,11 +140,87 @@ const Header = () => {
 					<div className='header__menu--search'>
 						<BiSearch />
 					</div>
-					<div className='header__menu--alarm'>
-						<BiBell />
+					<div className='header__menu--alarm' ref={alarmRef}>
+						<div
+							className='icon'
+							onClick={() => {
+								setOpenDropAlarm(prev => !prev);
+								setNewAlarm(false);
+							}}
+						>
+							<BiBell />
+						</div>
+						{newAlarm && <div className='dot'></div>}
+						{openDropAlarm && (
+							<div className='alarm-dropdown'>
+								<div className='message apply'>
+									<span>
+										팀 신청이 도착했어요.
+										<div className='dot2'></div>
+									</span>
+									<span>{'>'}</span>
+								</div>
+								<hr />
+								<div className='message issue'>
+									<span>1일 전</span>
+									<span>00님이 민지님을 팔로우 하기 시작했습니다.</span>
+								</div>
+							</div>
+						)}
 					</div>
-					<div className='header__menu--my'>
-						<BiUser />
+					<div className='header__menu--create' onClick={() => navigate('/create')}>
+						<svg
+							xmlns='http://www.w3.org/2000/svg'
+							width='26'
+							height='26'
+							viewBox='0 0 30 30'
+							fill='none'
+						>
+							<path
+								d='M22.5 12.4999L17.5 7.49989M3.125 26.8749L7.35546 26.4048C7.87232 26.3474 8.13075 26.3187 8.37231 26.2405C8.58661 26.1711 8.79056 26.0731 8.97861 25.9491C9.19057 25.8093 9.37443 25.6255 9.74216 25.2577L26.25 8.74989C27.6307 7.36918 27.6307 5.1306 26.25 3.74989C24.8693 2.36918 22.6307 2.36918 21.25 3.74989L4.74216 20.2577C4.37443 20.6255 4.19057 20.8093 4.0508 21.0213C3.92679 21.2093 3.82877 21.4133 3.75939 21.6276C3.68119 21.8691 3.65248 22.1276 3.59505 22.6444L3.125 26.8749Z'
+								stroke='black'
+								stroke-width='2.5'
+								stroke-linecap='round'
+								stroke-linejoin='round'
+							/>
+						</svg>
+					</div>
+					<div className='header__menu--my' ref={dropdownRef}>
+						<div className='icon' onClick={() => setOpenDrop(prev => !prev)}>
+							<BiUser />
+						</div>
+						{openDrop && (
+							<div className='dropdown'>
+								<div
+									className='menu'
+									onClick={() => {
+										setOpenDrop(false);
+										navigate('/profile');
+									}}
+								>
+									프로필 설정
+								</div>
+								<div
+									className='menu'
+									onClick={() => {
+										setOpenDrop(false);
+										navigate('/manage/meeteam');
+									}}
+								>
+									밋팀 관리
+								</div>
+								<div
+									className='menu'
+									onClick={() => {
+										setOpenDrop(false);
+										navigate('/account');
+									}}
+								>
+									계정 관리
+								</div>
+								<div className='menu'>로그아웃</div>
+							</div>
+						)}
 					</div>
 				</div>
 			</div>

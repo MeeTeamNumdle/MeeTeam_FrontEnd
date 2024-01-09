@@ -1,5 +1,5 @@
 import React, { useRef, useState, useCallback } from 'react';
-import { Subtitle, Dot, InfoItem, Tag, MemberSelect, AddButton } from '../../components';
+import { Subtitle, Dot, InfoItem, MeeteamTag, AddButton } from '../../components';
 import { modules } from '../../utils/index';
 import { useNavigate } from 'react-router-dom';
 import S from './MeeTeamCreatePage.styled';
@@ -9,15 +9,17 @@ import { useRecoilValue } from 'recoil';
 import { areaState, categoryState, dateState, fieldState } from '../../atom';
 
 const MeeTeamCreatePage = () => {
-	const navigate = useNavigate();
+	// const navigate = useNavigate();
 	const area = useRecoilValue(areaState);
 	const field = useRecoilValue(fieldState);
 	const category = useRecoilValue(categoryState);
-	const [startDate, endDate] = useRecoilValue(dateState);
 	const quillRef = useRef<ReactQuill | null>(null);
-	const [memberList, setMemberList] = useState([<MemberSelect id={0} />]);
+	const [memberList, setMemberList] = useState([]);
 	const copyMemberList = [...memberList];
 	const [teamName, setTeamName] = useState<string>('');
+	const [startDate, endDate] = useRecoilValue(dateState);
+	const [file, setFile] = useState<string>('');
+	const [fileName, setFileName] = useState<string>('');
 
 	const [isValidName, setIsValidName] = useState({
 		validName: false,
@@ -41,9 +43,9 @@ const MeeTeamCreatePage = () => {
 	});
 
 	const onClickMember = () => {
-		let updatedMemberList = [...memberList];
-		updatedMemberList.push(<MemberSelect id={memberList.length} />);
-		setMemberList(updatedMemberList);
+		// let updatedMemberList = [...memberList];
+		// updatedMemberList.push(<MemberSelect id={memberList.length} />);
+		// setMemberList(updatedMemberList);
 	};
 
 	const onClickDelete = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -54,12 +56,20 @@ const MeeTeamCreatePage = () => {
 
 	const onClickCancel = (event: React.MouseEvent<HTMLButtonElement>) => {
 		// 모달창 띄워서 한 번 더 확인시키고 이동하기
-		navigate('/');
+		// navigate('/');
 	};
 
 	const onChangeTeamName = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		setTeamName(event.target.value);
 		setIsValidName({ validName: true, validMessage: '' });
+	}, []);
+
+	const onChangeImg = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+		if (event.target.files !== null) {
+			setFileName(event.target.files[0].name);
+			const selectedFiles = event.target.files as FileList;
+			setFile(URL.createObjectURL(selectedFiles?.[0]));
+		}
 	}, []);
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -183,7 +193,7 @@ const MeeTeamCreatePage = () => {
 								<Subtitle>{'밋팀 태그'}</Subtitle>
 							</div>
 							<div>
-								<Tag />
+								<MeeteamTag />
 							</div>
 						</div>
 						<div className='container__intro'>
@@ -194,12 +204,29 @@ const MeeTeamCreatePage = () => {
 								<ReactQuill className='editor' ref={quillRef} theme='snow' modules={modules} />
 							</div>
 						</div>
+						<div className='container__img'>
+							<div>
+								<Subtitle>{'밋팀 이미지'}</Subtitle>
+							</div>
+							<div className='container__img-input'>
+								<input
+									type='file'
+									accept='image/*'
+									id='meeteamImg'
+									placeholder='이미지를 업로드해주세요.'
+									onChange={onChangeImg}
+								/>
+								<label className={file ? 'haveFile' : ''} htmlFor='meeteamImg'>
+									{file ? `${fileName}` : '이미지를 업로드해주세요.'}
+								</label>
+							</div>
+						</div>
 						<div className='container__member'>
 							<div>
 								<Subtitle>{'멤버'}</Subtitle>
 							</div>
-							<div>
-								{memberList.map((memberItem, index) => {
+							<div className='container__member-area'>
+								{/* {memberList.map((memberItem, index) => {
 									return (
 										<div className='controll' key={index}>
 											{React.cloneElement(memberItem, { key: index })}
@@ -209,20 +236,19 @@ const MeeTeamCreatePage = () => {
 											</button>
 										</div>
 									);
-								})}
-
-								<div className='container__member-add'>
-									{memberList.length !== 6 && (
-										<div className='addition' onClick={onClickMember}>
-											<AddButton />
-										</div>
-									)}
-								</div>
+								})} */}
+							</div>
+							<div className='container__member-add'>
+								{memberList.length !== 6 && (
+									<div className='addition' onClick={onClickMember}>
+										<AddButton />
+									</div>
+								)}
 							</div>
 						</div>
 						<div className='container__controller'>
 							<button onClick={onClickCancel}>취소</button>
-							<button type='submit'>등록하기</button>
+							<button type='submit'>생성하기</button>
 						</div>
 					</div>
 				</form>

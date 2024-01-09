@@ -3,7 +3,7 @@ import Subtitle from './subtitle/Subtitle';
 import Dot from './dot/Dot';
 import InfoItem from './infoItem/InfoItem';
 import CustomSelect from './customSelect/CustomSelect';
-import Tag from './tag/Tag';
+import MeeteamTag from './tag/MeeteamTag';
 import MemberSelect from './memberSelect/MemberSelect';
 import AddButton from './addButton/AddButton';
 import ProgressBar from './meeteam/progressBar/ProgressBar';
@@ -15,6 +15,14 @@ import MemberProfile from './meeteam/main/member/MemberProfile';
 import MemberRadioBox from './meeteam/main/member/MemberRadioBox';
 import WorkRegistration from './meeteam/main/workRegistration/WorkRegistration';
 import Setting from './meeteam/main/setting/Setting';
+import Sidebar from './sidebar/Sidebar';
+import Card from './meeteam/card/Card';
+import Tag from './meeteam/tag/Tag';
+import Alarm from './alarm/Alarm';
+import RecruitCard from './recruit/RecruitCard';
+import Status from './meeteam/status/Status';
+import Filter from './meeteam/filter/Filter';
+import Dropdown from './dropdown/Dropdown';
 
 export {
 	Header,
@@ -22,7 +30,7 @@ export {
 	Dot,
 	InfoItem,
 	CustomSelect,
-	Tag,
+	MeeteamTag,
 	MemberSelect,
 	ProgressBar,
 	Menu,
@@ -34,4 +42,12 @@ export {
 	WorkRegistration,
 	Setting,
 	AddButton,
+	Sidebar,
+	Card,
+	Tag,
+	Alarm,
+	RecruitCard,
+	Status,
+	Filter,
+	Dropdown,
 };
