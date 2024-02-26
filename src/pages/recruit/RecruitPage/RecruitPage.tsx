@@ -4,63 +4,36 @@ import S from './RecruitPage.styled';
 import { SearchIcon } from '../../../assets';
 
 const START_PAGE_NUM = 1;
+const POST_NUM = 150;
 
 const RecruitPage = () => {
-	const postsNum = 150;
 	const [currentPage, setCurrentPage] = useState<number>(START_PAGE_NUM);
-	const [isFiltered, setIsFiltered] = useState({
-		isInside: true,
-		isOutside: false,
-	});
-	console.log(currentPage);
-	const onClickHandler = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-		const target = event.currentTarget;
-		if (target.innerText === '교내') {
-			setIsFiltered({ isInside: true, isOutside: false });
-		}
-		if (target.innerText === '교외') {
-			setIsFiltered({ isInside: false, isOutside: true });
-		}
-	};
 
 	return (
 		<S.RecruitPage>
-			<div>
-				<div className='container-filter_area'>
-					<div className={`area ${isFiltered.isInside ? '' : 'no'}`} onClick={onClickHandler}>
-						교내
-					</div>
-					<div className={`area ${isFiltered.isOutside ? 'out' : 'no'}`} onClick={onClickHandler}>
-						교외
-					</div>
-				</div>
-				<div className='container-filter_menu'>
-					<Dropdown
-						data={['프로젝트', '스터디', '동아리', '공모전']}
-						initialData='프로젝트'
-						$arrowNeed={true}
-					/>
-					<Dropdown data={['개발']} initialData='카테고리' $arrowNeed={true} />
-					<div className='dropdown-spec'>
+			<section>
+				<h1 className='container-title'>구인게시판</h1>
+				<section className='container-filter'>
+					<section className='container-filter'>
 						<Dropdown
-							data={['React', 'JavaScript', 'Node.js', 'Spring', 'Figma']}
-							initialData='기술 스택'
+							data={['프로젝트', '스터디', '동아리', '공모전']}
+							initialData='프로젝트'
 							$arrowNeed={true}
 						/>
-						<Dropdown
-							data={['기획', '디자인', '프론트엔드', '백엔드']}
-							initialData='👤 포지션'
-							$arrowNeed={true}
-						/>
-					</div>
-				</div>
-			</div>
-			<hr />
-			<div>
-				<div className='container-options'>
-					<div className='container-options__filters'>
-						<div className='filter bookmark'>☑️ 수업만 보기</div>
-					</div>
+						<Dropdown data={['개발']} initialData='카테고리' $arrowNeed={true} />
+						<div className='dropdown-spec'>
+							<Dropdown
+								data={['React', 'JavaScript', 'Node.js', 'Spring', 'Figma']}
+								initialData='기술 스택'
+								$arrowNeed={true}
+							/>
+							<Dropdown
+								data={['기획', '디자인', '프론트엔드', '백엔드']}
+								initialData='역할'
+								$arrowNeed={true}
+							/>
+						</div>
+					</section>
 					<div className='container-options__search'>
 						<div>
 							<img src={SearchIcon} />
@@ -68,6 +41,14 @@ const RecruitPage = () => {
 						<div>
 							<input placeholder='제목, 글, 내용으로 검색해보세요.' />
 						</div>
+					</div>
+				</section>
+			</section>
+			<hr />
+			<section>
+				<div className='container-options'>
+					<div className='container-options__filters'>
+						<div className='filter bookmark'>☑️ 수업만 보기</div>
 					</div>
 				</div>
 				<div className='container-contents'>
@@ -100,15 +81,15 @@ const RecruitPage = () => {
 						</div>
 					</div>
 				</div>
-			</div>
-			<div className='container-pagination'>
+			</section>
+			<section className='container-pagination'>
 				<Pagination
-					postsNum={postsNum}
+					postsNum={POST_NUM}
 					postsPerPage={20}
 					currentPage={currentPage}
 					setCurrentPage={setCurrentPage}
 				/>
-			</div>
+			</section>
 		</S.RecruitPage>
 	);
 };

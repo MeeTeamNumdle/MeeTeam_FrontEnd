@@ -40,10 +40,10 @@ const Dropdown = ({ data, initialData, $arrowNeed }: IDropdown) => {
 		<S.Dropdown $arrowNeed={$arrowNeed} $showDropdown={showDropdown}>
 			<div className='menu' onClick={onClickDropdown} ref={dropdownRef}>
 				<div className='temp'>
-					<div>{currentValue}</div>
-					<div>
+					<span>{currentValue}</span>
+					<span>
 						<DropdownArrow />
-					</div>
+					</span>
 				</div>
 				{showDropdown && (
 					<div className='dropdown'>

@@ -24,7 +24,7 @@ const Dropdown = styled.div<IDropdown>`
 		line-height: 2.1rem; /* 233.333% */
 		letter-spacing: 0.015rem;
 		cursor: pointer;
-		width: 11rem;
+		width: 12rem;
 		border-radius: 0.6rem;
 		border: 0.75px solid var(--sub-color, #e0e6ff);
 		padding: 1.2rem 1.1rem;
@@ -32,17 +32,19 @@ const Dropdown = styled.div<IDropdown>`
 
 		.temp {
 			display: flex;
+			width: 90%;
 			justify-content: space-between;
 			gap: 1.1rem;
 			cursor: pointer;
-			color: ${props => (props.$arrowNeed ? '#373f41' : '')};
+			color: ${props => (props.$arrowNeed ? '#8E8E8E' : '')};
 			font-size: ${props => (!props.$arrowNeed ? '5rem' : '1.6rem')};
+			font-weight: 700;
 
-			div:nth-child(1) {
+			span:nth-child(1) {
 				font-size: 1.5rem;
 			}
 
-			div:nth-child(2) {
+			span:nth-child(2) {
 				font-size: 1.1rem;
 				transition: transform 0.1s ease-in-out;
 				transform: rotateZ(${props => (props.$showDropdown ? '180deg' : '0deg')});
