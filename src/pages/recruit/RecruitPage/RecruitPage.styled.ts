@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const RecruitPage = styled.div`
+	position: relative;
 	width: clamp(45%, 108rem, 75%);
 	margin: 0 auto;
 
@@ -14,22 +15,23 @@ const RecruitPage = styled.div`
 		margin-top: 3.6rem;
 	}
 
+	.wrapper-filter {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-top: 4.05rem;
+	}
+
 	.container-filter {
 		display: flex;
 		gap: 1.65rem;
-		margin-top: 2.02rem;
 		align-items: center;
-	}
-	.sep {
-		width: 0.3rem;
-		height: 3.225rem;
-		flex-shrink: 0;
-		background-color: #d9d9d9;
-	}
-	.dropdown-spec {
-		display: flex;
-		margin-left: 3rem;
-		gap: 1.65rem;
+
+		.dropdown-spec {
+			display: flex;
+			margin-left: 3rem;
+			gap: 1.65rem;
+		}
 	}
 
 	hr {
@@ -84,31 +86,6 @@ const RecruitPage = styled.div`
 			justify-content: flex-start;
 			align-items: center;
 			gap: 0.75rem;
-
-			.filter {
-				display: flex;
-				width: 13.125rem;
-				height: 3.525rem;
-				padding: 0.75rem;
-				justify-content: center;
-				align-items: center;
-				gap: 0.75rem;
-				border-radius: 7.5rem;
-				background: var(--sub-color, #e0e6ff);
-				color: var(--Light-Black, var(--text-color-2, #373f41));
-
-				font-size: 1.5rem;
-				font-style: normal;
-				font-weight: 400;
-				line-height: 1.35rem; /* 90% */
-				letter-spacing: 0.015rem;
-				cursor: pointer;
-			}
-
-			.bookmark {
-				border-radius: 7.5rem;
-				background: #f7e8fb;
-			}
 		}
 	}
 
@@ -168,6 +145,16 @@ const RecruitPage = styled.div`
 		ul {
 			list-style: none;
 			display: flex;
+		}
+	}
+
+	.container-floating_btn {
+		position: fixed;
+		top: 60rem;
+		right: 10rem;
+
+		.floating-btn {
+			cursor: pointer;
 		}
 	}
 `;

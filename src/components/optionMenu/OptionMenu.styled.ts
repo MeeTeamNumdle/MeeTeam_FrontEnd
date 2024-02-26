@@ -31,6 +31,25 @@ const OptionMenuItem = styled.li`
 	}
 `;
 
-const S = { OptionMenuLayout, OptionMenuItem };
+const Option = styled.span`
+	display: flex;
+	height: 3.525rem;
+	padding: 0.75rem 2rem;
+	justify-content: center;
+	align-items: center;
+	gap: 0.75rem;
+	border-radius: 7.5rem;
+	background: var(--sub-color, #e0e6ff);
+	color: var(--Light-Black, var(--text-color-2, #373f41));
+
+	font-size: 1.5rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 1.35rem; /* 90% */
+	letter-spacing: 0.015rem;
+	cursor: pointer;
+`;
+
+const S = { OptionMenuLayout, OptionMenuItem, Option };
 
 export default S;

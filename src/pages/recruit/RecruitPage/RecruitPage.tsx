@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Dropdown, Subtitle, RecruitCard, Pagination } from '../../../components';
+import { Dropdown, Subtitle, RecruitCard, Pagination, Option } from '../../../components';
 import S from './RecruitPage.styled';
-import { SearchIcon } from '../../../assets';
+import { FloatingBtn, SearchIcon } from '../../../assets';
 
 const START_PAGE_NUM = 1;
 const POST_NUM = 150;
@@ -13,7 +13,7 @@ const RecruitPage = () => {
 		<S.RecruitPage>
 			<section>
 				<h1 className='container-title'>구인게시판</h1>
-				<section className='container-filter'>
+				<section className='wrapper-filter'>
 					<section className='container-filter'>
 						<Dropdown
 							data={['프로젝트', '스터디', '동아리', '공모전']}
@@ -48,7 +48,11 @@ const RecruitPage = () => {
 			<section>
 				<div className='container-options'>
 					<div className='container-options__filters'>
-						<div className='filter bookmark'>☑️ 수업만 보기</div>
+						<Option>전체</Option>
+						<Option>북마크만 보기</Option>
+						<Option>구인중만 보기</Option>
+						<Option>교내</Option>
+						<Option>교외</Option>
 					</div>
 				</div>
 				<div className='container-contents'>
@@ -90,6 +94,9 @@ const RecruitPage = () => {
 					setCurrentPage={setCurrentPage}
 				/>
 			</section>
+			<article className='container-floating_btn'>
+				<img src={FloatingBtn} className='floating-btn' />
+			</article>
 		</S.RecruitPage>
 	);
 };

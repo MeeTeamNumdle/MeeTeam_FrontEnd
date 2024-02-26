@@ -11,6 +11,7 @@ import { CREATE_ICON } from './IconData';
 import Logo from './Logo.svg';
 import CancelBtn from './CancelBtn.svg';
 import XBtn from './XBtn.svg';
+import FloatingBtn from './FloatingBtn.svg';
 
 export {
 	Exit,
@@ -26,4 +27,5 @@ export {
 	Logo,
 	CancelBtn,
 	XBtn,
+	FloatingBtn,
 };
