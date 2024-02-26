@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface Option {
+	$isClick: boolean;
+}
+
 const OptionMenuLayout = styled.ul`
 	position: absolute;
 	left: -5.5rem;
@@ -31,7 +35,7 @@ const OptionMenuItem = styled.li`
 	}
 `;
 
-const Option = styled.span`
+const Option = styled.span<Option>`
 	display: flex;
 	height: 3.525rem;
 	padding: 0.75rem 2rem;
@@ -39,14 +43,14 @@ const Option = styled.span`
 	align-items: center;
 	gap: 0.75rem;
 	border-radius: 7.5rem;
-	background: var(--sub-color, #e0e6ff);
-	color: var(--Light-Black, var(--text-color-2, #373f41));
-
-	font-size: 1.5rem;
+	background: ${props => (props.$isClick ? '#e0e6ff' : '#fff')};
+	color: #151515;
+	font-size: 1.6rem;
 	font-style: normal;
-	font-weight: 400;
-	line-height: 1.35rem; /* 90% */
-	letter-spacing: 0.015rem;
+	font-weight: 700;
+	line-height: 1.6rem;
+	letter-spacing: 0.02rem;
+	border: 0.15rem solid #e0e6ff;
 	cursor: pointer;
 `;
 
