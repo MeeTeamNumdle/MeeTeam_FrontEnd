@@ -77,38 +77,29 @@ const RecruitPage = styled.div`
 	}
 
 	.container-contents {
-		margin-top: 2rem;
+		margin-top: 4.04rem;
 		display: flex;
 		flex-direction: column;
 		gap: 3.75rem;
 		margin-bottom: 5rem;
 
 		.container-contents__row {
-			.container-subtitle {
+			.container-sort {
 				display: flex;
-				justify-content: space-between;
+				justify-content: flex-end;
 				align-items: center;
-			}
-			.subtitle {
-				color: var(--Light-Black, var(--text-color-2, #373f41));
+				margin-bottom: 1.5rem;
 
-				font-size: 2rem;
-				font-style: normal;
-				font-weight: 500;
-				line-height: 4.2rem;
-				letter-spacing: 0.015rem;
-			}
-
-			select {
-				border: none;
-				outline: none;
-				color: var(--Light-Black, var(--text-color-2, #373f41));
-
-				font-size: 1.3rem;
-				font-style: normal;
-				font-weight: 400;
-				line-height: 4.2rem; /* 280% */
-				letter-spacing: 0.015rem;
+				select {
+					border: none;
+					outline: none;
+					color: #373f41;
+					font-size: 1.3rem;
+					font-style: normal;
+					font-weight: 400;
+					line-height: 4.2rem;
+					letter-spacing: 0.015rem;
+				}
 			}
 		}
 		.contents {

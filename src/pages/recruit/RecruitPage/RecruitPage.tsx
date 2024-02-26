@@ -57,16 +57,13 @@ const RecruitPage = () => {
 				<OptionList options={options} />
 				<div className='container-contents'>
 					<div className='container-contents__row'>
-						<div className='container-subtitle'>
-							<div className='subtitle'>👀 내가 관심 있을 만한 구인 글</div>
-							<div className='container-sort'>
-								<select name='sorted-by'>
-									<option value='recent'>최신순</option>
-									<option value='deadline'>마감일순</option>
-									<option value='bookmark'>북마크순</option>
-								</select>
-							</div>
-						</div>
+						<article className='container-sort'>
+							<select name='sorted-by'>
+								<option value='recent'>최신순</option>
+								<option value='deadline'>마감일순</option>
+								<option value='bookmark'>북마크순</option>
+							</select>
+						</article>
 						<div className='contents'>
 							<RecruitCard />
 							<RecruitCard />
@@ -75,7 +72,6 @@ const RecruitPage = () => {
 						</div>
 					</div>
 					<div>
-						<Subtitle>전체 구인 글</Subtitle>
 						<div className='container-contents__grid'>
 							<RecruitCard />
 							<RecruitCard />

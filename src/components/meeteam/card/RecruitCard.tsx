@@ -22,8 +22,12 @@ const RecruitCard = () => {
 					<div>교외</div>
 					<div>프로젝트</div>
 				</div>
-				<div className='bookmark' onClick={onClickBookmark}>
-					{isBookmarked ? <FaBookmark /> : <FaRegBookmark />}
+				<div onClick={onClickBookmark}>
+					{isBookmarked ? (
+						<FaBookmark className='bookmark' />
+					) : (
+						<FaRegBookmark className='bookmark' />
+					)}
 				</div>
 			</div>
 			<div className='content-title'>

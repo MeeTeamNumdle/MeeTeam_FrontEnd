@@ -123,6 +123,7 @@ const RecruitCard = styled.div`
 
 		.bookmark {
 			font-size: 2rem;
+			color: #8e8e8e;
 		}
 	}
 
