@@ -76,19 +76,6 @@ const RecruitPage = styled.div`
 		}
 	}
 
-	.container-options {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-
-		.container-options__filters {
-			display: flex;
-			justify-content: flex-start;
-			align-items: center;
-			gap: 0.75rem;
-		}
-	}
-
 	.container-contents {
 		margin-top: 2rem;
 		display: flex;

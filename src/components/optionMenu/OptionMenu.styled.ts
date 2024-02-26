@@ -50,6 +50,13 @@ const Option = styled.span`
 	cursor: pointer;
 `;
 
-const S = { OptionMenuLayout, OptionMenuItem, Option };
+const OptionList = styled.section`
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 0.75rem;
+`;
+
+const S = { OptionMenuLayout, OptionMenuItem, Option, OptionList };
 
 export default S;

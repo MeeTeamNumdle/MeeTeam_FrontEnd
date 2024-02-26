@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
-import { Dropdown, Subtitle, RecruitCard, Pagination, Option } from '../../../components';
+import {
+	Dropdown,
+	Subtitle,
+	RecruitCard,
+	Pagination,
+	Option,
+	OptionList,
+} from '../../../components';
 import S from './RecruitPage.styled';
 import { FloatingBtn, SearchIcon } from '../../../assets';
 
 const START_PAGE_NUM = 1;
 const POST_NUM = 150;
+const options = ['전체', '북마크만 보기', '구인중만 보기', '교내', '교외'];
 
 const RecruitPage = () => {
 	const [currentPage, setCurrentPage] = useState<number>(START_PAGE_NUM);
@@ -46,15 +54,7 @@ const RecruitPage = () => {
 			</section>
 			<hr />
 			<section>
-				<div className='container-options'>
-					<div className='container-options__filters'>
-						<Option>전체</Option>
-						<Option>북마크만 보기</Option>
-						<Option>구인중만 보기</Option>
-						<Option>교내</Option>
-						<Option>교외</Option>
-					</div>
-				</div>
+				<OptionList options={options} />
 				<div className='container-contents'>
 					<div className='container-contents__row'>
 						<div className='container-subtitle'>
