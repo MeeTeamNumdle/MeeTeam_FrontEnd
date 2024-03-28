@@ -12,7 +12,6 @@ const RecruitPage = () => {
 		isInside: true,
 		isOutside: false,
 	});
-	console.log(currentPage);
 	const onClickHandler = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		const target = event.currentTarget;
 		if (target.innerText === '교내') {

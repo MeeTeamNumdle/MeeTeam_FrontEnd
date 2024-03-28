@@ -5,7 +5,7 @@ import { recruitInputState } from '../../../../atom';
 import { useRecoilState } from 'recoil';
 import { InputRole, InputRoleForm } from '../../../index';
 
-const RecruitRoles = () => {
+const RecruitRole = () => {
 	const [userRoleList, setUserRoleList] = useState<Role[]>([]);
 	const [info, setInfo] = useRecoilState(recruitInputState);
 
@@ -43,4 +43,4 @@ const RecruitRoles = () => {
 	);
 };
 
-export default RecruitRoles;
+export default RecruitRole;

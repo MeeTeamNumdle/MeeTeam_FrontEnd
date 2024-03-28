@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon } from '../..';
+import { Icon, ProfileImage } from '../..';
 import { CommentInputFunctions } from '../../../types';
 import S from './CommentInput.styled';
 
@@ -19,20 +19,25 @@ const CommentInput = ({
 	return (
 		<S.CommentInput>
 			<form onSubmit={onSubmit}>
-				<article className='user-input'>
-					<section className='user-input__icon'>
-						<Icon />
+				<article className='wrapper'>
+					<section className='container-user__icon'>
+						<div>
+							<ProfileImage url='' nickname={'yeom'} size='2.31rem' />
+						</div>
+						<span>{'nayeahyo'}</span>
 					</section>
-					<section className='user-input__container'>
+					<section className='container-user__input'>
 						<input
 							type='text'
 							onKeyPress={onKeyPress}
 							value={contents}
 							onChange={onChangeHandler}
 							onClick={onClickInput}
-							placeholder={isLogin ? '댓글 추가...' : '로그인이 필요합니다.'}
+							placeholder={isLogin ? '댓글쓰기' : '로그인이 필요합니다.'}
 						/>
-						<button type='submit' onClick={addComment}>
+					</section>
+					<section className='container-btn'>
+						<button type='submit' onClick={addComment} className='submit-btn'>
 							댓글
 						</button>
 					</section>

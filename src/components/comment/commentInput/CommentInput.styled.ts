@@ -1,47 +1,65 @@
 import styled from 'styled-components';
 
 const CommentInput = styled.div`
-	.user-input {
+	width: 100%;
+	padding: 2.4rem 4.8rem;
+	box-sizing: border-box;
+	margin: 0 auto;
+	border-radius: 0.75rem;
+	border: 0.075rem solid var(--box_stroke, #e3e3e3);
+	background: var(--Grayscale-200, #f6f6f6);
+
+	.wrapper {
 		display: flex;
 		gap: 2rem;
+		flex-direction: column;
 
-		.user-input__icon {
+		.container-user__icon {
 			width: 3.15rem;
 			height: 3.15rem;
 			flex-shrink: 0;
+			display: flex;
+			align-items: center;
+			gap: 0.6rem;
+
+			span {
+				color: #373f41;
+				font-size: 1.2rem;
+				font-weight: 600;
+			}
 		}
 
-		.user-input__container {
+		.container-user__input {
 			display: flex;
 			gap: 1rem;
 			width: 100%;
 
 			input {
-				width: 89%;
-				height: 3.75rem;
+				width: 100%;
+				height: 4rem;
 				flex-shrink: 0;
 				border-radius: 0.75rem;
-				border: 0.75px solid #bebebe;
+				border: 0.075rem solid #e3e3e3;
 				background: #fff;
 				outline: none;
 				padding-left: 1.3rem;
+				box-sizing: border-box;
 			}
-
-			button {
+		}
+		.container-btn {
+			display: flex;
+			justify-content: flex-end;
+			.submit-btn {
 				display: flex;
-				width: 6.7rem;
-				height: 3.75rem;
-				padding: 0.75rem;
+				width: 6.5rem;
+				height: 3.6rem;
+				padding: 1.2rem 2rem;
 				justify-content: center;
 				align-items: center;
 				gap: 0.75rem;
-				flex-shrink: 0;
 				border-radius: 0.6rem;
-				background: var(--main-color, #5877fc);
-				border: none;
-				outline: none;
+				background: #5877fc;
 				color: #fff;
-				cursor: pointer;
 			}
 		}
 	}

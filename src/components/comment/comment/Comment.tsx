@@ -1,17 +1,26 @@
 import React, { useState } from 'react';
-import { Icon, KebabMenu, ReplyComment, ReplyInput } from '../..';
+import { KebabMenu, ProfileImage, ReplyComment, ReplyInput } from '../..';
 import S from './Comment.styled';
 import { Comment } from '../../../types';
 import { useNavigate } from 'react-router-dom';
 
-const Comment = ({ id, username, content, replies, deleteComment }: Comment) => {
+const Comment = ({
+	id,
+	nickname,
+	content,
+	replies,
+	deleteComment,
+	isWriter,
+	createAt,
+	profileImg,
+}: Comment) => {
 	const navigate = useNavigate();
 	const isLogin = true; // 임시 코드
 	const [replyClicked, setReplyClicked] = useState<boolean>(false);
 	const [value, setValue] = useState<string>(content);
 	const [contents, setContents] = useState<string>('');
 	const [showKebab, setShowKebab] = useState<boolean>(true);
-	const isValid = isLogin && username === 'yeom';
+	const isUser = isLogin && nickname === 'yeom';
 	const [repliesList, setRepliesList] = useState<Comment[] | undefined>(replies);
 	const [isEdit, setIsEdit] = useState<boolean>(false);
 	const optionLists = [
@@ -32,7 +41,7 @@ const Comment = ({ id, username, content, replies, deleteComment }: Comment) => 
 			},
 		},
 	];
-	const deleteReply = (id: string) => {
+	const deleteReply = (id: number) => {
 		setRepliesList(prevReplies => prevReplies?.filter(v => v.id !== id));
 	};
 
@@ -43,9 +52,12 @@ const Comment = ({ id, username, content, replies, deleteComment }: Comment) => 
 	const addReply = () => {
 		if (contents !== '' && contents.trim() !== '' && repliesList) {
 			const newComment = {
-				id: id + '-' + repliesList?.length.toString(),
-				username: 'yeom',
+				id: id,
+				nickname: 'yeom',
 				content: contents,
+				isWriter: isUser,
+				createAt: '',
+				profileImg: '',
 			};
 			setRepliesList([...repliesList, newComment]);
 			setContents('');
@@ -91,46 +103,31 @@ const Comment = ({ id, username, content, replies, deleteComment }: Comment) => 
 	return (
 		<S.Comment>
 			<section className='wrapper'>
-				<section className='container'>
-					<div className='comment-icon'>
-						<Icon />
-					</div>
-					{!isEdit ? (
-						<div className='comment-info'>
-							<span>{username}</span>
-							<span>{value}</span>
+				<article className='container'>
+					<section className='comment-icon'>
+						<div>
+							<ProfileImage url='' nickname={nickname} size='2.31rem' />
 						</div>
-					) : (
-						<input
-							type='text'
-							className='input-edit'
-							placeholder='댓글 입력'
-							value={value}
-							onChange={onChangeEdit}
-							onKeyPress={onKeyPressEdit}
-						/>
-					)}
-					{isValid && (
-						<button
-							type='button'
-							onClick={!isEdit ? handleReplyClick : editComment}
-							className='reply-btn'
-						>
-							{isEdit ? '수정' : '답글'}
-						</button>
-					)}
-				</section>
-				{isValid && showKebab && <KebabMenu options={optionLists} />}
+						<span>{nickname}</span>
+					</section>
+					<section className='comment-info'>
+						<span>{value}</span>
+					</section>
+				</article>
 			</section>
-			<section>
+			<hr />
+			<section className='wrapper-replies'>
 				<ul className='container-reply__lists'>
 					{repliesList?.map(reply => {
 						return (
 							<ReplyComment
 								key={reply.id}
 								id={reply.id}
-								username={reply.username}
+								nickname={reply.nickname}
 								content={reply.content}
+								createAt={''}
+								profileImg={''}
+								isWriter={isUser}
 								deleteComment={() => deleteReply(reply.id)}
 							/>
 						);

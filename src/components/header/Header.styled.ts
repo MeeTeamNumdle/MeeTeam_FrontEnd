@@ -8,21 +8,22 @@ const Header = styled.div`
 		justify-content: space-between;
 		align-items: center;
 		flex-shrink: 0;
-		background-color: #f0f0f0;
+		background-color: #fff;
+		border-bottom: 0.375px solid #e3e3e3;
 	}
 
 	.header__logo {
 		display: flex;
-		width: 12.79338rem;
+		/* width: 12rem; */
 		height: 1.29563rem;
 		justify-content: flex-end;
 		align-items: center;
 		flex-shrink: 0;
-		margin-left: 20.88rem;
+		margin-left: 22.88rem;
 		cursor: pointer;
 
 		img {
-			width: 13rem;
+			width: 4rem;
 		}
 	}
 

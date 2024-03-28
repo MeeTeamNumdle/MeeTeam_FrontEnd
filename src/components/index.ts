@@ -79,9 +79,9 @@ import Dropdown from './dropdown/Dropdown';
 import DateSelect from './dateSelect/DateSelect';
 import DeadlineSelect from './dateSelect/DeadlineSelect';
 import Icon from './meeteam/icon/Icon';
-import ApplyInfomation from '../pages/recruit/RecruitDetailPage/steps/ApplyInfomation';
-import ApplyInput from '../pages/recruit/RecruitDetailPage/steps/ApplyInput';
-import ApplySubmit from '../pages/recruit/RecruitDetailPage/steps/ApplySubmit';
+import ApplyModal from './recruit/recruitDetail/modal/ApplyModal';
+import ConfirmModal from './recruit/recruitDetail/modal/ConfirmModal';
+import FinalModal from './recruit/recruitDetail/modal/FinalModal';
 import Content from './meeteam/Content';
 import RecruitCard from './meeteam/card/RecruitCard';
 import Pagination from './pagination/Pagination';
@@ -95,10 +95,18 @@ import Skill from './skills/Skill';
 import PortfolioCard from './portfolio/card/PortfolioCard';
 import InputRole from './inputDropdown/inputRole/InputRole';
 import InputRoleForm from './inputDropdown/inputRole/InputRoleForm';
+import Progress from './progressBar/Progress';
+import TitleInfo from './recruit/recruitDetail/titleInfo/TitleInfo';
+import RecruitInfo from './recruit/recruitDetail/recruitInfo/RecruitInfo';
+import RecruitDescription from './recruit/recruitDetail/recruitDescription/RecruitDescription';
+import RecruitComments from './recruit/recruitDetail/recruitComments/RecruitComments';
+import RecruitRoles from './recruit/recruitDetail/recruitRoles/RecruitRoles';
+import LinkToList from './recruit/recruitDetail/linktoList/LinkToList';
+import RecruitTag from './recruit/recruitDetail/recruitTag/RecruitTag';
 import Description from './recruit/create/Description';
 import BasicInformation from './recruit/create/basicInformation/BasicInformation';
 import DetailedInformation from './recruit/create/detailedInformation/DetailedInformation';
-import RecruitRoles from './recruit/create/recruitRoles/RecruitRoles';
+import RecruitRole from './recruit/create/recruitRoles/RecruitRoles';
 import ControlButtons from './recruit/create/ControlButtons';
 import ContainerScope from './recruit/create/basicInformation/containers/ContainerScope';
 import ContainerCategory from './recruit/create/basicInformation/containers/ContainerCategory';
@@ -107,6 +115,8 @@ import WrapperScopeCategory from './recruit/create/basicInformation/wrappers/Wra
 import ContainerCourse from './recruit/create/basicInformation/containers/ContainerCourse';
 import OptionList from './optionList/OptionList';
 import ComboBox from './comboBox/ComboBox';
+import WriterFooter from './recruit/recruitDetail/footer/WriterFooter';
+import ApplierFooter from './recruit/recruitDetail/footer/ApplierFooter';
 
 export {
 	Header,
@@ -177,9 +187,6 @@ export {
 	MemberInviteModal,
 	MemberTest,
 	NaverLogin,
-	ApplyInfomation,
-	ApplyInput,
-	ApplySubmit,
 	Content,
 	PortpolioCard,
 	informationList,
@@ -197,10 +204,18 @@ export {
 	PortfolioCard,
 	InputRole,
 	InputRoleForm,
+	Progress,
+	TitleInfo,
+	RecruitInfo,
+	RecruitDescription,
+	RecruitComments,
+	RecruitRoles,
+	LinkToList,
+	RecruitTag,
 	Description,
 	BasicInformation,
 	DetailedInformation,
-	RecruitRoles,
+	RecruitRole,
 	ControlButtons,
 	ContainerScope,
 	ContainerCategory,
@@ -209,4 +224,9 @@ export {
 	ContainerCourse,
 	OptionList,
 	ComboBox,
+	WriterFooter,
+	ApplierFooter,
+	ApplyModal,
+	ConfirmModal,
+	FinalModal,
 };

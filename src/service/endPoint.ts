@@ -15,6 +15,12 @@ export const EndPoint = {
 	},
 
 	/* recruit */
+	RECRUIT_DETAIL: {
+		posting: (id: number) => `/recruitment/postings/${id}`,
+		applyInfo: (id: number) => `/recruitment/postings/${id}/apply-info`,
+		apply: (id: number) => `/recruitment/postings/${id}/apply`,
+		bookmark: (id: number) => `/recruitment/postings/${id}/bookmark`,
+	},
 	RECRUITMENT: {
 		post: '/recruitment/postings',
 		role: (keyword: string) => `/role/search?keyword=${keyword}&limit=5`,

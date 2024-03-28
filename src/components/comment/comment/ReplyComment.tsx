@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
 import S from './ReplyComment.styled';
-import { Icon, KebabMenu } from '../..';
+import { KebabMenu, ProfileImage } from '../..';
 import { Comment } from '../../../types';
+import { Reply } from '../../../assets';
 
-const ReplyComment = ({ id, username, content, deleteComment }: Comment) => {
+const ReplyComment = ({
+	id,
+	nickname,
+	content,
+	deleteComment,
+	isWriter,
+	createAt,
+	profileImg,
+}: Comment) => {
 	const isLogin = true; // 임시 코드
 	const [value, setValue] = useState<string>(content);
 	const [showKebab, setShowKebab] = useState<boolean>(true);
 	const [isEdit, setIsEdit] = useState<boolean>(false);
-	const isValid = isLogin && username === 'yeom' && showKebab;
+	const isValid = isLogin && nickname === 'yeom' && showKebab;
 	const optionLists = [
 		{
 			title: '수정',
@@ -47,33 +56,20 @@ const ReplyComment = ({ id, username, content, deleteComment }: Comment) => {
 	return (
 		<S.ReplyComment>
 			<section className='wrapper'>
-				<section className='container'>
-					<div className='comment-icon'>
-						<Icon />
-					</div>
-					{!isEdit ? (
-						<div className='comment-info'>
-							<span>{username}</span>
-							<span>{value}</span>
+				<img className='reply-icon' src={Reply} />
+				<article className='container'>
+					<section className='comment-icon'>
+						<div>
+							<ProfileImage url='' nickname={nickname} size='2.31rem' />
 						</div>
-					) : (
-						<>
-							<input
-								type='text'
-								className='input-edit'
-								placeholder='댓글 입력'
-								value={value}
-								onChange={onChangeEdit}
-								onKeyPress={onKeyPressEdit}
-							/>
-							<button type='button' onClick={editComment} className='reply-btn'>
-								수정
-							</button>
-						</>
-					)}
-				</section>
-				{isValid && <KebabMenu options={optionLists} />}
+						<span>{nickname}</span>
+					</section>
+					<section className='comment-info'>
+						<span>{value}</span>
+					</section>
+				</article>
 			</section>
+			<hr />
 		</S.ReplyComment>
 	);
 };

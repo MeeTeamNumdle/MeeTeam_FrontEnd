@@ -1,59 +1,73 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import S from './RecruitDetailPage.styled';
 import {
-	Tag,
-	ApplyInfomation,
-	ApplyInput,
-	ApplySubmit,
-	informationList,
-	role,
-	CONTENT,
-	Comment,
 	CommentInput,
+	Comment,
+	TitleInfo,
+	RecruitInfo,
+	RecruitDescription,
+	RecruitRoles,
+	RecruitTag,
+	LinkToList,
+	WriterFooter,
+	ApplierFooter,
+	ApplyModal,
+	ConfirmModal,
+	FinalModal,
 } from '../../../components';
-import ColorMatching from '../../../utils/ColorMatching';
+import { tempData } from './data';
+import { fixModalBackground, simpleDate } from '../../../utils';
+import { Comment as CommentForm, JsxElementComponentProps } from '../../../types';
+import { useQuery } from '@tanstack/react-query';
+import { getPostingData } from '../../../service';
 import { useRecoilValue } from 'recoil';
-import { applyStepState } from '../../../atom';
-import { useNavigate } from 'react-router-dom';
-import { JsxElementComponentProps } from '../../../types';
-import { commentsData } from './data';
-
-const stepLists: JsxElementComponentProps = {
-	0: <ApplyInfomation />,
-	1: <ApplyInput />,
-	2: <ApplySubmit />,
-};
+import { applyModalState, applyStepState } from '../../../atom';
 
 const RecruitDetailPage = () => {
-	const navigate = useNavigate();
-	const [commentsList, setCommentsList] = useState<Comment[]>(commentsData);
 	const [contents, setContents] = useState<string>('');
-	const isLogin = true; // 임시 코드
+	const [commentsList, setCommentsList] = useState<CommentForm[]>(tempData.comments);
+	const username = 'yeom';
+	const createAt = simpleDate(new Date());
+	const isModal = useRecoilValue(applyModalState);
 	const step = useRecoilValue(applyStepState);
-
-	const isRound = (title: string) => {
-		const roundTitles = ['유형', '진행'];
-
-		if (roundTitles.includes(title)) {
-			return false;
-		}
-		return true;
+	const stepLists: JsxElementComponentProps = {
+		0: <ApplyModal />,
+		1: <ConfirmModal />,
+		2: <FinalModal />,
 	};
+
+	const pageNumber = 2;
+
+	const { data: detailedData, isLoading } = useQuery({
+		queryKey: ['detailedPage', pageNumber],
+		queryFn: () => getPostingData(pageNumber),
+	});
+
+	const period = detailedData?.proceedingStart + '-' + detailedData?.proceedingEnd;
+	const diffDate = Math.ceil(
+		Math.abs(
+			(new Date(detailedData?.deadline as any).getTime() - new Date().getTime()) /
+				(1000 * 60 * 60 * 24)
+		)
+	).toString();
 
 	const addComment = () => {
 		if (contents !== '' && contents.trim() !== '') {
 			const newComment = {
-				id: commentsData.length.toString(),
-				username: 'yeom',
+				id: tempData.comments.length + 1,
+				nickname: 'yeom',
 				content: contents,
 				replies: [],
+				isWriter: true,
+				createAt: createAt?.toString(),
+				profileImg: '',
 			};
 			setCommentsList([...commentsList, newComment]);
 			setContents('');
 		}
 	};
 
-	const deleteComment = (id: string) => {
+	const deleteComment = (id: number) => {
 		setCommentsList(prevComments => prevComments.filter(v => v.id !== id));
 	};
 
@@ -69,127 +83,86 @@ const RecruitDetailPage = () => {
 		setContents(event.target.value);
 	};
 
-	const onClickInput = () => {
-		if (!isLogin) {
-			navigate('/signin');
-		}
-	};
+	const onClickInput = () => {};
+
+	useEffect(() => {
+		fixModalBackground(isModal);
+	}, [isModal]);
 
 	return (
-		<S.RecruitDetailPage>
-			<div className='container'>
-				<div className='container-left'>
-					<div className='container-info'>
-						<div>
-							<div className='container-info__title'>
-								<h1>[커뮤니티 웹 서비스 프로젝트] 디자이너 모집</h1>
-								<Tag $recruit={true} $proceed={false} />
-							</div>
-							<div className='container-info__writer'>
-								<picture className='profile-img'>
-									<img src='https://i.pinimg.com/236x/90/c7/f7/90c7f7afa68ea9b875eafbe887f454e8.jpg' />
-								</picture>
-								<div>{'김민지'}</div>
-							</div>
-						</div>
-						<div className='container-required__info'>
-							{informationList.map((information, index) => (
-								<S.RequiredInformationItem key={index}>
-									<S.RequiredInformationHead>{information.title}</S.RequiredInformationHead>
-									<div className='required-information__row'>
-										{information.content.split(',').map((content, index) => (
-											<S.RequiredInformationSpan
-												$isRound={isRound(information.title)}
-												$color={ColorMatching(content)}
-												key={index}
-											>
-												{content}
-											</S.RequiredInformationSpan>
-										))}
-									</div>
-								</S.RequiredInformationItem>
-							))}
-						</div>
-						<div className='container-introduction'>
-							<h4>구인 글</h4>
-							<p>{CONTENT}</p>
-						</div>
-					</div>
-					<div className='container-current'>
-						<span className='container-current__title'>구인 현황</span>
-						<div className='container-current__roles'>
-							{role.map((e, index) => (
-								<div className='container-current__roles--element' key={index}>
-									<div className='roles-info'>
-										<div className='roles-info__role'>
-											<div className='role'>
-												{e.role} ({e.current.length} / {e.max})
-											</div>
-										</div>
-										<div className='roles-info__spec'>
-											{e.specs.map((spec, j) => (
-												<div className='spec' key={j}>
-													{spec}
-												</div>
-											))}
-										</div>
-									</div>
-								</div>
-							))}
-						</div>
-					</div>
-				</div>
-				<div className='container-right'>
-					<form>
-						<div className='container-apply'>{stepLists[step]}</div>
-					</form>
-					<div className='container-recommend'>
-						<div>
-							<span className='title'>비슷한 구인 글</span>
-						</div>
-						<div className='content'>
-							<div className='content-tags'>
-								<div className='tags'>
-									<div>교외</div>
-									<div>프로젝트</div>
-								</div>
-							</div>
-							<div className='content-title'>
-								[반려 동물을 위한 앱 서비스] 프론트엔드/백엔드 개발자를 모집합니다.
-							</div>
-							<div className='content-info'>
-								<div>마감 7일 전</div>
-								<div>조회수 101회</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div className='container-comments'>
-				<span className='container-comments__title'>댓글</span>
-				<ul className='container-comments__lists'>
-					{commentsList.map((comment, index) => {
-						return (
-							<Comment
-								key={index}
-								id={comment.id}
-								username={comment.username}
-								content={comment.content}
-								replies={comment.replies}
-								deleteComment={() => deleteComment(comment.id)}
+		<>
+			{!isLoading && detailedData && (
+				<S.RecruitDetailPage>
+					<TitleInfo
+						nickname={detailedData.writerNickname}
+						responseRate={detailedData.responseRate}
+						score={detailedData.writerScore}
+						createdAt={detailedData.createdAt.slice(0, -9)}
+						title={detailedData.title}
+						writerProfileImg={detailedData.writerProfileImg}
+						bookmarkCount={detailedData.bookmarkCount}
+						writerScore={detailedData.writerScore}
+					/>
+					<RecruitInfo
+						deadline={detailedData.deadline}
+						period={period}
+						scope={detailedData.scope}
+						courseName={detailedData.courseName}
+						category={detailedData.category}
+						proceedType={detailedData.proceedType}
+						courseProfessor={detailedData.courseProfessor}
+						dDay={diffDate}
+					/>
+					<RecruitDescription content={detailedData.content} />
+					<RecruitRoles roles={detailedData.recruitmentRoles} />
+					<RecruitTag tags={detailedData.tags} />
+					<LinkToList />
+					<article className='wrapper-comments'>
+						<section className='container-title'>
+							<h3>댓글</h3>
+							<span>{'4'}</span>
+						</section>
+						<hr />
+						<section className='container-comments'>
+							<ul className='container-comments__lists'>
+								{commentsList.map((comment, _) => {
+									return (
+										<Comment
+											key={comment.id}
+											id={comment.id}
+											nickname={comment.nickname}
+											content={comment.content}
+											replies={comment.replies}
+											isWriter={comment.nickname === username}
+											createAt={comment.createAt}
+											profileImg={comment.profileImg}
+											deleteComment={() => deleteComment(comment.id)}
+										/>
+									);
+								})}
+							</ul>
+							<CommentInput
+								contents={contents}
+								addComment={addComment}
+								onKeyPress={onKeyPress}
+								onChangeHandler={onChangeHandler}
+								onClickInput={onClickInput}
 							/>
-						);
-					})}
-				</ul>
-				<CommentInput
-					contents={contents}
-					addComment={addComment}
-					onKeyPress={onKeyPress}
-					onChangeHandler={onChangeHandler}
-					onClickInput={onClickInput}
-				/>
-			</div>
-		</S.RecruitDetailPage>
+						</section>
+					</article>
+					{isModal && (
+						<form>
+							<section className='modal-background'>{stepLists[step]}</section>
+						</form>
+					)}
+				</S.RecruitDetailPage>
+			)}
+			<S.Footer>
+				<section className='container-btn'>
+					{detailedData?.isWriter ? <WriterFooter /> : <ApplierFooter />}
+				</section>
+			</S.Footer>
+		</>
 	);
 };
 

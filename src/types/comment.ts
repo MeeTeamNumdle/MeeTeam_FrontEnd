@@ -1,11 +1,14 @@
 import React from 'react';
 
 export interface Comment {
-	id: string;
-	username: string;
+	id: number;
+	nickname: string;
+	profileImg: string;
 	content: string;
+	createAt: string | undefined;
 	replies?: Comment[];
-	deleteComment?: (id: string) => void;
+	isWriter: boolean;
+	deleteComment?: (id: number) => void;
 }
 
 export interface CommentInputFunctions {

@@ -6,8 +6,7 @@ import { preUrlState } from '../../atom';
 import { useSetRecoilState } from 'recoil';
 import { searchPageState } from '../../atom';
 import { useRecoilState } from 'recoil';
-import { CancelBtn, Logo, SearchIcon, XBtn } from '../../assets';
-import { Create } from '..';
+import { CancelBtn, Logo, SearchIcon, XBtn, LogoName } from '../../assets';
 
 const Header = () => {
 	const navigate = useNavigate();
@@ -33,9 +32,6 @@ const Header = () => {
 	};
 	const goGalary = () => {
 		navigate('/galary');
-	};
-	const goMember = () => {
-		navigate('/member');
 	};
 	const goInformationUse = () => {
 		navigate('/information');
@@ -88,25 +84,20 @@ const Header = () => {
 			<div className='header'>
 				<div className='header__logo' onClick={goHome}>
 					<img src={Logo} />
+					<img src={LogoName} />
 				</div>
 				<div className='header__navigation'>
 					<div
 						className={`header__navigation--navi-text ${isHere.recruit ? 'here' : ''}`}
 						onClick={goRecruit}
 					>
-						구인 게시판
+						구인게시판
 					</div>
 					<div
 						className={`header__navigation--navi-text ${isHere.galary ? 'here' : ''}`}
 						onClick={goGalary}
 					>
-						밋팀 갤러리
-					</div>
-					<div
-						className={`header__navigation--navi-text ${isHere.member ? 'here' : ''}`}
-						onClick={goMember}
-					>
-						멤버
+						밋팀갤러리
 					</div>
 					<div
 						className={`header__navigation--navi-text ${isHere.inform ? 'here' : ''}`}
@@ -147,12 +138,11 @@ const Header = () => {
 							</div>
 						)}
 					</div>
-					<div className='header__menu--create' onClick={() => navigate('/create/meeteam')}>
-						<Create />
-					</div>
 					<div className='header__menu--my' ref={dropdownRef}>
 						<div className='icon' onClick={() => setOpenDrop(prev => !prev)}>
-							<BiUser />
+							<div>
+								<BiUser />
+							</div>
 						</div>
 						{openDrop && (
 							<div className='dropdown'>
