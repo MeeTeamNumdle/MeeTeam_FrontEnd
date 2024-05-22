@@ -461,6 +461,22 @@ const RecruitPage = styled.div<RecruitPage>`
 			display: grid;
 			grid-template-columns: repeat(4, 1fr);
 			gap: 1.8rem 1.8rem;
+
+			@media (min-width: 1200px) {
+				grid-template-columns: repeat(4, 1fr);
+			}
+
+			@media (min-width: 992px) and (max-width: 1199px) {
+				grid-template-columns: repeat(3, 1fr);
+			}
+
+			@media (min-width: 768px) and (max-width: 991px) {
+				grid-template-columns: repeat(2, 1fr);
+			}
+
+			@media (max-width: 767px) {
+				grid-template-columns: 1fr;
+			}
 		}
 
 		.no-results {
