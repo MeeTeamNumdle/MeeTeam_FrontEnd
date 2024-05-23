@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { FilledBookmark, UnfilledBookmark } from '../../../assets';
 import { ProfileImage } from '../..';
 import { Post, StringElementProps } from '../../../types';
-import { useBookmark, useLogin } from '../../../hooks';
+import { useBookmark, useDebounce, useLogin } from '../../../hooks';
 import { useDelBookmark } from '../../../hooks/useBookMark';
 import { useSetRecoilState } from 'recoil';
 import { needLoginModalState } from '../../../atom';
@@ -38,11 +38,13 @@ const RecruitCard = ({
 	const { mutate: unBookmarked } = useDelBookmark({
 		queryKey: path,
 	});
+	// const [bookmark, setIsBookmarked] = useState(isBookmarked);
 	const setNeedLoginModal = useSetRecoilState(needLoginModalState);
 	const extractDeadline = new Date(deadline);
 	const convertedDeadline = `${extractDeadline.getFullYear()}/${
 		extractDeadline.getMonth() + 1
 	}/${extractDeadline.getDate()}`;
+	// const debouncedBookmark = useDebounce(isBookmarked, 500);
 
 	const onClickContent = () => {
 		navigate(`/recruitment/postings/${id}`);
@@ -67,6 +69,10 @@ const RecruitCard = ({
 			setPath(currentPath);
 		}
 	}, [location.pathname]);
+
+	// useEffect(() => {
+	// 	setIsBookmarked(debouncedBookmark);
+	// }, [debouncedBookmark]);
 
 	return (
 		<S.RecruitCard onClick={onClickContent} $isClosed={isClosed}>
