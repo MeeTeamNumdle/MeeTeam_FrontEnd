@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { bookmarkDelete, bookmarkPost } from '../service/recruit/detail';
+import { useDebounceFn } from './useDebounce';
 
 interface BookmarkSuccess {
 	queryKey: string;

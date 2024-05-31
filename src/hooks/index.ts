@@ -8,7 +8,7 @@ import {
 	useSignOut,
 } from './useAuth';
 import { useReadProfile, useUpdateProfile } from './useProfile';
-import useDebounce from './useDebounce';
+import { useDebounce, useDebounceFn } from './useDebounce';
 import useValid from './useValid';
 import { useReadSkillList, useReadRoleList } from './useSearch';
 import {

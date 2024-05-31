@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { UnfilledBookmark, FilledBookmark } from '../../../../assets';
 import { useSetRecoilState } from 'recoil';
 import { applyModalState, applyCancelModalState, needLoginModalState } from '../../../../atom';
@@ -22,6 +22,7 @@ const ApplierFooter = ({ deadline, isApplied, isBookmarked }: ApplierData) => {
 	const setNeedLoginModal = useSetRecoilState(needLoginModalState);
 	const { mutate: bookmarked } = useBookmark({ queryKey: 'detailedPage' });
 	const { mutate: unBookmarked } = useDelBookmark({ queryKey: 'detailedPage' });
+	const [isBookmark, setIsBookmark] = useState(isBookmarked);
 
 	const setIsCancel = useSetRecoilState(applyCancelModalState);
 
