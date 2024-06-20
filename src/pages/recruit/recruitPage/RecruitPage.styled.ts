@@ -483,9 +483,9 @@ const RecruitPage = styled.div<RecruitPage>`
 			@media (max-width: 431px) {
 				display: grid;
 				margin: 2rem auto;
-				justify-content: center;
 				grid-template-columns: repeat(1, 1fr);
 				row-gap: 1.8rem;
+				justify-items: center;
 			}
 		}
 
@@ -649,12 +649,13 @@ const RecruitPage = styled.div<RecruitPage>`
 			gap: 0.4rem;
 		}
 
-		.container-contents__grid {
-		}
-
 		.wrapper-filters {
 			.container-options__search {
 				width: 100%;
+			}
+
+			.dropdown-detailed {
+				min-width: 15rem;
 			}
 		}
 	}
