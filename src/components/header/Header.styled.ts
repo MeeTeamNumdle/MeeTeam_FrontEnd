@@ -170,10 +170,10 @@ const Header = styled.header<{ $isLogin?: boolean }>`
 	}
 
 	/* 작은 화면 (모바일) */
-	@media (max-width: 600px) {
+	@media (min-width: 374px) and (max-width: 600px) {
 		.header {
 			/* flex-direction: column; */
-			width: 70%;
+			/* width: 70%; */
 		}
 
 		.header-leftside {

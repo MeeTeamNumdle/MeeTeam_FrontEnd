@@ -438,8 +438,7 @@ const RecruitPage = styled.div<RecruitPage>`
 	}
 
 	hr {
-		margin-top: 2.32rem;
-		margin-bottom: 2.32rem;
+		margin: 2.32rem auto;
 		background: #e3e3e3;
 		height: 0.75px;
 		border: 0;
@@ -468,9 +467,26 @@ const RecruitPage = styled.div<RecruitPage>`
 
 		.container-contents__grid {
 			margin-top: 2rem;
-			display: grid;
-			grid-template-columns: repeat(4, 1fr);
-			gap: 1.8rem 1.8rem;
+			flex-wrap: wrap;
+			row-gap: 1.8rem;
+			column-gap: 1.5rem;
+			display: flex;
+
+			@media (max-width: 600px) {
+				display: grid;
+				margin: 2rem auto;
+				margin-left: -1rem;
+				grid-template-columns: repeat(2, 1fr);
+				row-gap: 1.8rem;
+			}
+
+			@media (max-width: 431px) {
+				display: grid;
+				margin: 2rem auto;
+				justify-content: center;
+				grid-template-columns: repeat(1, 1fr);
+				row-gap: 1.8rem;
+			}
 		}
 
 		.no-results {
@@ -561,6 +577,86 @@ const RecruitPage = styled.div<RecruitPage>`
 		height: 100vh;
 		z-index: 105;
 		background-color: rgba(0, 0, 0, 0.15);
+	}
+
+	@media (max-width: 1200px) {
+		width: 90%;
+
+		.wrapper-title {
+			.sep {
+				font-size: 2rem;
+			}
+		}
+
+		.container-contents__grid {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	@media (max-width: 920px) {
+		.wrapper-filters {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 1.6rem;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.wrapper-title {
+			.sep {
+				font-size: 1.5rem;
+			}
+		}
+		.wrapper-filters {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 1.6rem;
+
+			.container-options__search {
+				width: 100%;
+			}
+		}
+
+		.container-contents__grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (max-width: 600px) {
+		.wrapper-title {
+			gap: 0.8rem;
+		}
+
+		.container-filters {
+			flex-wrap: wrap;
+			gap: 0.8rem;
+		}
+
+		.wrapper-filters {
+			.container-options__search {
+				width: 100%;
+			}
+		}
+	}
+
+	@media (max-width: 431px) {
+		.wrapper-title {
+			gap: 0.4rem;
+		}
+
+		.container-filters {
+			flex-wrap: wrap;
+			gap: 0.4rem;
+		}
+
+		.container-contents__grid {
+		}
+
+		.wrapper-filters {
+			.container-options__search {
+				width: 100%;
+			}
+		}
 	}
 `;
 
