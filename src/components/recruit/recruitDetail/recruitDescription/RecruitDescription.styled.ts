@@ -77,7 +77,7 @@ const RecruitDescription = styled.article`
 		}
 	}
 
-	@media (max-width: 431px) {
+	@media (max-width: 450px) {
 		.container-contents {
 			padding: 0 1.6rem 1rem 1.6rem;
 		}

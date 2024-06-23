@@ -267,6 +267,42 @@ const Footer = styled.footer`
 		z-index: 105;
 		background-color: rgba(0, 0, 0, 0.15);
 	}
+
+	@media (max-width: 450px) {
+		padding: 0 1.6rem;
+
+		.btn-txt__big {
+			font-size: 1.4rem;
+		}
+
+		.container-btn {
+			.btn-navigate_appliers {
+				padding: 1.2rem 1.8rem;
+			}
+
+			.btn-close {
+				padding: 1.2rem 1.8rem;
+			}
+		}
+	}
+
+	@media (max-width: 375px) {
+		padding: 0 1.6rem;
+
+		.btn-txt__big {
+			font-size: 1.2rem;
+		}
+
+		.container-btn {
+			.btn-navigate_appliers {
+				padding: 1rem 1.6rem;
+			}
+
+			.btn-close {
+				padding: 1rem 1.6rem;
+			}
+		}
+	}
 `;
 
 const S = {

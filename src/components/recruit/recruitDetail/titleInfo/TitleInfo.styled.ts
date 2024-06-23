@@ -110,6 +110,10 @@ const TitleInfo = styled.article`
 					margin-left: 0;
 					margin-top: 0.4rem;
 				}
+
+				.container-info {
+					margin-top: 1rem;
+				}
 			}
 
 			.bubble {
@@ -138,6 +142,7 @@ const TitleInfo = styled.article`
 		.container-header {
 			align-items: flex-start;
 			margin-bottom: 2rem;
+
 			.container-header__profile {
 				flex-direction: column;
 				align-items: flex-start;

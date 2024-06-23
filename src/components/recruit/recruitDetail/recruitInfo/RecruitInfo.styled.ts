@@ -54,7 +54,7 @@ const RecruitInfo = styled.article`
 		}
 	}
 
-	@media (max-width: 431px) {
+	@media (max-width: 450px) {
 		padding: 4rem 2.4rem;
 		flex-direction: column;
 		gap: 3rem;
