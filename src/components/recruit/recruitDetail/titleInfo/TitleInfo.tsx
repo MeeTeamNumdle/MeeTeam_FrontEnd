@@ -42,12 +42,16 @@ const TitleInfo = ({
 		<S.TitleInfo>
 			<section className='container-header'>
 				<section className='container-header__profile'>
-					<ProfileImage size='3.3075rem' userId={writerId} url={writerProfileImg} />
-					<span>{nickname}</span>
+					<section className='profile'>
+						<ProfileImage size='3.3075rem' userId={writerId} url={writerProfileImg} />
+						<span className='nickname'>{nickname}</span>
+					</section>
+					<section className='container-info'>
+						<span className='bubble first'>응답률 {responseRate}%</span>
+						<span className='bubble'>평점 {writerScore.toFixed(1)}</span>
+						<span className='date'>{createdAt}</span>
+					</section>
 				</section>
-				<span className='bubble first'>응답률 {responseRate}%</span>
-				<span className='bubble'>평점 {writerScore.toFixed(1)}</span>
-				<span className='date'>{createdAt}</span>
 				<section className='container-bookmark'>
 					<img
 						className='icon-bookmark'
