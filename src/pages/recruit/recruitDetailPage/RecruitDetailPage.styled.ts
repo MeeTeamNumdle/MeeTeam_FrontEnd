@@ -50,6 +50,8 @@ const RecruitDetailPage = styled.section`
 
 	.wrapper-comments {
 		width: 100%;
+		margin-top: 4rem;
+
 		.container-title {
 			display: flex;
 			align-items: flex-end;
