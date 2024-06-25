@@ -286,7 +286,7 @@ const Footer = styled.footer`
 		}
 	}
 
-	@media (max-width: 375px) {
+	@media (max-width: 376px) {
 		padding: 0 1.6rem;
 
 		.btn-txt__big {
@@ -300,6 +300,14 @@ const Footer = styled.footer`
 
 			.btn-close {
 				padding: 1rem 1.6rem;
+			}
+
+			.btn-bookmark {
+				padding: 0.8rem 2rem;
+			}
+
+			.apply {
+				padding: 0.8rem 5rem;
 			}
 		}
 	}
