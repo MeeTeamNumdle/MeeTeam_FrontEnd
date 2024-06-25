@@ -40,6 +40,9 @@ const resetFormData = () => {
 			isTitle: false,
 			isContent: false,
 			isRole: false,
+			isRoleCount: false,
+			isRoleName: false,
+			isRoleSubmitted: false,
 		});
 	}, [location.pathname]);
 };
