@@ -283,6 +283,10 @@ const Footer = styled.footer`
 			.btn-close {
 				padding: 1.2rem 1.8rem;
 			}
+
+			.apply {
+				padding: 1.2rem 5rem;
+			}
 		}
 	}
 
