@@ -7,6 +7,19 @@ const RecruitManageWrapper = styled.div`
 	main {
 		width: 100%;
 	}
+
+	.mobile-bg {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: #ffffff;
+		z-index: 1;
+		font-size: 1.5rem;
+		font-family: Pretendard;
+		color: #151515;
+		margin-top: 25rem;
+	}
 `;
 
 const RecruitManage = styled.article`
