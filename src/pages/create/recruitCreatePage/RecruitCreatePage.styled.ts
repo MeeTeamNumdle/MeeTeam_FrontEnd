@@ -192,7 +192,6 @@ const RecruitCreatePage = styled.div`
 			.list-unsatisfied {
 				width: 41.0746rem;
 				height: 3.3297rem;
-				flex-shrink: 0;
 				border-top: 1px solid #e3e3e3;
 				border-bottom: 1px solid #e3e3e3;
 				background: #fff;
@@ -248,6 +247,27 @@ const RecruitCreatePage = styled.div`
 
 			.container-tags__inputs {
 				width: 100%;
+			}
+		}
+
+		.modal-background {
+			.validation-modal {
+				width: 80%;
+				height: auto;
+
+				.wrapper-list__unsatisfied {
+					.container-list {
+						.subtitle {
+							height: auto;
+						}
+						.list-unsatisfied {
+							width: 100%;
+							height: auto;
+							display: flex;
+							flex-wrap: wrap;
+						}
+					}
+				}
 			}
 		}
 	}

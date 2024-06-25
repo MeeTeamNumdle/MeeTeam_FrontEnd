@@ -98,11 +98,9 @@ const BasicInformation = () => {
 						</span>
 						<section className='container-dates'>
 							<div className='start-date'>
-								{/* <DateSelect type='start' /> */}
 								<MuiDatepicker handleChange={date => onChangeStartDate(date)} type='start' />
 							</div>
 							<div className='end-date'>
-								{/* <DateSelect type='end' /> */}
 								<MuiDatepicker handleChange={date => onChangeEndDate(date)} type='end' />
 								{isValid.isSubmitted && !isValid.isEndDate && (
 									<p className='valid-msg'>{validMessage.endDate}</p>
