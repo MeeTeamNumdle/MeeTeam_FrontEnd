@@ -58,7 +58,7 @@ const AccountSettingStyled = styled.section`
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		width: 96rem;
+		width: 100%;
 		border-radius: 0.75rem;
 		border: 0.75px solid #d3d3d3;
 		background: #fff;
@@ -81,7 +81,7 @@ const AccountSettingStyled = styled.section`
 		box-sizing: border-box;
 
 		hr {
-			width: 91.6rem;
+			width: 100%;
 			height: 0.075rem;
 			background: #d3d3d3;
 			border: none;
