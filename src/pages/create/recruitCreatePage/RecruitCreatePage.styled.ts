@@ -218,6 +218,51 @@ const RecruitCreatePage = styled.div`
 			color: #f7faff;
 		}
 	}
+
+	@media (max-width: 450px) {
+		width: 90%;
+		margin-bottom: 10rem;
+
+		h2 {
+			font-size: 2rem;
+		}
+		h3 {
+			font-size: 1.6rem;
+		}
+		h4 {
+			font-size: 1.4rem;
+		}
+
+		.container-tags {
+			flex-direction: column;
+
+			.subtitle {
+				margin-bottom: 1.5rem;
+				width: 100%;
+
+				h4 {
+					font-size: 2rem;
+					margin-bottom: 1.5rem;
+				}
+			}
+
+			.container-tags__inputs {
+				width: 100%;
+			}
+		}
+	}
+
+	@media (max-width: 376px) {
+		h2 {
+			font-size: 1.8rem;
+		}
+		h3 {
+			font-size: 1.4rem;
+		}
+		h4 {
+			font-size: 1.2rem;
+		}
+	}
 `;
 
 const S = { RecruitCreatePage };
