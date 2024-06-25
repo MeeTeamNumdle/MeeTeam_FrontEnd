@@ -69,6 +69,30 @@ const NeedLogin = styled.section`
 			color: #f8fafb;
 		}
 	}
+
+	@media (max-width: 450px) {
+		width: 70%;
+
+		.login-message {
+			font-size: 1rem;
+		}
+
+		.login-button {
+			padding: 8px 16px;
+			margin-top: 15px;
+		}
+	}
+
+	@media (max-width: 376px) {
+		.login-message {
+			font-size: 0.9rem;
+		}
+
+		.login-button {
+			padding: 6px 12px;
+			margin-top: 10px;
+		}
+	}
 `;
 
 const S = { NeedLogin };
