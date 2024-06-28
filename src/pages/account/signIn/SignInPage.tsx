@@ -45,7 +45,7 @@ const SignInPage = () => {
 	return (
 		<S.SignInPageLayout $callBack={callBack}>
 			<header className='sign-in__header'>
-				<img src={MeeteamLogoLarge} alt='밋팀로고' />
+				<img src={MeeteamLogoLarge} alt='밋팀로고' fetchpriority='high' />
 			</header>
 			<article>
 				<div className='sign-in__social-login-marker'>
