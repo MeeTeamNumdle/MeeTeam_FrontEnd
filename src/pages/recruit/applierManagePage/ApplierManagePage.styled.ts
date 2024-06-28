@@ -294,6 +294,87 @@ const ApplierManagePage = styled.section<ApplicantManage>`
 		z-index: 405;
 		background-color: rgba(0, 0, 0, 0.15);
 	}
+
+	@media (max-width: 450px) {
+		padding: 0;
+		gap: 3rem;
+		flex-direction: column;
+
+		.wrapper-applicants {
+			.container-title {
+				.page-link {
+					margin-top: -2rem;
+					position: relative;
+					display: flex;
+					justify-content: flex-end;
+					align-items: center;
+					text-align: center;
+				}
+			}
+
+			.container-link {
+				width: 100%;
+				margin-top: 7rem;
+
+				.input-link {
+					margin-top: 2rem;
+					width: 100%;
+					flex-direction: column;
+					gap: 1rem;
+
+					.btn-setting {
+						width: 30%;
+					}
+				}
+			}
+
+			.container-applicants {
+				.header-control {
+					flex-direction: column;
+					gap: 1.6rem;
+
+					.btn-container {
+						gap: 1.6rem;
+
+						button {
+							width: 100%;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	@media (max-width: 376px) {
+		gap: 2rem;
+
+		.wrapper-applicants {
+			margin-top: 4rem;
+
+			.container-link {
+				width: 100%;
+
+				.input-link {
+					flex-direction: column;
+					gap: 1rem;
+
+					.input-chat {
+						width: 100%;
+					}
+				}
+			}
+		}
+
+		.current-recruit {
+			width: 100%;
+			margin-top: 4rem;
+		}
+
+		.btn-floating {
+			bottom: 2rem;
+			right: 2rem;
+		}
+	}
 `;
 
 const S = { ApplierManagePage };

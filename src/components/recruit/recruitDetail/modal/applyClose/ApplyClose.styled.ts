@@ -68,6 +68,43 @@ const ApplyClose = styled.section`
 			color: #f8fafb;
 		}
 	}
+	@media (max-width: 450px) {
+		width: 70%;
+		padding: 1.8rem 2rem;
+		font-size: 0.9rem;
+
+		.btn-container {
+			display: flex;
+			justify-content: center;
+			.cancel {
+				padding: 0.6rem;
+				min-width: 100%;
+			}
+			.confirm {
+				padding: 0.6rem;
+				min-width: 100%;
+			}
+		}
+	}
+
+	@media (max-width: 376px) {
+		width: 70%;
+		padding: 1.8rem 2rem;
+		font-size: 0.8rem;
+
+		.btn-container {
+			display: flex;
+			justify-content: center;
+			.cancel {
+				padding: 0.6rem;
+				min-width: 100%;
+			}
+			.confirm {
+				padding: 0.6rem;
+				min-width: 100%;
+			}
+		}
+	}
 `;
 
 const S = { ApplyClose };

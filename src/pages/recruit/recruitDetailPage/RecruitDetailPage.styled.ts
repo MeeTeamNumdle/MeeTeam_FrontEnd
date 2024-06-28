@@ -50,6 +50,8 @@ const RecruitDetailPage = styled.section`
 
 	.wrapper-comments {
 		width: 100%;
+		margin-top: 4rem;
+
 		.container-title {
 			display: flex;
 			align-items: flex-end;
@@ -264,6 +266,54 @@ const Footer = styled.footer`
 		height: 100%;
 		z-index: 105;
 		background-color: rgba(0, 0, 0, 0.15);
+	}
+
+	@media (max-width: 450px) {
+		padding: 0 1.6rem;
+
+		.btn-txt__big {
+			font-size: 1.4rem;
+		}
+
+		.container-btn {
+			.btn-navigate_appliers {
+				padding: 1.2rem 1.8rem;
+			}
+
+			.btn-close {
+				padding: 1.2rem 1.8rem;
+			}
+
+			.apply {
+				padding: 1.2rem 5rem;
+			}
+		}
+	}
+
+	@media (max-width: 376px) {
+		padding: 0 1.6rem;
+
+		.btn-txt__big {
+			font-size: 1.2rem;
+		}
+
+		.container-btn {
+			.btn-navigate_appliers {
+				padding: 1rem 1.6rem;
+			}
+
+			.btn-close {
+				padding: 1rem 1.6rem;
+			}
+
+			.btn-bookmark {
+				padding: 0.8rem 2rem;
+			}
+
+			.apply {
+				padding: 0.8rem 5rem;
+			}
+		}
 	}
 `;
 

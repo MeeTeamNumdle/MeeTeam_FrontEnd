@@ -68,6 +68,11 @@ const TutorialModal = styled.section`
 			color: #f8fafb;
 		}
 	}
+
+	@media (max-width: 450px) {
+		width: 80%;
+		height: auto;
+	}
 `;
 
 const S = { TutorialModal };

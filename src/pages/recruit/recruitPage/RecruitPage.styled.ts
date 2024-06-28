@@ -219,8 +219,33 @@ const RecruitPage = styled.div<RecruitPage>`
 					box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
 					z-index: 501;
 
+					@media (max-width: 600px) {
+						width: 40rem;
+						height: auto;
+						flex-direction: column;
+						margin: 1rem auto;
+						padding: 0.8rem;
+						font-size: 0.8rem;
+						text-align: center;
+					}
+
+					@media (max-width: 431px) {
+						width: 37rem;
+						height: auto;
+						flex-direction: column;
+						margin: 1rem auto;
+						padding: 0.8rem;
+						font-size: 0.8rem;
+						text-align: center;
+					}
+
+					@media (max-width: 390px) {
+						width: 34rem;
+					}
+
 					.sidebar {
 						display: flex;
+						width: 10rem;
 						height: 100%;
 						padding: 2.8rem 2.8rem 2.8rem 3.2rem;
 						box-sizing: border-box;
@@ -235,9 +260,18 @@ const RecruitPage = styled.div<RecruitPage>`
 						.active {
 							color: #151515;
 						}
+
+						@media (max-width: 431px) {
+							flex-direction: row;
+							border-right: none;
+							border-bottom: 0.1rem solid #e3e3e3;
+							width: 100%;
+							padding: 1.6rem 1.6rem 1.6rem 2rem;
+						}
 					}
 
 					.dropdown-search {
+						width: 100%;
 						padding: 2.8rem 3.2rem 2.8rem 2.8rem;
 						box-sizing: border-box;
 						display: flex;
@@ -265,8 +299,8 @@ const RecruitPage = styled.div<RecruitPage>`
 						}
 
 						.role-menu {
-							width: 58rem;
 							position: absolute;
+							width: 59rem;
 							top: 12rem;
 							border-radius: 1rem;
 							border: 1px solid #e3e3e3;
@@ -276,15 +310,37 @@ const RecruitPage = styled.div<RecruitPage>`
 							box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
 
 							ul {
+								width: 100%;
 								display: flex;
 								flex-direction: column;
+								align-items: flex-start;
 								gap: 1.2rem;
 								color: #8e8e8e;
 
 								li {
+									width: 100%;
 									cursor: pointer;
 									&:hover {
 										color: #373f41;
+									}
+								}
+							}
+
+							@media (max-width: 431px) {
+								top: 14rem;
+								border-bottom: 0.1rem solid #e3e3e3;
+								width: 82.5%;
+								padding: 1.6rem 1.6rem 1.6rem 2rem;
+
+								ul {
+									display: flex;
+									flex-direction: column;
+									flex-wrap: wrap;
+
+									li {
+										display: flex;
+										flex-wrap: wrap;
+										justify-content: flex-start;
 									}
 								}
 							}
@@ -292,8 +348,8 @@ const RecruitPage = styled.div<RecruitPage>`
 
 						.container-tag {
 							display: flex;
-							width: 58rem;
-							height: 18rem;
+							width: 100%;
+							min-height: 18rem;
 							padding: 1.8rem 2rem;
 							align-items: flex-start;
 							align-content: flex-start;
@@ -303,12 +359,12 @@ const RecruitPage = styled.div<RecruitPage>`
 							background: #f8fafb;
 
 							.tags {
-								display: inline-flex;
-								height: 2.15rem;
-								padding: 1.5rem 0 1.5rem 1.125rem;
+								display: flex;
+								height: auto;
+								padding: 0.7rem 0 0.7rem 1.125rem;
 								justify-content: center;
 								align-items: center;
-								flex-shrink: 0;
+								flex-shrink: 1;
 								margin: 5px;
 								border-radius: 7.5rem;
 								background: #e0e6ff;
@@ -336,6 +392,29 @@ const RecruitPage = styled.div<RecruitPage>`
 								img {
 									width: 2rem;
 									box-sizing: border-box;
+								}
+							}
+
+							@media (max-width: 431px) {
+								.container-tag {
+									max-height: 18rem;
+									overflow-y: auto;
+
+									.tags {
+										display: flex;
+										flex-wrap: wrap;
+										padding: 0.5rem 1rem;
+										margin: 0.5rem;
+										flex-shrink: 1;
+									}
+								}
+								button {
+									margin-left: 0.5rem;
+
+									img {
+										width: 1.5rem;
+										box-sizing: border-box;
+									}
 								}
 							}
 						}
@@ -438,8 +517,7 @@ const RecruitPage = styled.div<RecruitPage>`
 	}
 
 	hr {
-		margin-top: 2.32rem;
-		margin-bottom: 2.32rem;
+		margin: 2.32rem auto;
 		background: #e3e3e3;
 		height: 0.75px;
 		border: 0;
@@ -468,9 +546,26 @@ const RecruitPage = styled.div<RecruitPage>`
 
 		.container-contents__grid {
 			margin-top: 2rem;
-			display: grid;
-			grid-template-columns: repeat(4, 1fr);
-			gap: 1.8rem 1.8rem;
+			flex-wrap: wrap;
+			row-gap: 1.8rem;
+			column-gap: 1.5rem;
+			display: flex;
+
+			@media (max-width: 600px) {
+				display: grid;
+				margin: 2rem auto;
+				margin-left: -1rem;
+				grid-template-columns: repeat(2, 1fr);
+				row-gap: 1.8rem;
+			}
+
+			@media (max-width: 431px) {
+				display: grid;
+				margin: 2rem auto;
+				grid-template-columns: repeat(1, 1fr);
+				row-gap: 1.8rem;
+				justify-items: center;
+			}
 		}
 
 		.no-results {
@@ -561,6 +656,97 @@ const RecruitPage = styled.div<RecruitPage>`
 		height: 100vh;
 		z-index: 105;
 		background-color: rgba(0, 0, 0, 0.15);
+	}
+
+	@media (max-width: 1200px) {
+		width: 90%;
+
+		.wrapper-title {
+			.sep {
+				font-size: 2rem;
+			}
+		}
+
+		.container-contents__grid {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	@media (max-width: 920px) {
+		.wrapper-filters {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 1.6rem;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.wrapper-title {
+			.sep {
+				font-size: 1.5rem;
+			}
+		}
+		.wrapper-filters {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 1.6rem;
+
+			.container-options__search {
+				width: 100%;
+			}
+		}
+
+		.container-contents__grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (max-width: 600px) {
+		.wrapper-title {
+			gap: 0.8rem;
+		}
+
+		.container-filters {
+			flex-wrap: wrap;
+			gap: 0.8rem;
+		}
+
+		.wrapper-filters {
+			.container-options__search {
+				width: 100%;
+			}
+		}
+	}
+
+	@media (max-width: 431px) {
+		.wrapper-title {
+			gap: 0.4rem;
+
+			.dropdown-field {
+				width: 100%;
+				height: 20rem;
+				left: 0;
+			}
+		}
+
+		.container-filters {
+			flex-wrap: wrap;
+			gap: 0.4rem;
+		}
+
+		.wrapper-filters {
+			.container-options__search {
+				width: 100%;
+			}
+
+			.dropdown-detailed {
+				min-width: 15rem;
+
+				.container-dropdown {
+					width: 100%;
+				}
+			}
+		}
 	}
 `;
 

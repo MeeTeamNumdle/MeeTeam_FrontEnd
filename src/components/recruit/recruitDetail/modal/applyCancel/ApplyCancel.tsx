@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import S from './ApplyCancel.styled';
 import { useSetRecoilState } from 'recoil';
 import { applyCancelModalState } from '../../../../../atom';
@@ -13,6 +13,7 @@ interface ApplyCancel {
 const ApplyCancel = ({ pageNum }: ApplyCancel) => {
 	const queryClient = useQueryClient();
 	const setIsCancel = useSetRecoilState(applyCancelModalState);
+	const [isMobile, setIsMobile] = useState(window.innerWidth <= 450);
 
 	const cancelApplyTeam = useMutation({
 		mutationFn: (pageNum: number) => cancelApply(pageNum),
@@ -30,6 +31,15 @@ const ApplyCancel = ({ pageNum }: ApplyCancel) => {
 			},
 		});
 	};
+	useEffect(() => {
+		const handleResize = () => {
+			setIsMobile(window.innerWidth <= 450);
+		};
+
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
+	}, []);
+
 	return (
 		<S.ApplyCancel>
 			<h3>신청취소</h3>
@@ -40,10 +50,10 @@ const ApplyCancel = ({ pageNum }: ApplyCancel) => {
 			</section>
 			<section className='btn-container'>
 				<button className='cancel btn-txt' onClick={onClickBack}>
-					다시 생각할게요.
+					{isMobile ? '아니요' : '다시 생각할게요.'}
 				</button>
 				<button className='confirm btn-txt' onClick={onClickConfirm}>
-					네, 취소합니다.
+					{isMobile ? '네' : '네, 취소합니다.'}
 				</button>
 			</section>
 		</S.ApplyCancel>

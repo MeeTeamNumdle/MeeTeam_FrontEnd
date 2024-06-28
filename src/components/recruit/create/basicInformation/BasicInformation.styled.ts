@@ -185,6 +185,52 @@ const BasicInformation = styled.section<Basic>`
 			}
 		}
 	}
+
+	@media (max-width: 450px) {
+		margin: 0 auto;
+		width: 100%;
+
+		.container-basic {
+			flex-direction: column;
+			margin-top: 2rem;
+			width: 100%;
+
+			.subtitle {
+				margin-bottom: 1.5rem;
+				width: 100%;
+
+				h4 {
+					font-size: 2rem;
+					/* text-align: center; */
+					margin-bottom: 1.5rem;
+				}
+			}
+
+			.container-basic__inputs {
+				width: 100%;
+
+				.container-scope {
+					.radio-btns {
+						flex-direction: column;
+						gap: 1rem;
+						align-items: flex-start;
+					}
+				}
+
+				.container-category {
+					.radio-btns {
+						flex-direction: column;
+						gap: 1rem;
+						align-items: flex-start;
+					}
+				}
+			}
+
+			input {
+				width: 100%;
+			}
+		}
+	}
 `;
 
 const ContainerCourse = styled.article<Course>`
@@ -204,9 +250,10 @@ const ContainerCourse = styled.article<Course>`
 			letter-spacing: 0.0028rem;
 		}
 
-		section {
+		.container-checkbox {
 			display: flex;
 			align-items: center;
+			width: 5rem;
 
 			input {
 				padding: 0;
@@ -218,6 +265,7 @@ const ContainerCourse = styled.article<Course>`
 			}
 
 			.course-label {
+				width: 200%;
 				font-size: 1.4rem;
 				margin-left: 0.8rem;
 				margin-top: 0.1rem;

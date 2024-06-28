@@ -64,6 +64,35 @@ const ApplyCancel = styled.section`
 			color: #f8fafb;
 		}
 	}
+
+	@media (max-width: 450px) {
+		width: 70%;
+		padding: 1.5rem 1.5rem;
+		height: auto;
+
+		.description {
+			margin-top: 2rem;
+		}
+
+		.body2-medium {
+			font-size: 1.2rem;
+			line-height: 1.5rem;
+		}
+	}
+
+	@media (max-width: 376px) {
+		padding: 1rem 1rem;
+		height: auto;
+
+		.description {
+			margin-top: 1.5rem;
+		}
+
+		.body2-medium {
+			font-size: 1rem;
+			line-height: 1.3rem;
+		}
+	}
 `;
 
 const S = { ApplyCancel };

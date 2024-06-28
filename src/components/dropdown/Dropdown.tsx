@@ -7,7 +7,7 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import { applicantFilter, recruitFilterState } from '../../atom';
 import { ManageRole, Keyword } from '../../types';
 import { DropdownArrowUp, DropdownArrow, Clear } from '../../assets';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 interface Dropdown {
 	data?: string[];

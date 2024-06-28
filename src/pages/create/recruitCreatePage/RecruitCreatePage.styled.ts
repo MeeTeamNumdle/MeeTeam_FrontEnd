@@ -192,7 +192,6 @@ const RecruitCreatePage = styled.div`
 			.list-unsatisfied {
 				width: 41.0746rem;
 				height: 3.3297rem;
-				flex-shrink: 0;
 				border-top: 1px solid #e3e3e3;
 				border-bottom: 1px solid #e3e3e3;
 				background: #fff;
@@ -216,6 +215,72 @@ const RecruitCreatePage = styled.div`
 			border-radius: 0.6rem;
 			background: #5877fc;
 			color: #f7faff;
+		}
+	}
+
+	@media (max-width: 450px) {
+		width: 90%;
+		margin-bottom: 10rem;
+
+		h2 {
+			font-size: 2rem;
+		}
+		h3 {
+			font-size: 1.6rem;
+		}
+		h4 {
+			font-size: 1.4rem;
+		}
+
+		.container-tags {
+			flex-direction: column;
+
+			.subtitle {
+				margin-bottom: 1.5rem;
+				width: 100%;
+
+				h4 {
+					font-size: 2rem;
+					margin-bottom: 1.5rem;
+				}
+			}
+
+			.container-tags__inputs {
+				width: 100%;
+			}
+		}
+
+		.modal-background {
+			.validation-modal {
+				width: 80%;
+				height: auto;
+
+				.wrapper-list__unsatisfied {
+					.container-list {
+						.subtitle {
+							height: auto;
+						}
+						.list-unsatisfied {
+							width: 100%;
+							height: auto;
+							display: flex;
+							flex-wrap: wrap;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	@media (max-width: 376px) {
+		h2 {
+			font-size: 1.8rem;
+		}
+		h3 {
+			font-size: 1.4rem;
+		}
+		h4 {
+			font-size: 1.2rem;
 		}
 	}
 `;

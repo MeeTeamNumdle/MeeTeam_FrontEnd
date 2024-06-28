@@ -43,7 +43,6 @@ const RecruitInfo = styled.article`
 
 				.closed {
 					display: flex;
-					/* padding: 0.4rem 0.8rem; */
 					justify-content: center;
 					align-items: center;
 					border-radius: 1.5rem;
@@ -52,6 +51,32 @@ const RecruitInfo = styled.article`
 					color: #8e8e8e;
 				}
 			}
+		}
+	}
+
+	@media (max-width: 450px) {
+		padding: 4rem 2.4rem;
+		flex-direction: column;
+		gap: 3rem;
+
+		.container-info {
+			gap: 3rem;
+			font-size: 1.4rem;
+
+			.subtitles {
+				gap: 3rem;
+			}
+
+			.values {
+				gap: 3rem;
+			}
+		}
+	}
+
+	@media (max-width: 382px) {
+		.container-info {
+			gap: 1.5rem;
+			font-size: 1.4rem;
 		}
 	}
 `;

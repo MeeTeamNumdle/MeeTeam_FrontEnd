@@ -247,6 +247,12 @@ const Dropdown = styled.div<IDropdown>`
 					}
 				}
 
+				@media screen and (min-width: 300px) and (max-width: 1200px) {
+					.inside {
+						display: none;
+					}
+				}
+
 				li {
 					&:hover {
 						color: #373f41;

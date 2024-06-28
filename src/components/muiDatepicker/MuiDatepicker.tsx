@@ -3,6 +3,8 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import S from './MuiDatepicker.styled';
 import { GrayCalendar } from '../../assets';
 import { format } from 'date-fns';
+import { useRecoilValue } from 'recoil';
+import { recruitInputState } from '../../atom';
 
 interface MuiDatepicker {
 	handleChange: (value: Date | null) => void;
@@ -10,14 +12,23 @@ interface MuiDatepicker {
 	value?: Date;
 	inputRef?: React.Ref<HTMLInputElement>;
 	invalid?: boolean;
+	type?: string;
 }
 
 const CalendarIcon = () => {
 	return <img src={GrayCalendar} alt='calendar' />;
 };
 
-const MuiDatepicker = ({ handleChange, defaultValue, value, inputRef, invalid }: MuiDatepicker) => {
+const MuiDatepicker = ({
+	handleChange,
+	defaultValue,
+	value,
+	inputRef,
+	invalid,
+	type,
+}: MuiDatepicker) => {
 	const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);
+	const formData = useRecoilValue(recruitInputState);
 
 	return (
 		<DatePicker
@@ -48,6 +59,7 @@ const MuiDatepicker = ({ handleChange, defaultValue, value, inputRef, invalid }:
 			disableHighlightToday={true}
 			onChange={handleChange}
 			inputRef={inputRef}
+			minDate={type === 'end' ? new Date(formData.proceedingStart as string) : undefined}
 		/>
 	);
 };

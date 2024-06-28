@@ -11,7 +11,7 @@ const TitleInfo = styled.article`
 			display: flex;
 			align-items: center;
 
-			span {
+			.nickname {
 				margin-left: 0.6rem;
 				color: #373f41;
 				font-size: 1.6rem;
@@ -19,6 +19,11 @@ const TitleInfo = styled.article`
 				line-height: 1.9rem;
 				letter-spacing: 0.0032rem;
 			}
+		}
+
+		.profile {
+			display: flex;
+			align-items: center;
 		}
 
 		.bubble {
@@ -68,6 +73,12 @@ const TitleInfo = styled.article`
 		}
 	}
 
+	.container-info {
+		display: flex;
+		align-items: center;
+		gap: 0.9rem;
+	}
+
 	h1 {
 		color: #151515;
 		font-size: 2.8rem;
@@ -75,6 +86,103 @@ const TitleInfo = styled.article`
 		line-height: 3.6rem;
 		letter-spacing: 0.0056rem;
 		margin-top: 1.13rem;
+	}
+
+	@media (max-width: 768px) {
+		/* .container-header {
+			flex-direction: column;
+		} */
+
+		h1 {
+			font-size: 2.2rem;
+			line-height: 2.8rem;
+			margin-top: 0.7rem;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.container-header {
+			.container-header__profile {
+				flex-direction: column;
+				align-items: flex-start;
+
+				span {
+					margin-left: 0;
+					margin-top: 0.4rem;
+				}
+
+				.container-info {
+					margin-top: 1rem;
+				}
+			}
+
+			.bubble {
+				font-size: 1.2rem;
+				padding: 0.6rem 0.8rem;
+			}
+
+			.date {
+				font-size: 1.2rem;
+				margin-left: 0.6rem;
+			}
+
+			.count-bookmark {
+				font-size: 1.4rem;
+			}
+		}
+
+		h1 {
+			font-size: 2rem;
+			line-height: 2.6rem;
+			margin-top: 0.5rem;
+		}
+	}
+
+	@media (max-width: 431px) {
+		.container-header {
+			align-items: flex-start;
+			margin-bottom: 2rem;
+
+			.container-header__profile {
+				flex-direction: column;
+				align-items: flex-start;
+
+				span {
+					margin-left: 0;
+					margin-top: 0.4rem;
+				}
+			}
+
+			.bubble {
+				font-size: 1.2rem;
+				padding: 0.6rem 0.8rem;
+			}
+
+			.date {
+				font-size: 1.2rem;
+				margin-left: 0.6rem;
+			}
+
+			.container-bookmark {
+				flex-direction: row;
+				align-items: flex-end;
+				margin-top: 0.5rem;
+			}
+
+			.icon-bookmark {
+				width: 1.8rem;
+			}
+
+			.count-bookmark {
+				font-size: 1.1rem;
+			}
+		}
+
+		h1 {
+			font-size: 2rem;
+			line-height: 2.6rem;
+			margin-top: 0.5rem;
+		}
 	}
 `;
 

@@ -97,7 +97,7 @@ const ContainerCourse = () => {
 			<span className='input-subtitle'>수업</span>
 			<section className='intro'>
 				<span className='description'>수업이신 경우 오른쪽의 “수업” 체크박스를 눌러주세요.</span>
-				<section>
+				<section className='container-checkbox'>
 					<input type='checkbox' id='course' onClick={onClickCheckbox} checked={isChecked} />
 					<label className='course-label' htmlFor='course'>
 						수업
