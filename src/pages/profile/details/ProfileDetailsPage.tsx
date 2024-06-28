@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import S from '../Profile.styled';
 import {
 	DefaultBtn,
@@ -9,7 +9,7 @@ import {
 } from '../../../components';
 import { useReadProfile } from '../../../hooks';
 import { useParams, useNavigate } from 'react-router';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { userState } from '../../../atom';
 import { BlackEmail, BlackPhone } from '../../../assets';
 
@@ -22,16 +22,10 @@ const MESSAGE = {
 };
 
 const ProfileDetailsPage = () => {
-	const [userInfo, setUserState] = useRecoilState(userState);
+	const userInfo = useRecoilValue(userState);
 
 	const { userId } = useParams() as { userId: string };
 	const { data: user, isSuccess } = useReadProfile(userId);
-
-	useEffect(() => {
-		if (isSuccess) {
-			userInfo?.userId === userId && setUserState({ ...user, userId }); // 본인인지 아닌지 확인 로직 필요
-		}
-	}, [isSuccess]);
 
 	const navigate = useNavigate();
 

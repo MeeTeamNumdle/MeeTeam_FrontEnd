@@ -41,7 +41,7 @@ const ImageCarousel = ({ images }: { images: Image[] }) => {
 			<S.ImageCarouselContainer className='embla__container'>
 				{images.map(({ fileName, url }, index) => (
 					<S.ImageWrapper className='embla__slide' key={index}>
-						<S.Image src={url} alt={fileName} />
+						<S.Image src={url} alt={fileName} fetchpriority={index === 0 ? 'high' : 'low'} />
 					</S.ImageWrapper>
 				))}
 			</S.ImageCarouselContainer>

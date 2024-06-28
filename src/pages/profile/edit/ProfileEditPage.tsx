@@ -160,7 +160,7 @@ const ProfileEditPage = () => {
 				keepErrors: true,
 			},
 		});
-	const { isSubmitting } = formState;
+	const { isSubmitting, isSubmitSuccessful } = formState;
 
 	// 닉네임
 	const nickname = useDebounce(watch('nickname') as string);
@@ -659,9 +659,11 @@ const ProfileEditPage = () => {
 						handleClick={() => navigate(`/profile/${userId}`)}
 					/>
 					<PrimaryBtn
-						type='button'
+						type='submit'
 						title='저장'
-						disabled={getFieldState('nickname').invalid || duplicated || isSubmitting}
+						disabled={
+							getFieldState('nickname').invalid || duplicated || isSubmitting || isSubmitSuccessful
+						}
 					/>
 				</S.ProfileButtonBox>
 			</S.ProfileLayout>

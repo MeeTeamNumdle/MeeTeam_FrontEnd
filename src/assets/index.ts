@@ -56,7 +56,7 @@ import DropdownArrowUp from './DropdownArrowUp.svg';
 import FloatingBackground from './FloatingBackground.svg';
 import Alert from './Alert.svg';
 import MeeteamLogoLarge from './MeeteamLogoLarge.svg';
-import Congratulation from './Congratulation.svg';
+import Congratulation from './Congratulation.png';
 import NaverIcon from './NaverIcon.png';
 import Clip from './Clip.svg';
 import Valid from './Valid.svg';

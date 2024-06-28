@@ -26,7 +26,7 @@ const CompleteSignUpPage = () => {
 			<header className='account__header'>
 				<h1>밋팀에서 팀을 만날 수 있어요!</h1>
 			</header>
-			<img src={Congratulation} alt='회원가입을 축하합니다!' />
+			<img src={Congratulation} alt='회원가입을 축하합니다!' fetchpriority='high' />
 			<div>
 				<PrimaryBtn title='확인' type='button' handleClick={() => handleClick()} />
 			</div>
