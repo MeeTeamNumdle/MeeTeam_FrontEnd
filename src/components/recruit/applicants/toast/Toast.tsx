@@ -27,7 +27,7 @@ const Toast = ({ message }: ToastInfo) => {
 	return (
 		<S.ToastContainer isOpen={isOpen}>
 			<img src={Alert} />
-			<span className='body1-medium'>{message}</span>
+			<span className='body1-medium white'>{message}</span>
 		</S.ToastContainer>
 	);
 };

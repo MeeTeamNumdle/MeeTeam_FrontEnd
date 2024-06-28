@@ -21,7 +21,7 @@ const RecruitInfo = ({
 	const countDown = formatDistance(convertedDeadline, now, { locale: ko });
 
 	return (
-		<S.RecruitInfo className='wrapper-info'>
+		<S.RecruitInfo>
 			<section className='container-info'>
 				<section className='subtitles'>
 					<span>구인마감</span>

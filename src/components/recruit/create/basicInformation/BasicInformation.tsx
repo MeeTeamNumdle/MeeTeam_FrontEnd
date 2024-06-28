@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-	DeadlineSelect,
 	DateSelect,
 	WrapperScopeCategory,
 	ContainerProcedure,
 	ContainerCourse,
+	MuiDatepicker,
 } from '../../../index';
 import S from './BasicInformation.styled';
 import { useRecoilState } from 'recoil';
 import { recruitInputState } from '../../../../atom';
 import { useValid } from '../../../../hooks';
+import { simpleDate } from '../../../../utils';
 
 const BasicInformation = () => {
+	const [deadlineDate, setDeadlineDate] = useState(new Date());
+	const [startDate, setStartDate] = useState(new Date());
+	const [endDate, setEndDate] = useState(new Date());
 	const [formData, setFormData] = useRecoilState(recruitInputState);
 	const { validMessage, isValid } = useValid(formData);
 
@@ -22,6 +26,36 @@ const BasicInformation = () => {
 	const onKeyDown = (event: React.KeyboardEvent) => {
 		if (event.key === 'Enter') {
 			event.preventDefault();
+		}
+	};
+
+	const onChangeDate = (date: Date | null) => {
+		if (date) {
+			setDeadlineDate(() => {
+				const result = simpleDate(date);
+				setFormData(prevInfo => ({ ...prevInfo, deadline: result }));
+				return date;
+			});
+		}
+	};
+
+	const onChangeStartDate = (date: Date | null) => {
+		if (date) {
+			setStartDate(() => {
+				const result = simpleDate(date);
+				setFormData(prevInfo => ({ ...prevInfo, proceedingStart: result }));
+				return date;
+			});
+		}
+	};
+
+	const onChangeEndDate = (date: Date | null) => {
+		if (date) {
+			setEndDate(() => {
+				const result = simpleDate(date);
+				setFormData(prevInfo => ({ ...prevInfo, proceedingEnd: result }));
+				return date;
+			});
 		}
 	};
 
@@ -52,7 +86,7 @@ const BasicInformation = () => {
 						<span className='input-subtitle'>
 							구인글 마감일 <span>{'*'}</span>
 						</span>
-						<DeadlineSelect />
+						<MuiDatepicker handleChange={date => onChangeDate(date)} />
 						{isValid.isSubmitted && !isValid.isDeadline && (
 							<p className='valid-msg'>{validMessage.deadline}</p>
 						)}
@@ -64,10 +98,10 @@ const BasicInformation = () => {
 						</span>
 						<section className='container-dates'>
 							<div className='start-date'>
-								<DateSelect type='start' />
+								<MuiDatepicker handleChange={date => onChangeStartDate(date)} type='start' />
 							</div>
 							<div className='end-date'>
-								<DateSelect type='end' />
+								<MuiDatepicker handleChange={date => onChangeEndDate(date)} type='end' />
 								{isValid.isSubmitted && !isValid.isEndDate && (
 									<p className='valid-msg'>{validMessage.endDate}</p>
 								)}

@@ -44,7 +44,7 @@ const ApplierManagePage = () => {
 	const scrollToTop = useScrollToTop();
 	const userInfo = useRecoilValue(userState);
 	const [applicantModal, setApplicantModalState] = useRecoilState(applicantModalState);
-
+	const [isMobile, setIsMobile] = useState(window.innerWidth <= 450);
 	const [page, setPage] = useState<number>(1);
 	const [isOpenChat, setIsOpenChat] = useState<boolean>(false);
 	const [isOpenCurrent, setIsOpenCurrent] = useState<boolean>(true);
@@ -145,6 +145,12 @@ const ApplierManagePage = () => {
 		fixModalBackground(isTutorialOpen || applicantModal.approve || applicantModal.refuse);
 	}, [recruitManageInfo?.isFirstAccess, applicantModal.approve, applicantModal.refuse]);
 
+	useEffect(() => {
+		const handleResize = () => setIsMobile(window.innerWidth < 481);
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
+	}, []);
+
 	if (isError) {
 		return <NotFound />;
 	}
@@ -231,26 +237,28 @@ const ApplierManagePage = () => {
 						</section>
 						<section className='target-area' ref={targetRef}></section>
 					</article>
-					<article className={`current-recruit ${!isOpenCurrent && 'closed'}`}>
-						<section className='container-title' onClick={() => setIsOpenCurrent(prev => !prev)}>
-							<span className='body1-semibold'>모집 현황</span>
-							<img src={isOpenCurrent ? DropdownArrowUp : DropdownArrow} />
-						</section>
-						{isOpenCurrent && (
-							<section className='container-roles'>
-								{recruitManageInfo &&
-									manageSuccess &&
-									recruitManageInfo.recruitmentStatus.map((elem, index) => (
-										<ApplyRole
-											key={index}
-											approvedMemberCount={elem.approvedMemberCount}
-											recruitMemberCount={elem.recruitMemberCount}
-											roleName={elem.roleName}
-										/>
-									))}
+					{!isMobile && (
+						<article className={`current-recruit ${!isOpenCurrent && 'closed'}`}>
+							<section className='container-title' onClick={() => setIsOpenCurrent(prev => !prev)}>
+								<span className='body1-semibold'>모집 현황</span>
+								<img src={isOpenCurrent ? DropdownArrowUp : DropdownArrow} />
 							</section>
-						)}
-					</article>
+							{isOpenCurrent && (
+								<section className='container-roles'>
+									{recruitManageInfo &&
+										manageSuccess &&
+										recruitManageInfo.recruitmentStatus.map((elem, index) => (
+											<ApplyRole
+												key={index}
+												approvedMemberCount={elem.approvedMemberCount}
+												recruitMemberCount={elem.recruitMemberCount}
+												roleName={elem.roleName}
+											/>
+										))}
+								</section>
+							)}
+						</article>
+					)}
 					<article className='btn-floating' onClick={scrollToTop}>
 						<section className='background'>
 							<img src={FloatingBackground} />

@@ -270,6 +270,32 @@ const InputRoleForm = styled.article<InputRoleForm>`
 			props.$isTagItem &&
 			'invert(0%) sepia(83%) saturate(7431%) hue-rotate(54deg) brightness(77%) contrast(114%)'};
 	}
+
+	@media (max-width: 450px) {
+		width: 100%;
+		.wrapper {
+			width: 100%;
+			height: auto;
+			flex-wrap: wrap;
+			justify-content: flex-start;
+			gap: 1rem;
+
+			.wrapper-role {
+				width: 52%;
+				flex-shrink: 3;
+			}
+
+			.wrapper-count {
+				width: 35%;
+				flex-shrink: 2;
+			}
+
+			.wrapper-skill {
+				width: 90%;
+				flex-shrink: 1;
+			}
+		}
+	}
 `;
 
 const S = { InputRoleForm };

@@ -168,6 +168,61 @@ const Header = styled.header<{ $isLogin?: boolean }>`
 		z-index: 105;
 		background-color: rgba(0, 0, 0, 0.15);
 	}
+
+	/* 작은 화면 (모바일) */
+	@media (min-width: 359px) and (max-width: 600px) {
+		.header {
+			/* flex-direction: column; */
+			/* width: 70%; */
+			width: 100%;
+			/* justify-content: center;
+			gap: 8rem; */
+			padding: 0 2rem;
+		}
+
+		.header-leftside {
+			display: flex;
+			align-items: center;
+			margin-top: 1rem;
+		}
+
+		.header__logo {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			margin-bottom: 1rem;
+		}
+
+		.header__navigation {
+			display: none;
+		}
+
+		.header__menu {
+			flex-direction: column;
+			gap: 1rem;
+			width: 100%;
+			align-items: center;
+		}
+	}
+
+	/* 중간 화면 (태블릿) */
+	@media (min-width: 601px) and (max-width: 1200px) {
+		.header {
+			width: clamp(45%, 96rem, 75%);
+		}
+
+		.header__navigation {
+			gap: 2rem;
+			margin-left: 3rem;
+		}
+	}
+
+	/* 큰 화면 (데스크탑) */
+	@media (min-width: 1201px) {
+		.header {
+			width: clamp(45%, 96rem, 75%);
+		}
+	}
 `;
 
 const S = { Header };

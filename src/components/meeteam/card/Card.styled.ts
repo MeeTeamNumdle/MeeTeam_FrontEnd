@@ -75,6 +75,11 @@ const RecruitCard = styled.article<RecruitStyle>`
 	background: ${props => (props.$isClosed ? '#EDEDED' : '#fff')};
 	justify-content: space-between;
 
+	@media (max-width: 431px) {
+		width: 100%;
+		padding: 2rem 2.4rem;
+	}
+
 	cursor: pointer;
 
 	&:hover {

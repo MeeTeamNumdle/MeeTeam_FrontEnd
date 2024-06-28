@@ -66,6 +66,29 @@ const DetailedInformation = styled.section`
 			letter-spacing: 0.002rem;
 		}
 	}
+
+	@media (max-width: 450px) {
+		.container-details {
+			flex-direction: column;
+			margin-top: 2rem;
+			width: 100%;
+
+			.subtitle {
+				margin-bottom: 1.5rem;
+				width: 100%;
+
+				h4 {
+					font-size: 2rem;
+					/* text-align: center; */
+					margin-bottom: 1.5rem;
+				}
+			}
+
+			.container-details__editor {
+				width: 100%;
+			}
+		}
+	}
 `;
 
 const S = { DetailedInformation };

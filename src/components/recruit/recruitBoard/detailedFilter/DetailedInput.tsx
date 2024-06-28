@@ -185,7 +185,7 @@ const DetailedInput = ({
 
 	return (
 		<section className='dropdown-search'>
-			<span className='body1'>{message.intro}</span>
+			<span className='body1 intro-msg'>{message.intro}</span>
 			<article className='search' onClick={onClickSearchBar}>
 				<input type='text' placeholder={message.message} value={tagItem} onChange={onChangeInput} />
 				<img src={Search} />

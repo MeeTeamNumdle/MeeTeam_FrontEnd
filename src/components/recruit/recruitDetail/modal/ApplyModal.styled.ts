@@ -321,6 +321,98 @@ const Modal = styled.section<Modal>`
 		height: 0.1rem;
 		border: 0;
 	}
+	@media (max-width: 450px) {
+		height: 85%;
+		padding: 1.8rem 2rem;
+		width: 80%;
+		overflow-y: scroll;
+
+		.container-contents {
+			margin-bottom: 6.5rem;
+		}
+
+		.description {
+			.description-subtitle {
+				font-size: 1.6rem;
+			}
+
+			.description-subinfo {
+				font-size: 1.2rem;
+			}
+
+			.agreement {
+				.agreement-word {
+					font-size: 1.2rem;
+				}
+			}
+		}
+
+		.container-user__info {
+			width: auto;
+			height: auto;
+			padding: 1.8rem;
+			flex-direction: column;
+			margin-top: 1rem;
+
+			.container-subtitle {
+				position: relative;
+			}
+
+			.writing {
+				position: absolute;
+				top: 0;
+				left: 7rem;
+				width: 70%;
+				flex-wrap: wrap;
+				font-size: 1.2rem;
+				margin-bottom: 0rem;
+			}
+
+			.user-info {
+				height: 13rem;
+				flex-direction: column;
+				gap: 0.6rem;
+
+				.user-info__section {
+					gap: 2rem;
+				}
+
+				.responsive-top {
+					gap: 3.3rem;
+				}
+			}
+		}
+
+		.container-role {
+			.container-select__box {
+				width: auto;
+				padding: 1rem;
+				font-size: 1.4rem;
+			}
+		}
+
+		.container-message {
+			textarea {
+				width: 100%;
+				padding: 1rem;
+				font-size: 1.4rem;
+				height: 4.8rem;
+			}
+		}
+
+		.container-buttons {
+			flex-direction: column;
+			gap: 1rem;
+			margin-top: 1rem;
+
+			button {
+				width: 100%;
+				padding: 1.2rem;
+				font-size: 1.4rem;
+				text-align: center;
+			}
+		}
+	}
 `;
 
 const FinalModal = styled.section`
@@ -415,6 +507,39 @@ const FinalModal = styled.section`
 		.btn-profile {
 			background-color: #5877fc;
 			color: #fff;
+		}
+	}
+	@media (max-width: 450px) {
+		width: 90%;
+		padding: 2rem;
+
+		h1 {
+			font-size: 2rem;
+			line-height: 2.4rem;
+		}
+
+		.description {
+			margin-top: 1rem;
+
+			h4 {
+				font-size: 1.6rem;
+				line-height: 1.8rem;
+			}
+
+			.darker {
+				font-size: 1.2rem;
+				line-height: 1.5rem;
+			}
+		}
+
+		.container-button {
+			margin-top: 3rem;
+			flex-direction: column;
+			gap: 1rem;
+
+			button {
+				width: 100%;
+			}
 		}
 	}
 `;

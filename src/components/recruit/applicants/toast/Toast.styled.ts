@@ -27,15 +27,23 @@ const ToastContainer = styled.article<ToastProps>`
 		0px 2px 2px 0px rgba(0, 0, 0, 0.25);
 
 	.body1-medium {
-		color: #ffffff;
 		font-size: 1.6rem;
 		letter-spacing: 0.0032rem;
 		margin-top: 0.5rem;
 		font-weight: 600;
 	}
 
+	.white {
+		color: #ffffff;
+	}
+
 	img {
 		margin-top: 0.25rem;
+	}
+
+	@media (max-width: 450px) {
+		padding: 1.6rem 2.4rem;
+		width: 80%;
 	}
 `;
 

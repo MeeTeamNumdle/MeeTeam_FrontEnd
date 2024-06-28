@@ -76,6 +76,12 @@ const RecruitDescription = styled.article`
 			margin-left: 15rem;
 		}
 	}
+
+	@media (max-width: 450px) {
+		.container-contents {
+			padding: 0 1.6rem 1rem 1.6rem;
+		}
+	}
 `;
 
 const S = { RecruitDescription };

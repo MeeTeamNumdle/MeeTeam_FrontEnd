@@ -60,6 +60,34 @@ const RecruitRoles = styled.section<RecruitRoles>`
 	.warning {
 		color: #f85858;
 	}
+
+	@media (max-width: 450px) {
+		width: 100%;
+		.container-roles {
+			flex-direction: column;
+			margin-top: 2rem;
+			width: 100%;
+
+			.wrapper-roles {
+				width: 100%;
+
+				.wrapper-btn__add {
+					width: 28%;
+					display: flex;
+				}
+			}
+
+			.subtitle {
+				margin-bottom: 1.5rem;
+				width: 100%;
+
+				h4 {
+					font-size: 2rem;
+					margin-bottom: 1.5rem;
+				}
+			}
+		}
+	}
 `;
 
 const S = { RecruitRoles };

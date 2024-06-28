@@ -52,6 +52,7 @@ const ApplyModal = () => {
 				universityName: data.universityName,
 				departmentName: data.departmentName,
 				year: data.year,
+				email: data.email,
 			}));
 		}
 	}, [data]);
@@ -86,7 +87,7 @@ const ApplyModal = () => {
 					<section className='user-info'>사용자 정보를 불러오고 있습니다...</section>
 				) : (
 					<section className='user-info'>
-						<section className='user-info__section'>
+						<section className='user-info__section responsive-top'>
 							<section>
 								<span>이름</span>
 								<span>학교</span>
