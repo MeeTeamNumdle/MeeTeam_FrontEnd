@@ -470,19 +470,19 @@ const RecruitPage = () => {
 							<article className='container-menu'>
 								<span className='nav-info'>내 프로필 작성</span>
 								<section className='menu floating' onClick={profileCreateHandler}>
-									<img src={Profile} />
+									<img src={Profile} fetchpriority='high' />
 								</section>
 							</article>
 							<article className='container-menu'>
 								<span className='nav-info'>구인글 작성</span>
 								<section className='menu floating' onClick={recruitCreateHandler}>
-									<img src={Create} />
+									<img src={Create} fetchpriority='high' />
 								</section>
 							</article>
 							<article className='container-menu'>
 								<span className='nav-info'>포트폴리오 등록</span>
 								<section className='menu floating' onClick={portfolioCreateHandler}>
-									<img src={Portpolio} />
+									<img src={Portpolio} fetchpriority='high' />
 								</section>
 							</article>
 						</section>
