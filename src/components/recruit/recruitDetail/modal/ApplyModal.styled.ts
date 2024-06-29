@@ -226,7 +226,13 @@ const Modal = styled.section<Modal>`
 				box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
 
 				li {
+					width: 100%;
 					cursor: pointer;
+
+					&:hover {
+						color: #000000;
+						transition: 0.2s ease-in-out;
+					}
 				}
 			}
 
@@ -294,15 +300,34 @@ const Modal = styled.section<Modal>`
 
 		.cancel {
 			height: 4.8rem;
-			border-radius: 0.6rem;
 			border: 1px solid #e3e3e3;
 			background: #fff;
+
+			&:hover {
+				border: 1px solid #373f41;
+				transition: 0.2s ease-in-out;
+			}
+
+			&:active {
+				border: 1px solid #373f41;
+				background: #747b7f;
+				color: #ffffff;
+			}
 		}
 
 		.confirm {
 			background-color: ${props => (props.$isChecked ? '#5877fc' : '#E3E3E3')};
 			font-weight: 400;
 			color: ${props => (props.$isChecked ? '#fff' : '#8E8E8E')};
+
+			&:hover {
+				background: ${props => props.$isChecked && '#2f4fd9'};
+				transition: 0.2s ease-in-out;
+			}
+
+			&:active {
+				background: ${props => props.$isChecked && '#0e2690'};
+			}
 		}
 
 		.submit {
@@ -321,6 +346,7 @@ const Modal = styled.section<Modal>`
 		height: 0.1rem;
 		border: 0;
 	}
+
 	@media (max-width: 450px) {
 		height: 85%;
 		padding: 1.8rem 2rem;
@@ -388,6 +414,14 @@ const Modal = styled.section<Modal>`
 				width: auto;
 				padding: 1rem;
 				font-size: 1.4rem;
+
+				ul {
+					width: 100%;
+
+					li {
+						width: 100%;
+					}
+				}
 			}
 		}
 
