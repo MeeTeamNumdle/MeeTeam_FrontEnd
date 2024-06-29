@@ -90,6 +90,10 @@ const Modal = styled.section<Modal>`
 					background-position: 50%;
 					background-repeat: no-repeat;
 				}
+
+				&.warning {
+					border: 1px solid #f85858;
+				}
 			}
 
 			.agreement-word {
@@ -241,6 +245,9 @@ const Modal = styled.section<Modal>`
 				right: 1rem;
 				top: 1.2rem;
 			}
+			&.warning {
+				border: 1px solid #f85858;
+			}
 		}
 	}
 
@@ -345,6 +352,10 @@ const Modal = styled.section<Modal>`
 		background: #e3e3e3;
 		height: 0.1rem;
 		border: 0;
+	}
+
+	.warning {
+		border: 1px solid #f85858;
 	}
 
 	@media (max-width: 450px) {
