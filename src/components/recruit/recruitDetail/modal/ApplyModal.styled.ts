@@ -338,8 +338,18 @@ const Modal = styled.section<Modal>`
 		}
 
 		.submit {
+			font-weight: 400;
 			background-color: #5877fc;
 			color: #ffffff;
+
+			&:hover {
+				background-color: #2f4fd9;
+				transition: 0.2s ease-in-out;
+			}
+
+			&:active {
+				background-color: #0e2690;
+			}
 		}
 	}
 
@@ -547,11 +557,31 @@ const FinalModal = styled.section`
 			background-color: #fff;
 			color: #373f41;
 			border: 0.1rem solid #e3e3e3;
+
+			&:hover {
+				border: 1px solid #373f41;
+				transition: 0.2s ease-in-out;
+			}
+
+			&:active {
+				border: 1px solid #373f41;
+				background: #747b7f;
+				color: #ffffff;
+			}
 		}
 
 		.btn-profile {
 			background-color: #5877fc;
 			color: #fff;
+
+			&:hover {
+				background-color: #2f4fd9;
+				transition: 0.2s ease-in-out;
+			}
+
+			&:active {
+				background-color: #0e2690;
+			}
 		}
 	}
 	@media (max-width: 450px) {
