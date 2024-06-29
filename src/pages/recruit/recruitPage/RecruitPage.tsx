@@ -154,6 +154,13 @@ const RecruitPage = () => {
 		}
 	};
 
+	const handleKeywordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setSearchKeyword(event.target.value);
+		if (event.target.value.length === 0) {
+			onClickDeleteKeyword();
+		}
+	};
+
 	const onClickClearField = () => {
 		setFilterState(prev => ({ ...prev, field: null }));
 		setFieldValue({ applied: false, value: { id: null, value: '분야를 선택해주세요' } });
@@ -414,7 +421,7 @@ const RecruitPage = () => {
 								<input
 									placeholder={placeholderText}
 									type='text'
-									onChange={event => setSearchKeyword(event.target.value)}
+									onChange={handleKeywordChange}
 									value={searchKeyword}
 									onKeyDown={onKeyPress}
 									onFocus={handleFocusedPlaceholder}
