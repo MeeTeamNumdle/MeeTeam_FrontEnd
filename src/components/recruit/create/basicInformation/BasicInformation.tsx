@@ -59,6 +59,8 @@ const BasicInformation = () => {
 		}
 	};
 
+	//console.log(formData.title, formData.deadline);
+
 	return (
 		<S.BasicInformation $isTitled={formData.title}>
 			<section className='container-basic'>

@@ -54,7 +54,7 @@ const ContainerProcedure = () => {
 						checked={formData.proceedType === '상관없음'}
 						onChange={handleProcedureChange}
 					/>
-					<label htmlFor='any'>상관없음</label>
+					<label htmlFor='any'>온/오프라인</label>
 				</section>
 			</section>
 			{isValid.isSubmitted && !isValid.isProcedure && (

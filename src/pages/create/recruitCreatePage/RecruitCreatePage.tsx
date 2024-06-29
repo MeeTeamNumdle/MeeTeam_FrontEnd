@@ -23,7 +23,7 @@ import {
 import { getPostingData, editPostingRecruit, postingRecruit } from '../../../service';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { EditPosting, InputState, RoleInfo, RoleForPost } from '../../../types';
-import { fixModalBackground, resetFormData } from '../../../utils';
+import { fixModalBackground } from '../../../utils';
 import { useLogin } from '../../../hooks';
 import { NotFound } from '../../index';
 
@@ -112,20 +112,18 @@ const RecruitCreatePage = () => {
 		}
 		if (postAvailable && !location.pathname.includes('edit')) {
 			uploadPost.mutate(formData, {
-				onSuccess: () => resetFormData(),
+				// onSuccess: () => resetFormData(),
 			});
 		}
 		if (postAvailable && location.pathname.includes('edit') && pageNum) {
 			editPost.mutate(
-				{ pageNum, formData },
-				{
-					onSuccess: () => resetFormData(),
-				}
+				{ pageNum, formData }
+				// {
+				// 	onSuccess: () => resetFormData(),
+				// }
 			);
 		}
 	};
-
-	resetFormData();
 
 	useEffect(() => {
 		if (data) {
@@ -169,6 +167,14 @@ const RecruitCreatePage = () => {
 	if (userInfo?.userId !== data?.writerId && !isLoading && id) {
 		return <NotFound />;
 	}
+
+	// if (!location.pathname.includes('edit')) {
+	// 	resetFormData();
+	// }
+
+	// console.log(formData);
+
+	console.log(data);
 
 	return (
 		<S.RecruitCreatePage>

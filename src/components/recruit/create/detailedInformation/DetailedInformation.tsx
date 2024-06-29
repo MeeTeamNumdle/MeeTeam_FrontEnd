@@ -22,6 +22,8 @@ const DetailedInformation = () => {
 		setFormData({ ...formData, content: contents });
 	};
 
+	//console.log(formData.content);
+
 	return (
 		<S.DetailedInformation>
 			<section className='container-details'>
