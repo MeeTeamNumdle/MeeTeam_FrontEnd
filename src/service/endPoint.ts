@@ -13,6 +13,7 @@ export const EndPoint = {
 	},
 	SIGN_OUT: '/auth/logout',
 	WITHDRAW: '/user',
+	ISSUE: '/auth/reissue',
 
 	/* profile */
 	PROFILE: {
