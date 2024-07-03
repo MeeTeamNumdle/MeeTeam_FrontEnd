@@ -21,9 +21,6 @@ const SignInPage = () => {
 	const setLoginState = useSetRecoilState(loginState);
 
 	const handleNaverSignInSuccess = () => {
-		// if (localStorage?.ACCESS_TOKEN_KEY) {
-		// 	return navigate('/');
-		// }
 		if (secureLocalStorage.getItem('ACCESS_TOKEN_KEY')) {
 			return navigate('/');
 		}
