@@ -13,6 +13,7 @@ import { User } from '../types';
 import secureLocalStorage from 'react-secure-storage';
 
 const ACCESS_TOKEN_KEY = import.meta.env.VITE_ACCESS_TOKEN_KEY;
+const REFRESH_TOKEN_KEY = import.meta.env.VITE_REFRESH_TOKEN_KEY;
 
 const PLATFORM_ID = import.meta.env.VITE_PLATFORM_ID;
 
@@ -36,8 +37,9 @@ export const useCheckExist = ({ onSuccess, setUserState, setLoginState }: AuthPr
 	return useMutation({
 		mutationFn: checkExist,
 		onSuccess: data => {
-			if (data?.accessToken) {
+			if (data?.accessToken && data?.refreshToken) {
 				secureLocalStorage.setItem(ACCESS_TOKEN_KEY, data.accessToken);
+				secureLocalStorage.setItem(REFRESH_TOKEN_KEY, data.refreshToken);
 				setUserState?.({
 					userId: data.userId,
 					nickname: data.nickname,
@@ -61,9 +63,10 @@ export const useNaverSignUp = ({ onSuccess, setUserState, setLoginState }: AuthP
 	return useMutation({
 		mutationFn: signUp,
 		onSuccess: data => {
-			if (data?.accessToken) {
+			if (data?.accessToken && data?.refreshToken) {
 				secureLocalStorage.removeItem(PLATFORM_ID);
 				secureLocalStorage.setItem(ACCESS_TOKEN_KEY, data.accessToken);
+				secureLocalStorage.setItem(REFRESH_TOKEN_KEY, data.refreshToken);
 				setUserState?.({
 					userId: data.userId,
 					nickname: data.nickname,
@@ -131,6 +134,7 @@ export const useSignOut = ({ onSuccess, setUserState, setLoginState }: AuthProps
 		mutationFn: signOut,
 		onSuccess: () => {
 			secureLocalStorage.removeItem(ACCESS_TOKEN_KEY);
+			secureLocalStorage.removeItem(REFRESH_TOKEN_KEY);
 			setUserState?.(null);
 			setLoginState?.(false);
 			onSuccess?.();
