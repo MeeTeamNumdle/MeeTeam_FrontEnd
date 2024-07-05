@@ -7,7 +7,7 @@ import { withdrawAccount } from '../../../../../service';
 import secureLocalStorage from 'react-secure-storage';
 
 const ACCESS_TOKEN_KEY = import.meta.env.VITE_ACCESS_TOKEN_KEY;
-const REFRESH_TOKEN_KEY = import.meta.env.VITE_ACCESS_TOKEN_KEY;
+const REFRESH_TOKEN_KEY = import.meta.env.VITE_REFRESH_TOKEN_KEY;
 const PLATFORM_ID = import.meta.env.VITE_PLATFORM_ID;
 
 const AccountDelete = () => {
