@@ -9,6 +9,7 @@ import {
 	readDepartmentList,
 	signOut,
 	withdrawAccount,
+	issueToken,
 } from './auth/auth';
 import {
 	getPostingData,
@@ -80,4 +81,5 @@ export {
 	deletePostingRecruit,
 	readProfileImage,
 	withdrawAccount,
+	issueToken,
 };

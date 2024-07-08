@@ -1,5 +1,6 @@
 import type { Department, SignUpPayload, University, UserReponse } from '../../types';
 import { EndPoint, axiosAuthInstance, axiosInstance } from '..';
+import axios from 'axios';
 
 const platformType = 'NAVER';
 
@@ -114,5 +115,16 @@ export const withdrawAccount = async () => {
 		return response;
 	} catch (error) {
 		console.error(error);
+	}
+};
+
+export const issueToken = async () => {
+	try {
+		const response = await axios.post<UserReponse>(EndPoint.ISSUE);
+
+		return response;
+	} catch (error) {
+		console.error(error);
+		return null;
 	}
 };
