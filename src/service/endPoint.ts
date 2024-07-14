@@ -41,7 +41,7 @@ export const EndPoint = {
 	/* signedURL */
 	UPLOAD_IMAGE: {
 		profile: '/profile/signed-url',
-		portfolio: '/portfolio/pre-signed-url',
+		portfolio: '/portfolio/signed-url',
 	},
 
 	/* recruit */
