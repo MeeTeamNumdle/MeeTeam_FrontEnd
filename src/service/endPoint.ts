@@ -38,9 +38,9 @@ export const EndPoint = {
 		delete: (portfolioId: string) => `/portfolio/${portfolioId}`,
 	},
 
-	/* presignedURL */
+	/* signedURL */
 	UPLOAD_IMAGE: {
-		profile: '/profile/pre-signed-url',
+		profile: '/profile/signed-url',
 		portfolio: '/portfolio/pre-signed-url',
 	},
 
