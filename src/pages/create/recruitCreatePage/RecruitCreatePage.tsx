@@ -9,7 +9,6 @@ import {
 	RecruitRoleForm,
 	WarnRoleDelete,
 	WarnRoleCount,
-	Toast,
 } from '../../../components/index';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil';
@@ -26,6 +25,7 @@ import { EditPosting, InputState, RoleInfo, RoleForPost } from '../../../types';
 import { fixModalBackground } from '../../../utils';
 import { useLogin } from '../../../hooks';
 import { NotFound } from '../../index';
+import { INIT_FORM_DATA } from '../../../constant';
 
 const RecruitCreatePage = () => {
 	const { id } = useParams();
@@ -112,15 +112,15 @@ const RecruitCreatePage = () => {
 		}
 		if (postAvailable && !location.pathname.includes('edit')) {
 			uploadPost.mutate(formData, {
-				// onSuccess: () => resetFormData(),
+				onSuccess: () => setFormData(INIT_FORM_DATA),
 			});
 		}
 		if (postAvailable && location.pathname.includes('edit') && pageNum) {
 			editPost.mutate(
-				{ pageNum, formData }
-				// {
-				// 	onSuccess: () => resetFormData(),
-				// }
+				{ pageNum, formData },
+				{
+					onSuccess: () => setFormData(INIT_FORM_DATA),
+				}
 			);
 		}
 	};
@@ -167,14 +167,6 @@ const RecruitCreatePage = () => {
 	if (userInfo?.userId !== data?.writerId && !isLoading && id) {
 		return <NotFound />;
 	}
-
-	// if (!location.pathname.includes('edit')) {
-	// 	resetFormData();
-	// }
-
-	// console.log(formData);
-
-	console.log(data);
 
 	return (
 		<S.RecruitCreatePage>
