@@ -29,7 +29,7 @@ import { INIT_FORM_DATA } from '../../../constant';
 
 const RecruitCreatePage = () => {
 	const { id } = useParams();
-	const location = useLocation();
+	const locationObj = useLocation();
 	const navigate = useNavigate();
 	const { isLogin } = useLogin();
 	const validCheck = useRecoilValue(validState);
@@ -110,12 +110,12 @@ const RecruitCreatePage = () => {
 		if (!postAvailable) {
 			setBeforeSubmit(true);
 		}
-		if (postAvailable && !location.pathname.includes('edit')) {
+		if (postAvailable && !locationObj.pathname.includes('edit')) {
 			uploadPost.mutate(formData, {
 				onSuccess: () => setFormData(INIT_FORM_DATA),
 			});
 		}
-		if (postAvailable && location.pathname.includes('edit') && pageNum) {
+		if (postAvailable && locationObj.pathname.includes('edit') && pageNum) {
 			editPost.mutate(
 				{ pageNum, formData },
 				{
@@ -123,6 +123,16 @@ const RecruitCreatePage = () => {
 				}
 			);
 		}
+	};
+
+	const preventGoBack = () => {
+		history.pushState(null, '', location.href);
+		alert('나가시려면 하단의 취소 버튼을 눌러주세요.');
+	};
+
+	const preventClose = (e: BeforeUnloadEvent) => {
+		e.preventDefault();
+		e.returnValue = ''; // chrome에서는 설정이 필요해서 넣은 코드
 	};
 
 	useEffect(() => {
@@ -137,7 +147,7 @@ const RecruitCreatePage = () => {
 				};
 			};
 			const transformedRoles = data.recruitmentRoles.map(convertRoleInfo);
-			if (isSuccess && location.pathname.includes('edit') && transformedRoles) {
+			if (isSuccess && locationObj.pathname.includes('edit') && transformedRoles) {
 				setFormData({
 					scope: data.scope,
 					category: data.category,
@@ -161,11 +171,32 @@ const RecruitCreatePage = () => {
 		return () => {
 			setFormData(INIT_FORM_DATA);
 		};
-	}, [data, isSuccess, location.pathname, setFormData]);
+	}, [data, isSuccess, locationObj.pathname, setFormData]);
 
 	useEffect(() => {
 		fixModalBackground(beforeSubmit || isWarnRoleDelete);
 	}, [beforeSubmit, isWarnRoleDelete]);
+
+	useEffect(() => {
+		(() => {
+			history.pushState(null, '', location.href);
+			window.addEventListener('popstate', preventGoBack);
+		})();
+
+		return () => {
+			window.removeEventListener('popstate', preventGoBack);
+		};
+	}, []);
+
+	useEffect(() => {
+		(() => {
+			window.addEventListener('beforeunload', preventClose);
+		})();
+
+		return () => {
+			window.removeEventListener('beforeunload', preventClose);
+		};
+	}, []);
 
 	if (userInfo?.userId !== data?.writerId && !isLoading && id) {
 		return <NotFound />;
