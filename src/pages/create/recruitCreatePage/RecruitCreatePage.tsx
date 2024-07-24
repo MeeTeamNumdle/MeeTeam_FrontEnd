@@ -158,7 +158,10 @@ const RecruitCreatePage = () => {
 				});
 			}
 		}
-	}, [data]);
+		return () => {
+			setFormData(INIT_FORM_DATA);
+		};
+	}, [data, isSuccess, location.pathname, setFormData]);
 
 	useEffect(() => {
 		fixModalBackground(beforeSubmit || isWarnRoleDelete);
