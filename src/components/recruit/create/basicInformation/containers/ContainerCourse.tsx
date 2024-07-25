@@ -5,6 +5,7 @@ import { useDebounce } from '../../../../../hooks';
 import { getCourseKeyword, getProfessorKeyword } from '../../../../../service';
 import { useRecoilState } from 'recoil';
 import { recruitInputState } from '../../../../../atom';
+import { Keyword } from '../../../../../types';
 
 const ContainerCourse = () => {
 	const dropdownRef = useRef<HTMLDivElement | null>(null);
@@ -124,7 +125,7 @@ const ContainerCourse = () => {
 					{dropdown.course && (
 						<section className='dropdown'>
 							{!isLoadingCourse &&
-								dataCourse?.map((keyword: any) => (
+								dataCourse?.map((keyword: Keyword) => (
 									<span key={keyword.id} onClick={onClickCourse} className='option'>
 										{keyword.name}
 									</span>
@@ -145,7 +146,7 @@ const ContainerCourse = () => {
 					{dropdown.professor && (
 						<section className='dropdown'>
 							{!isLoadingProfessor &&
-								dataProfessor?.map((keyword: any) => (
+								dataProfessor?.map((keyword: Keyword) => (
 									<span key={keyword.id} onClick={onClickProfessor} className='option'>
 										{keyword.name}
 									</span>
