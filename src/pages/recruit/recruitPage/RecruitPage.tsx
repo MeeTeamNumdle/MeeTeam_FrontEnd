@@ -17,6 +17,7 @@ import {
 	DropdownArrow,
 	DropdownArrowUp,
 	FilledBookmark,
+	meeteam_banner_icon,
 	PlusWhite,
 	Portpolio,
 	Profile,
@@ -37,7 +38,6 @@ import { useQuery } from '@tanstack/react-query';
 import { useLogin } from '../../../hooks';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { fixModalBackground } from '../../../utils';
-import { is } from 'date-fns/locale';
 
 const RecruitPage = () => {
 	const navigate = useNavigate();
@@ -335,6 +335,15 @@ const RecruitPage = () => {
 				$isDetailedClick={isOpen}
 				$isDetailSelected={isDetailSelected}
 			>
+				<section className='main-banner'>
+					<section className='container-title'>
+						<span className='subtitle'>팀원을 찾고 있나요?</span>
+						<span className='title'>밋팀으로 팀원을 만나보세요!</span>
+					</section>
+					<section>
+						<img src={meeteam_banner_icon} fetchpriority='high' />
+					</section>
+				</section>
 				<section>
 					<section className='wrapper-title' ref={fieldRef}>
 						<h2>분야 전체</h2>

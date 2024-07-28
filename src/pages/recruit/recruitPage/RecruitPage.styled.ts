@@ -56,6 +56,55 @@ const RecruitPage = styled.div<RecruitPage>`
 		font-weight: 600;
 	}
 
+	.main-banner {
+		margin-top: 5rem;
+		width: 960px;
+		height: 206px;
+		flex-shrink: 0;
+		border-radius: 20px;
+		background: linear-gradient(90deg, #3f80ff 0%, #c9deff 100%);
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 11rem;
+		box-sizing: border-box;
+
+		.container-title {
+			display: flex;
+			flex-direction: column;
+		}
+
+		.subtitle {
+			color: #fff;
+			font-family: Pretendard;
+			font-size: 21.6px;
+			font-style: normal;
+			font-weight: 500;
+			line-height: 34.8px;
+			letter-spacing: 0.864px;
+		}
+
+		.title {
+			color: #fff;
+			font-family: Pretendard;
+			font-size: 28.8px;
+			font-style: normal;
+			font-weight: 700;
+			line-height: 34.8px;
+			letter-spacing: 1.152px;
+		}
+
+		img {
+			width: 177px;
+			height: 178px;
+			flex-shrink: 0;
+		}
+
+		@media (max-width: 768px) {
+			display: none;
+		}
+	}
+
 	.wrapper-title {
 		display: flex;
 		align-items: center;
