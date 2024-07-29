@@ -118,6 +118,25 @@ const RecruitPage = styled.div<RecruitPage>`
 				letter-spacing: 0.04rem;
 			}
 		}
+
+		@media (max-width: 431px) {
+			.title {
+				font-size: 1.6rem;
+				line-height: 2rem;
+				letter-spacing: 0.06rem;
+			}
+
+			.subtitle {
+				font-size: 1.4rem;
+				line-height: 1.6rem;
+				letter-spacing: 0.04rem;
+			}
+
+			img {
+				width: 90px;
+				height: 90px;
+			}
+		}
 	}
 
 	.wrapper-title {
