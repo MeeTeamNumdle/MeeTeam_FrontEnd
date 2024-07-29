@@ -81,6 +81,9 @@ const NeedLogin = styled.section`
 			padding: 8px 16px;
 			margin-top: 15px;
 		}
+		.btn-txt {
+			font-size: 1.2rem;
+		}
 	}
 
 	@media (max-width: 376px) {
@@ -91,6 +94,10 @@ const NeedLogin = styled.section`
 		.login-button {
 			padding: 6px 12px;
 			margin-top: 10px;
+		}
+
+		.btn-txt {
+			font-size: 1.2rem;
 		}
 	}
 `;
