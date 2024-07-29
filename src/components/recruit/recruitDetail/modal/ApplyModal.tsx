@@ -17,6 +17,8 @@ const ApplyModal = () => {
 	const [isChecked, setIsChecked] = useState<boolean>(false);
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const [value, setValue] = useState<string>('신청 역할을 선택해주세요.');
+	const [isCheckboxWarning, setIsCheckboxWarning] = useState<boolean>(false);
+	const [isRoleWarning, setIsRoleWarning] = useState<boolean>(false);
 	const isValid = isChecked && value !== '신청 역할을 선택해주세요.';
 
 	const { data, isLoading } = useQuery({
@@ -26,11 +28,15 @@ const ApplyModal = () => {
 
 	const onClickCheckbox = () => {
 		setIsChecked(prev => !prev);
+		setIsCheckboxWarning(false);
 	};
 	const onClickConfirm = () => {
 		if (isValid) {
 			setUserInfo(prev => ({ ...prev, message: textAreaRef.current?.value }));
 			setApplyStep(prev => prev + 1);
+		} else {
+			if (!isChecked) setIsCheckboxWarning(true);
+			if (value === '신청 역할을 선택해주세요.') setIsRoleWarning(true);
 		}
 	};
 
@@ -41,6 +47,7 @@ const ApplyModal = () => {
 			...prev,
 			role: { applyRoleId: +(event.target as HTMLLIElement).id, name: innerText },
 		}));
+		setIsRoleWarning(false);
 	};
 
 	useEffect(() => {
@@ -67,7 +74,13 @@ const ApplyModal = () => {
 						정보 공개 동의 시, 내 정보가 멤버들에게 보이며 팀매칭에 유리해집니다.
 					</span>
 					<article className='agreement'>
-						<input type='checkbox' id='agree' onClick={onClickCheckbox} checked={isChecked} />
+						<input
+							type='checkbox'
+							id='agree'
+							onClick={onClickCheckbox}
+							checked={isChecked}
+							className={isCheckboxWarning ? 'warning' : ''}
+						/>
 						<label htmlFor='agree' className='agreement-word'>
 							개인정보 열람 동의
 						</label>
@@ -115,7 +128,10 @@ const ApplyModal = () => {
 				)}
 			</article>
 			<article className='container-role'>
-				<article className='container-select__box' onClick={() => setIsOpen(prev => !prev)}>
+				<article
+					className={`container-select__box ${isRoleWarning ? 'warning' : ''}`}
+					onClick={() => setIsOpen(prev => !prev)}
+				>
 					<span className='value'>{value}</span>
 					{isOpen && (
 						<ul>
@@ -136,7 +152,7 @@ const ApplyModal = () => {
 				<button type='button' className='cancel' onClick={() => setIsModal(false)}>
 					취소하기
 				</button>
-				<button className='confirm' type='button' onClick={onClickConfirm}>
+				<button type='button' className='confirm' onClick={onClickConfirm}>
 					다음
 				</button>
 			</article>

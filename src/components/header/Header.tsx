@@ -6,7 +6,7 @@ import { ProfileImage, WaitModal } from '..';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { recruitFilterState, userState, waitModalState, loginState } from '../../atom';
 import { useSignOut, useLogin, useReadProfileImage } from '../../hooks';
-import { fixModalBackground, resetFormData } from '../../utils';
+import { fixModalBackground } from '../../utils';
 
 const Header = () => {
 	const navigate = useNavigate();
@@ -84,8 +84,6 @@ const Header = () => {
 	useEffect(() => {
 		fixModalBackground(isWait);
 	}, [isWait]);
-
-	resetFormData();
 
 	return (
 		<S.Header $isLogin={isLogin}>

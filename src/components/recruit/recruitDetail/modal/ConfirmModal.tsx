@@ -92,7 +92,7 @@ const ConfirmModal = () => {
 				<button type='button' className='cancel' onClick={onClickBack}>
 					뒤로가기
 				</button>
-				<button type='button' className='confirm submit' onClick={onClickNext}>
+				<button type='button' className='submit' onClick={onClickNext}>
 					제출하기
 				</button>
 			</article>

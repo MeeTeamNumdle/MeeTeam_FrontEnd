@@ -1,27 +1,10 @@
 import React from 'react';
 import S from './ApplyModal.styled';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { applyModalState, userState, applyStepState, goProfileState } from '../../../../atom';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useQueryClient } from '@tanstack/react-query';
-import { useLogin } from '../../../../hooks';
+import { useSetRecoilState } from 'recoil';
+import { goProfileState } from '../../../../atom';
 
 const FinalModal = () => {
-	const { id } = useParams();
-	const pageNum = Number(id);
-	const isLogin = useLogin();
-	const navigate = useNavigate();
-	const setIsModal = useSetRecoilState(applyModalState);
-	const setApplyStep = useSetRecoilState(applyStepState);
 	const setGoProfile = useSetRecoilState(goProfileState);
-	const user = useRecoilValue(userState);
-	const queryClient = useQueryClient();
-
-	const cancelHandler = () => {
-		setApplyStep(0);
-		setIsModal(false);
-		queryClient.invalidateQueries({ queryKey: ['detailedPage', { pageNum, isLogin }] });
-	};
 
 	const goProfileHandler = () => {
 		setGoProfile(true);
