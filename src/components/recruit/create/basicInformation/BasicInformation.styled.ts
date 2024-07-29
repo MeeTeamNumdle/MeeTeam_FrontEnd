@@ -74,6 +74,10 @@ const BasicInformation = styled.section<Basic>`
 					color: red;
 					font-size: 1rem;
 				}
+
+				.container-deadline__datepicker {
+					margin-top: 0.8rem;
+				}
 			}
 
 			.radio-btns {
@@ -153,6 +157,7 @@ const BasicInformation = styled.section<Basic>`
 					display: flex;
 					gap: 2rem;
 					width: 100%;
+					margin-top: 0.8rem;
 
 					.start-date {
 						width: 100%;

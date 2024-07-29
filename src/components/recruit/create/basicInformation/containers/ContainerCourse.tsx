@@ -5,6 +5,7 @@ import { useDebounce } from '../../../../../hooks';
 import { getCourseKeyword, getProfessorKeyword } from '../../../../../service';
 import { useRecoilState } from 'recoil';
 import { recruitInputState } from '../../../../../atom';
+import { Keyword } from '../../../../../types';
 
 const ContainerCourse = () => {
 	const dropdownRef = useRef<HTMLDivElement | null>(null);
@@ -35,9 +36,12 @@ const ContainerCourse = () => {
 
 	const onChangeCourse = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		setName(prev => ({ ...prev, course: event.target.value }));
+		setDropdown({ course: true, professor: false });
 	}, []);
+
 	const onChangeProfessor = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		setName(prev => ({ ...prev, professor: event.target.value }));
+		setDropdown({ course: false, professor: true });
 	}, []);
 
 	const onClickCheckbox = () => {
@@ -46,6 +50,7 @@ const ContainerCourse = () => {
 			...prev,
 			courseTag: { ...prev.courseTag, isCourse: true },
 		}));
+		setDropdown({ course: false, professor: false });
 	};
 
 	const onClickCourse = (event: React.MouseEvent<HTMLSpanElement>) => {
@@ -57,6 +62,7 @@ const ContainerCourse = () => {
 		}));
 		setDropdown(prev => ({ ...prev, course: false }));
 	};
+
 	const onClickProfessor = (event: React.MouseEvent<HTMLSpanElement>) => {
 		const { innerText } = event.target as HTMLElement;
 		setName(prev => ({ ...prev, professor: innerText }));
@@ -66,6 +72,7 @@ const ContainerCourse = () => {
 		}));
 		setDropdown(prev => ({ ...prev, professor: false }));
 	};
+
 	const onKeyDown = (event: React.KeyboardEvent) => {
 		if (event.key === 'Enter') {
 			event.preventDefault();
@@ -90,7 +97,7 @@ const ContainerCourse = () => {
 		return () => {
 			document.removeEventListener('mousedown', outsideClick);
 		};
-	}, [dropdownRef.current, dropdown.course, dropdown.professor]);
+	}, [dropdown.course, dropdown.professor]);
 
 	return (
 		<S.ContainerCourse $isChecked={isChecked} ref={dropdownRef}>
@@ -113,12 +120,12 @@ const ContainerCourse = () => {
 						disabled={!isChecked ? true : false}
 						onChange={onChangeCourse}
 						onKeyDown={onKeyDown}
-						onClick={() => setDropdown(prev => ({ ...prev, course: true }))}
+						onFocus={() => setDropdown({ course: false, professor: false })}
 					/>
 					{dropdown.course && (
 						<section className='dropdown'>
 							{!isLoadingCourse &&
-								dataCourse?.map((keyword: any) => (
+								dataCourse?.map((keyword: Keyword) => (
 									<span key={keyword.id} onClick={onClickCourse} className='option'>
 										{keyword.name}
 									</span>
@@ -134,12 +141,12 @@ const ContainerCourse = () => {
 						disabled={!isChecked ? true : false}
 						onChange={onChangeProfessor}
 						onKeyDown={onKeyDown}
-						onClick={() => setDropdown(prev => ({ ...prev, professor: true }))}
+						onFocus={() => setDropdown({ course: false, professor: false })}
 					/>
 					{dropdown.professor && (
 						<section className='dropdown'>
 							{!isLoadingProfessor &&
-								dataProfessor?.map((keyword: any) => (
+								dataProfessor?.map((keyword: Keyword) => (
 									<span key={keyword.id} onClick={onClickProfessor} className='option'>
 										{keyword.name}
 									</span>

@@ -65,6 +65,7 @@ import LogoFooter from './LogoFooter.svg';
 import Email from './Email.svg';
 import GrayDelete from './GrayDelete.svg';
 import NotFoundIcon from './NotFoundIcon.png';
+import meeteam_banner_icon from './meeteam_banner_icon.png';
 
 export {
 	Exit,
@@ -134,4 +135,5 @@ export {
 	Email,
 	GrayDelete,
 	NotFoundIcon,
+	meeteam_banner_icon,
 };

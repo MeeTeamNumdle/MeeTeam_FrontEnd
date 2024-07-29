@@ -38,6 +38,12 @@ import {
 import { useParams, useNavigate } from 'react-router-dom';
 import { useLogin } from '../../../hooks';
 
+const stepLists: JsxElementComponentProps = {
+	0: <ApplyModal />,
+	1: <ConfirmModal />,
+	2: <FinalModal />,
+};
+
 const RecruitDetailPage = () => {
 	const { id } = useParams();
 	const navigate = useNavigate();
@@ -52,11 +58,7 @@ const RecruitDetailPage = () => {
 	const [isGoProfile, setGoProfile] = useRecoilState(goProfileState);
 	const isPostingDelete = useRecoilValue(recruitPostingDeleteModalState);
 	const queryClient = useQueryClient();
-	const stepLists: JsxElementComponentProps = {
-		0: <ApplyModal />,
-		1: <ConfirmModal />,
-		2: <FinalModal />,
-	};
+
 	const { isLogin } = useLogin();
 	const { data: detailedData, isSuccess } = useQuery({
 		queryKey: ['detailedPage', { pageNum, isLogin }],

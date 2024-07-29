@@ -1,18 +1,22 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { resetFormData } from '../../../utils';
+import { useSetRecoilState } from 'recoil';
+import { recruitInputState } from '../../../atom';
+import { INIT_FORM_DATA } from '../../../constant';
 
 const ControlButtons = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
+	const setFormData = useSetRecoilState(recruitInputState);
 
-	const cancelHandler = () => {
+	const cancelHandler = async () => {
+		await setFormData(INIT_FORM_DATA);
+
 		if (location.pathname.includes('edit')) {
 			navigate(-1);
 		} else {
 			navigate('/');
 		}
-		resetFormData();
 	};
 
 	return (

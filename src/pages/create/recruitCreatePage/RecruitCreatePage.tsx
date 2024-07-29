@@ -9,7 +9,6 @@ import {
 	RecruitRoleForm,
 	WarnRoleDelete,
 	WarnRoleCount,
-	Toast,
 } from '../../../components/index';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil';
@@ -23,13 +22,14 @@ import {
 import { getPostingData, editPostingRecruit, postingRecruit } from '../../../service';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { EditPosting, InputState, RoleInfo, RoleForPost } from '../../../types';
-import { fixModalBackground, resetFormData } from '../../../utils';
+import { fixModalBackground } from '../../../utils';
 import { useLogin } from '../../../hooks';
 import { NotFound } from '../../index';
+import { INIT_FORM_DATA } from '../../../constant';
 
 const RecruitCreatePage = () => {
 	const { id } = useParams();
-	const location = useLocation();
+	const locationObj = useLocation();
 	const navigate = useNavigate();
 	const { isLogin } = useLogin();
 	const validCheck = useRecoilValue(validState);
@@ -110,22 +110,30 @@ const RecruitCreatePage = () => {
 		if (!postAvailable) {
 			setBeforeSubmit(true);
 		}
-		if (postAvailable && !location.pathname.includes('edit')) {
+		if (postAvailable && !locationObj.pathname.includes('edit')) {
 			uploadPost.mutate(formData, {
-				onSuccess: () => resetFormData(),
+				onSuccess: () => setFormData(INIT_FORM_DATA),
 			});
 		}
-		if (postAvailable && location.pathname.includes('edit') && pageNum) {
+		if (postAvailable && locationObj.pathname.includes('edit') && pageNum) {
 			editPost.mutate(
 				{ pageNum, formData },
 				{
-					onSuccess: () => resetFormData(),
+					onSuccess: () => setFormData(INIT_FORM_DATA),
 				}
 			);
 		}
 	};
 
-	resetFormData();
+	const preventGoBack = () => {
+		history.pushState(null, '', location.href);
+		alert('나가시려면 하단의 취소 버튼을 눌러주세요.');
+	};
+
+	const preventClose = (e: BeforeUnloadEvent) => {
+		e.preventDefault();
+		e.returnValue = ''; // chrome에서는 설정이 필요해서 넣은 코드
+	};
 
 	useEffect(() => {
 		if (data) {
@@ -139,7 +147,7 @@ const RecruitCreatePage = () => {
 				};
 			};
 			const transformedRoles = data.recruitmentRoles.map(convertRoleInfo);
-			if (isSuccess && location.pathname.includes('edit') && transformedRoles) {
+			if (isSuccess && locationObj.pathname.includes('edit') && transformedRoles) {
 				setFormData({
 					scope: data.scope,
 					category: data.category,
@@ -160,11 +168,35 @@ const RecruitCreatePage = () => {
 				});
 			}
 		}
-	}, [data]);
+		return () => {
+			setFormData(INIT_FORM_DATA);
+		};
+	}, [data, isSuccess, locationObj.pathname, setFormData]);
 
 	useEffect(() => {
 		fixModalBackground(beforeSubmit || isWarnRoleDelete);
 	}, [beforeSubmit, isWarnRoleDelete]);
+
+	useEffect(() => {
+		(() => {
+			history.pushState(null, '', location.href);
+			window.addEventListener('popstate', preventGoBack);
+		})();
+
+		return () => {
+			window.removeEventListener('popstate', preventGoBack);
+		};
+	}, []);
+
+	useEffect(() => {
+		(() => {
+			window.addEventListener('beforeunload', preventClose);
+		})();
+
+		return () => {
+			window.removeEventListener('beforeunload', preventClose);
+		};
+	}, []);
 
 	if (userInfo?.userId !== data?.writerId && !isLoading && id) {
 		return <NotFound />;

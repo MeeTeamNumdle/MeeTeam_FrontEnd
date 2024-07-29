@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-	DateSelect,
 	WrapperScopeCategory,
 	ContainerProcedure,
 	ContainerCourse,
@@ -59,6 +58,8 @@ const BasicInformation = () => {
 		}
 	};
 
+	//console.log(formData.title, formData.deadline);
+
 	return (
 		<S.BasicInformation $isTitled={formData.title}>
 			<section className='container-basic'>
@@ -86,10 +87,12 @@ const BasicInformation = () => {
 						<span className='input-subtitle'>
 							구인글 마감일 <span>{'*'}</span>
 						</span>
-						<MuiDatepicker handleChange={date => onChangeDate(date)} />
-						{isValid.isSubmitted && !isValid.isDeadline && (
-							<p className='valid-msg'>{validMessage.deadline}</p>
-						)}
+						<div className='container-deadline__datepicker'>
+							<MuiDatepicker value={deadlineDate} handleChange={date => onChangeDate(date)} />
+							{isValid.isSubmitted && !isValid.isDeadline && (
+								<p className='valid-msg'>{validMessage.deadline}</p>
+							)}
+						</div>
 					</article>
 					<WrapperScopeCategory />
 					<article className='inputs-dates'>
@@ -98,10 +101,18 @@ const BasicInformation = () => {
 						</span>
 						<section className='container-dates'>
 							<div className='start-date'>
-								<MuiDatepicker handleChange={date => onChangeStartDate(date)} type='start' />
+								<MuiDatepicker
+									value={startDate}
+									handleChange={date => onChangeStartDate(date)}
+									type='start'
+								/>
 							</div>
 							<div className='end-date'>
-								<MuiDatepicker handleChange={date => onChangeEndDate(date)} type='end' />
+								<MuiDatepicker
+									value={endDate}
+									handleChange={date => onChangeEndDate(date)}
+									type='end'
+								/>
 								{isValid.isSubmitted && !isValid.isEndDate && (
 									<p className='valid-msg'>{validMessage.endDate}</p>
 								)}

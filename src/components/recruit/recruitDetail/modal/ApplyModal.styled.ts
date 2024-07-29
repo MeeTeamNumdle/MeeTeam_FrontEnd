@@ -90,6 +90,10 @@ const Modal = styled.section<Modal>`
 					background-position: 50%;
 					background-repeat: no-repeat;
 				}
+
+				&.warning {
+					border: 1px solid #f85858;
+				}
 			}
 
 			.agreement-word {
@@ -226,7 +230,13 @@ const Modal = styled.section<Modal>`
 				box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
 
 				li {
+					width: 100%;
 					cursor: pointer;
+
+					&:hover {
+						color: #000000;
+						transition: 0.2s ease-in-out;
+					}
 				}
 			}
 
@@ -234,6 +244,9 @@ const Modal = styled.section<Modal>`
 				position: absolute;
 				right: 1rem;
 				top: 1.2rem;
+			}
+			&.warning {
+				border: 1px solid #f85858;
 			}
 		}
 	}
@@ -294,20 +307,49 @@ const Modal = styled.section<Modal>`
 
 		.cancel {
 			height: 4.8rem;
-			border-radius: 0.6rem;
 			border: 1px solid #e3e3e3;
 			background: #fff;
+
+			&:hover {
+				border: 1px solid #373f41;
+				transition: 0.2s ease-in-out;
+			}
+
+			&:active {
+				border: 1px solid #373f41;
+				background: #747b7f;
+				color: #ffffff;
+			}
 		}
 
 		.confirm {
 			background-color: ${props => (props.$isChecked ? '#5877fc' : '#E3E3E3')};
 			font-weight: 400;
 			color: ${props => (props.$isChecked ? '#fff' : '#8E8E8E')};
+
+			&:hover {
+				background: ${props => props.$isChecked && '#2f4fd9'};
+				transition: 0.2s ease-in-out;
+			}
+
+			&:active {
+				background: ${props => props.$isChecked && '#0e2690'};
+			}
 		}
 
 		.submit {
+			font-weight: 400;
 			background-color: #5877fc;
 			color: #ffffff;
+
+			&:hover {
+				background-color: #2f4fd9;
+				transition: 0.2s ease-in-out;
+			}
+
+			&:active {
+				background-color: #0e2690;
+			}
 		}
 	}
 
@@ -321,6 +363,11 @@ const Modal = styled.section<Modal>`
 		height: 0.1rem;
 		border: 0;
 	}
+
+	.warning {
+		border: 1px solid #f85858;
+	}
+
 	@media (max-width: 450px) {
 		height: 85%;
 		padding: 1.8rem 2rem;
@@ -388,6 +435,14 @@ const Modal = styled.section<Modal>`
 				width: auto;
 				padding: 1rem;
 				font-size: 1.4rem;
+
+				ul {
+					width: 100%;
+
+					li {
+						width: 100%;
+					}
+				}
 			}
 		}
 
@@ -502,11 +557,31 @@ const FinalModal = styled.section`
 			background-color: #fff;
 			color: #373f41;
 			border: 0.1rem solid #e3e3e3;
+
+			&:hover {
+				border: 1px solid #373f41;
+				transition: 0.2s ease-in-out;
+			}
+
+			&:active {
+				border: 1px solid #373f41;
+				background: #747b7f;
+				color: #ffffff;
+			}
 		}
 
 		.btn-profile {
 			background-color: #5877fc;
 			color: #fff;
+
+			&:hover {
+				background-color: #2f4fd9;
+				transition: 0.2s ease-in-out;
+			}
+
+			&:active {
+				background-color: #0e2690;
+			}
 		}
 	}
 	@media (max-width: 450px) {

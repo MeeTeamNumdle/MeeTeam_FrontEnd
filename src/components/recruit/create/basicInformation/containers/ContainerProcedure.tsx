@@ -50,11 +50,11 @@ const ContainerProcedure = () => {
 						type='radio'
 						id='any'
 						name='procedure'
-						value='상관없음'
-						checked={formData.proceedType === '상관없음'}
+						value='온/오프라인'
+						checked={formData.proceedType === '온/오프라인'}
 						onChange={handleProcedureChange}
 					/>
-					<label htmlFor='any'>상관없음</label>
+					<label htmlFor='any'>온/오프라인</label>
 				</section>
 			</section>
 			{isValid.isSubmitted && !isValid.isProcedure && (
