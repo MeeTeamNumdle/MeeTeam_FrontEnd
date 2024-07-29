@@ -58,7 +58,7 @@ const RecruitPage = styled.div<RecruitPage>`
 
 	.main-banner {
 		margin-top: 5rem;
-		width: 960px;
+		width: 100%;
 		height: 206px;
 		flex-shrink: 0;
 		border-radius: 20px;
@@ -72,6 +72,7 @@ const RecruitPage = styled.div<RecruitPage>`
 		.container-title {
 			display: flex;
 			flex-direction: column;
+			gap: 0.2rem;
 		}
 
 		.subtitle {
@@ -101,7 +102,21 @@ const RecruitPage = styled.div<RecruitPage>`
 		}
 
 		@media (max-width: 768px) {
-			display: none;
+			font-size: 1rem;
+			padding: 0 2rem;
+			height: 160px;
+
+			.title {
+				font-size: 2rem;
+				line-height: 2rem;
+				letter-spacing: 0.06rem;
+			}
+
+			.subtitle {
+				font-size: 1.5rem;
+				line-height: 1.6rem;
+				letter-spacing: 0.04rem;
+			}
 		}
 	}
 
