@@ -132,7 +132,7 @@ const RecruitCreatePage = () => {
 
 	const preventClose = (e: BeforeUnloadEvent) => {
 		e.preventDefault();
-		e.returnValue = ''; // chrome에서는 설정이 필요해서 넣은 코드
+		e.returnValue = '';
 	};
 
 	useEffect(() => {
@@ -167,10 +167,11 @@ const RecruitCreatePage = () => {
 					content: data.content,
 				});
 			}
+		} else {
+			return () => {
+				setFormData(INIT_FORM_DATA);
+			};
 		}
-		return () => {
-			setFormData(INIT_FORM_DATA);
-		};
 	}, [data, isSuccess, locationObj.pathname, setFormData]);
 
 	useEffect(() => {
@@ -217,7 +218,7 @@ const RecruitCreatePage = () => {
 						})}
 					/>
 					<RecruitTags />
-					<ControlButtons />
+					<ControlButtons id={id} />
 					{beforeSubmit && (
 						<article className='modal-background'>
 							<section className='validation-modal'>

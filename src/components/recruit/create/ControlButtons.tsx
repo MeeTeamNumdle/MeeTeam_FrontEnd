@@ -4,7 +4,7 @@ import { useSetRecoilState } from 'recoil';
 import { recruitInputState } from '../../../atom';
 import { INIT_FORM_DATA } from '../../../constant';
 
-const ControlButtons = () => {
+const ControlButtons = ({ id }: { id?: string }) => {
 	const location = useLocation();
 	const navigate = useNavigate();
 	const setFormData = useSetRecoilState(recruitInputState);
@@ -13,7 +13,7 @@ const ControlButtons = () => {
 		await setFormData(INIT_FORM_DATA);
 
 		if (location.pathname.includes('edit')) {
-			navigate(-1);
+			navigate(`/recruitment/postings/${id}`);
 		} else {
 			navigate('/');
 		}
