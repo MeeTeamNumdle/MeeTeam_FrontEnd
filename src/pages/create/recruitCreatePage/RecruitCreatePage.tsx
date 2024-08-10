@@ -172,7 +172,7 @@ const RecruitCreatePage = () => {
 				setFormData(INIT_FORM_DATA);
 			};
 		}
-	}, [data, isSuccess, locationObj.pathname, setFormData]);
+	}, [data, setFormData]);
 
 	useEffect(() => {
 		fixModalBackground(beforeSubmit || isWarnRoleDelete);
@@ -210,7 +210,17 @@ const RecruitCreatePage = () => {
 			) : (
 				<form onSubmit={handleSubmit}>
 					<Description />
-					<BasicInformation />
+					<BasicInformation
+						title={data?.title}
+						scope={data?.scope}
+						category={data?.category}
+						deadline={data?.deadline}
+						startDate={data?.proceedingStart}
+						endDate={data?.proceedingEnd}
+						proceedType={data?.proceedType}
+						course={data?.courseName}
+						professor={data?.courseProfessor}
+					/>
 					<DetailedInformation />
 					<RecruitRoleForm
 						applicantsList={data?.recruitmentRoles.map(role => {

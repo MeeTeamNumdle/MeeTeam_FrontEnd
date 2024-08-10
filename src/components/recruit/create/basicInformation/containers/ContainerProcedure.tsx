@@ -3,14 +3,14 @@ import { recruitInputState } from '../../../../../atom';
 import { useRecoilState } from 'recoil';
 import { useValid } from '../../../../../hooks';
 
-const ContainerProcedure = () => {
-	const [isSelected, setIsSelected] = useState<string>('');
+const ContainerProcedure = ({ proceedType }: { proceedType?: string }) => {
+	const [type, setType] = useState<string | undefined>(proceedType);
 	const [formData, setFormData] = useRecoilState(recruitInputState);
 	const { validMessage, isValid } = useValid(formData);
 
 	const handleProcedureChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const procedure = event.target.value;
-		setIsSelected(event.target.value);
+		setType(event.target.value);
 		setFormData(prev => ({ ...prev, proceedType: procedure }));
 	};
 
@@ -27,7 +27,7 @@ const ContainerProcedure = () => {
 						id='offline'
 						name='procedure'
 						value='오프라인'
-						checked={formData.proceedType === '오프라인'}
+						checked={type === '오프라인'}
 						onChange={handleProcedureChange}
 					/>
 					<label htmlFor='offline'>오프라인</label>
@@ -39,7 +39,7 @@ const ContainerProcedure = () => {
 						id='online'
 						name='procedure'
 						value='온라인'
-						checked={formData.proceedType === '온라인'}
+						checked={type === '온라인'}
 						onChange={handleProcedureChange}
 					/>
 					<label htmlFor='online'>온라인</label>
@@ -51,7 +51,7 @@ const ContainerProcedure = () => {
 						id='any'
 						name='procedure'
 						value='온/오프라인'
-						checked={formData.proceedType === '온/오프라인'}
+						checked={type === '온/오프라인'}
 						onChange={handleProcedureChange}
 					/>
 					<label htmlFor='any'>온/오프라인</label>

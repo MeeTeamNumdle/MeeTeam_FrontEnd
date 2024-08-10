@@ -49,8 +49,6 @@ const DeadlineSelect = ({ type }: RecruitmentDeadLine) => {
 				}
 				renderCustomHeader={({
 					date,
-					changeYear,
-					changeMonth,
 					decreaseMonth,
 					increaseMonth,
 					prevMonthButtonDisabled,

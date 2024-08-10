@@ -66,7 +66,7 @@ const Header = () => {
 		} else {
 			setIsHere({ recruit: false, galary: false, inform: false });
 		}
-	}, [location.pathname]);
+	}, [location.pathname, id]);
 
 	useEffect(() => {
 		const outsideClick = (event: MouseEvent) => {
