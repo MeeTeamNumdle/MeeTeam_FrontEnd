@@ -21,7 +21,7 @@ import {
 } from '../../../atom';
 import { getPostingData, editPostingRecruit, postingRecruit } from '../../../service';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { EditPosting, InputState, RoleInfo, RoleForPost } from '../../../types';
+import { EditPosting, InputState } from '../../../types';
 import { fixModalBackground } from '../../../utils';
 import { useLogin } from '../../../hooks';
 import { NotFound } from '../../index';
@@ -57,7 +57,7 @@ const RecruitCreatePage = () => {
 		validCheck.isTitle;
 	const pageNum = Number(id);
 
-	const { data, isSuccess, isLoading } = useQuery({
+	const { data, isLoading } = useQuery({
 		queryKey: ['detailedPage', { pageNum, isLogin }],
 		queryFn: () => getPostingData({ pageNum, isLogin }),
 		enabled: !!id,
@@ -134,45 +134,6 @@ const RecruitCreatePage = () => {
 		e.preventDefault();
 		e.returnValue = '';
 	};
-
-	useEffect(() => {
-		if (data) {
-			const convertRoleInfo = (roleInfo: RoleInfo): RoleForPost => {
-				return {
-					roleId: roleInfo.roleId,
-					count: roleInfo.recruitCount,
-					skillIds: roleInfo.skills.map(e => e.id),
-					skills: roleInfo.skills,
-					roleName: roleInfo.roleName,
-				};
-			};
-			const transformedRoles = data.recruitmentRoles.map(convertRoleInfo);
-			if (isSuccess && locationObj.pathname.includes('edit') && transformedRoles) {
-				setFormData({
-					scope: data.scope,
-					category: data.category,
-					deadline: data.deadline,
-					proceedingStart: data.proceedingStart,
-					proceedingEnd: data.proceedingEnd,
-					fieldId: 1,
-					proceedType: data.proceedType,
-					courseTag: {
-						courseTagName: data.courseName,
-						courseProfessor: data.courseProfessor,
-						isCourse: data.courseName || data.courseProfessor ? true : false,
-					},
-					recruitmentRoles: transformedRoles,
-					tags: data.tags.map(e => e.name),
-					title: data.title,
-					content: data.content,
-				});
-			}
-		} else {
-			return () => {
-				setFormData(INIT_FORM_DATA);
-			};
-		}
-	}, [data, setFormData, isSuccess, locationObj.pathname]);
 
 	useEffect(() => {
 		fixModalBackground(beforeSubmit || isWarnRoleDelete);
