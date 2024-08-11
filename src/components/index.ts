@@ -74,8 +74,6 @@ import Tag from './meeteam/tag/Tag';
 import ManageRecruitCard from './recruit/ManageRecruitCard';
 import Status from './meeteam/status/Status';
 import Dropdown from './dropdown/Dropdown';
-import DateSelect from './dateSelect/DateSelect';
-import DeadlineSelect from './dateSelect/DeadlineSelect';
 import Icon from './meeteam/icon/Icon';
 import ApplyModal from './recruit/recruitDetail/modal/ApplyModal';
 import ConfirmModal from './recruit/recruitDetail/modal/ConfirmModal';
@@ -217,7 +215,6 @@ export {
 	ManageRecruitCard,
 	Status,
 	Dropdown,
-	DeadlineSelect,
 	Icon,
 	MemberInviteModal,
 	MemberTest,
@@ -229,7 +226,6 @@ export {
 	CONTENT,
 	RecruitCard,
 	Pagination,
-	DateSelect,
 	CommentInput,
 	ReplyInput,
 	Comment,
