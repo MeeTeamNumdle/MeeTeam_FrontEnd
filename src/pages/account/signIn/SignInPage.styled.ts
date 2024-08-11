@@ -12,22 +12,31 @@ const SignInPageLayout = styled(Account.AccountLayout)<{ $callBack?: boolean }>`
 		margin: 6rem 0;
 	}
 
+	.sign-in__wrapper {
+		width: 100%;
+	}
+
 	.sign-in__social-login-marker {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		column-gap: 0.93rem;
+		justify-content: center;
 		margin-bottom: 1.2rem;
-		/* Text/t2 */
+		width: 100%;
 		font-size: 1.2rem;
 		line-height: 1.4rem;
 		letter-spacing: 0.0024rem;
 	}
 
+	.sign-in__subtitle {
+		width: 100%;
+		text-align: center;
+	}
+
 	.sign-in__horizon {
 		all: unset;
 		display: flex;
-		width: 12.52rem;
+		width: 100%;
 		height: 0.15rem;
 		background: #d9d9d9;
 	}
