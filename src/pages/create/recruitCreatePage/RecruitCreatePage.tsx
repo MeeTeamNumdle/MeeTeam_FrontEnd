@@ -182,7 +182,7 @@ const RecruitCreatePage = () => {
 						course={data?.courseName}
 						professor={data?.courseProfessor}
 					/>
-					<DetailedInformation />
+					<DetailedInformation contents={data?.content} />
 					<RecruitRoleForm
 						applicantsList={
 							data?.recruitmentRoles.map(role => {
