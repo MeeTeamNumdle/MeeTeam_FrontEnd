@@ -189,7 +189,7 @@ const RecruitCreatePage = () => {
 								return { roleId: role.roleId, applicantCount: role.applicantCount };
 							}) || []
 						}
-						// applicantsListData={data?.recruitmentRoles}
+						applicantsListData={data?.recruitmentRoles}
 					/>
 					<RecruitTagList tags={data?.tags} />
 					<ControlButtons id={id} />

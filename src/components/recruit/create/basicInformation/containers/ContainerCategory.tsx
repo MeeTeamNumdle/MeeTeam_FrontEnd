@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { recruitInputState } from '../../../../../atom';
 import { useRecoilState } from 'recoil';
 import { useValid } from '../../../../../hooks';
@@ -13,6 +13,13 @@ const ContainerCategory = ({ category }: { category?: string }) => {
 		setCategoryType(category);
 		setFormData(prev => ({ ...prev, category: category }));
 	};
+
+	useEffect(() => {
+		if (category) {
+			setFormData(prev => ({ ...prev, category: category }));
+		}
+	}, [category, setFormData]);
+
 	return (
 		<section className='container-category'>
 			<span className='input-subtitle'>

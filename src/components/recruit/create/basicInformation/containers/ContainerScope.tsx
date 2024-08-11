@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { recruitInputState } from '../../../../../atom';
 import { useValid } from '../../../../../hooks';
@@ -13,6 +13,12 @@ const ContainerScope = ({ scope }: { scope?: string }) => {
 		setScopeType(scope);
 		setFormData(prev => ({ ...prev, scope: scope }));
 	};
+
+	useEffect(() => {
+		if (scope) {
+			setFormData(prev => ({ ...prev, scope: scope }));
+		}
+	}, [scope, setFormData]);
 
 	return (
 		<section className='container-scope'>

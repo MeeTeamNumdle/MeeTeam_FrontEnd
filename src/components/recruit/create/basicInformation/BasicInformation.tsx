@@ -128,7 +128,18 @@ const BasicInformation = ({
 		dispatch({ type: 'SET_PROCEED_TYPE', payload: proceedType });
 		dispatch({ type: 'SET_COURSE', payload: course });
 		dispatch({ type: 'SET_PROFESSOR', payload: professor });
-	}, [title, deadline, startDate, endDate, proceedType, course, professor]);
+
+		setFormData(prevInfo => ({
+			...prevInfo,
+			title,
+			deadline,
+			proceedingStart: startDate,
+			proceedingEnd: endDate,
+			proceedType,
+			course,
+			professor,
+		}));
+	}, [title, deadline, startDate, endDate, proceedType, course, professor, setFormData]);
 
 	return (
 		<S.BasicInformation $isTitled={formData.title}>

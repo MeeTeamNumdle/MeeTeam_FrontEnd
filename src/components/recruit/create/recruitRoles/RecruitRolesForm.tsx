@@ -7,16 +7,16 @@ import {
 } from '../../../../atom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { InputRoleForm } from '../../../index';
-import { RecruitApplicant } from '../../../../types';
+import { RecruitApplicant, RoleForPost, RoleInfo } from '../../../../types';
 import { BluePlus } from '../../../../assets';
 import { useValid } from '../../../../hooks';
 
 interface RecruitRoleFormProps {
 	applicantsList: RecruitApplicant[];
-	// applicantsListData?: RoleInfo[];
+	applicantsListData?: RoleInfo[];
 }
 
-const RecruitRoleForm = ({ applicantsList }: RecruitRoleFormProps) => {
+const RecruitRoleForm = ({ applicantsList, applicantsListData }: RecruitRoleFormProps) => {
 	const [info, setInfo] = useRecoilState(recruitInputState);
 	const [isFirstClick, setIsFirstClick] = useState<boolean>(true);
 	const setWarnRoleDeleteState = useSetRecoilState(warnRoleDeleteModalState);
@@ -94,14 +94,21 @@ const RecruitRoleForm = ({ applicantsList }: RecruitRoleFormProps) => {
 		}
 	}, [info.recruitmentRoles, isFirstClick, setIsValid]);
 
-	// useEffect(() => {
-	// 	if (applicantsListData) {
-	// 		setInfo(prevInfo => ({
-	// 			...prevInfo,
-	// 			recruitmentRoles: applicantsListData,
-	// 		}));
-	// 	}
-	// }, [applicantsListData, setInfo]);
+	useEffect(() => {
+		if (applicantsListData) {
+			const convertRoleInfo = (roleInfo: RoleInfo): RoleForPost => {
+				return {
+					roleId: roleInfo.roleId,
+					count: roleInfo.recruitCount,
+					skillIds: roleInfo.skills.map(e => e.id),
+					skills: roleInfo.skills,
+					roleName: roleInfo.roleName,
+				};
+			};
+			const transformedRoles = applicantsListData.map(convertRoleInfo);
+			setInfo(prev => ({ ...prev, recruitmentRoles: transformedRoles }));
+		}
+	}, [applicantsListData, setInfo]);
 
 	return (
 		<S.RecruitRoles $isRoleLength={info.recruitmentRoles.length === 10}>
