@@ -29,12 +29,14 @@ const ContainerCourse = ({ course, professor }: ContainerCourseProps) => {
 	const { data: dataCourse, isLoading: isLoadingCourse } = useQuery({
 		queryKey: ['searchCourse', keywordCourse],
 		queryFn: () => getCourseKeyword(keywordCourse ?? ''),
+		enabled: !!keywordCourse,
 		staleTime: Infinity,
 		gcTime: Infinity,
 	});
 	const { data: dataProfessor, isLoading: isLoadingProfessor } = useQuery({
 		queryKey: ['searchProfessor', keywordProfessor],
 		queryFn: () => getProfessorKeyword(keywordProfessor ?? ''),
+		enabled: !!keywordProfessor,
 		staleTime: Infinity,
 		gcTime: Infinity,
 	});

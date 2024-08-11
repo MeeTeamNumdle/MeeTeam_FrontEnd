@@ -68,14 +68,14 @@ const Dropdown = ({ data, initialData, scope, category, applicant, roleObj }: Dr
 	const { data: dataCourse, isLoading: isLoadingCourse } = useQuery({
 		queryKey: ['searchCourse', keywordCourse],
 		queryFn: () => getCourseKeyword(keywordCourse),
-		enabled: isLogin,
+		enabled: !!(value.course.name && isLogin),
 		staleTime: Infinity,
 		gcTime: Infinity,
 	});
 	const { data: dataProfessor, isLoading: isLoadingProfessor } = useQuery({
 		queryKey: ['searchProfessor', keywordProfessor],
 		queryFn: () => getProfessorKeyword(keywordProfessor),
-		enabled: isLogin,
+		enabled: !!(value.professor.name && isLogin),
 		staleTime: Infinity,
 		gcTime: Infinity,
 	});
