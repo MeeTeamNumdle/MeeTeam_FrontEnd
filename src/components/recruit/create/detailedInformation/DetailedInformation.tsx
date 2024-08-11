@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import ReactQuill from 'react-quill';
 import { useRecoilState } from 'recoil';
 import { modules } from '../../../../utils';
@@ -21,8 +21,6 @@ const DetailedInformation = () => {
 	const onChangeContents = (contents: string) => {
 		setFormData({ ...formData, content: contents });
 	};
-
-	//console.log(formData.content);
 
 	return (
 		<S.DetailedInformation>

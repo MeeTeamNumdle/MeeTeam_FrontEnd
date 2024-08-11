@@ -7,11 +7,16 @@ import {
 } from '../../../../atom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { InputRoleForm } from '../../../index';
-import { RecruitApplicantsList } from '../../../../types';
+import { RecruitApplicant } from '../../../../types';
 import { BluePlus } from '../../../../assets';
 import { useValid } from '../../../../hooks';
 
-const RecruitRoleForm = ({ applicantsList }: RecruitApplicantsList) => {
+interface RecruitRoleFormProps {
+	applicantsList: RecruitApplicant[];
+	// applicantsListData?: RoleInfo[];
+}
+
+const RecruitRoleForm = ({ applicantsList }: RecruitRoleFormProps) => {
 	const [info, setInfo] = useRecoilState(recruitInputState);
 	const [isFirstClick, setIsFirstClick] = useState<boolean>(true);
 	const setWarnRoleDeleteState = useSetRecoilState(warnRoleDeleteModalState);
@@ -87,7 +92,16 @@ const RecruitRoleForm = ({ applicantsList }: RecruitApplicantsList) => {
 		} else {
 			setIsValid(prev => ({ ...prev, isRoleSubmitted: false }));
 		}
-	}, [info.recruitmentRoles, isFirstClick]);
+	}, [info.recruitmentRoles, isFirstClick, setIsValid]);
+
+	// useEffect(() => {
+	// 	if (applicantsListData) {
+	// 		setInfo(prevInfo => ({
+	// 			...prevInfo,
+	// 			recruitmentRoles: applicantsListData,
+	// 		}));
+	// 	}
+	// }, [applicantsListData, setInfo]);
 
 	return (
 		<S.RecruitRoles $isRoleLength={info.recruitmentRoles.length === 10}>
