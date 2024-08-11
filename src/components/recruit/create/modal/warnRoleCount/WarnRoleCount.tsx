@@ -1,7 +1,7 @@
 import React from 'react';
 import S from './WarnRoleCount.styled';
 import { useSetRecoilState } from 'recoil';
-import { warningModalRoleCountState } from '../../../../atom';
+import { warningModalRoleCountState } from '../../../../../atom';
 
 const WarnRoleCount = () => {
 	const setWarnRoleCountState = useSetRecoilState(warningModalRoleCountState);
