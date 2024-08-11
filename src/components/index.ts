@@ -131,7 +131,7 @@ import WriterFooter from './recruit/recruitDetail/footer/WriterFooter';
 import ApplierFooter from './recruit/recruitDetail/footer/ApplierFooter';
 import ClosedFooter from './recruit/recruitDetail/footer/ClosedFooter';
 import DetailedInput from './recruit/recruitBoard/detailedFilter/DetailedInput';
-import RecruitTags from './recruit/create/RecruitTags';
+import RecruitTagList from './recruit/create/RecruitTags';
 import ApplyCancel from './recruit/recruitDetail/modal/applyCancel/ApplyCancel';
 import ApplyClose from './recruit/recruitDetail/modal/applyClose/ApplyClose';
 import CommentDeleteModal from './recruit/recruitDetail/modal/commentDelete/CommentDeleteModal';
@@ -278,7 +278,7 @@ export {
 	FinalModal,
 	DetailedInput,
 	ClosedFooter,
-	RecruitTags,
+	RecruitTagList,
 	ApplyCancel,
 	ApplyClose,
 	CommentDeleteModal,

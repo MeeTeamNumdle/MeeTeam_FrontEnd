@@ -6,9 +6,13 @@ import { useDebounce } from '../../hooks';
 import { useQuery } from '@tanstack/react-query';
 import { getTagKeyword } from '../../service';
 import { Search, XBtn } from '../../assets';
-import { Keyword } from '../../types';
+import { Keyword, RecruitTags } from '../../types';
 
-const MeeteamTag = () => {
+interface RecruitTagListProps {
+	tags: RecruitTags[] | undefined;
+}
+
+const MeeteamTag = ({ tags }: RecruitTagListProps) => {
 	const [formData, setFormData] = useRecoilState(recruitInputState);
 	const [tagItem, setTagItem] = useState<string>('');
 	const [tagList, setTagList] = useState<string[]>(formData.tags);
@@ -21,6 +25,7 @@ const MeeteamTag = () => {
 		queryFn: () => getTagKeyword(keywordTag),
 		staleTime: Infinity,
 		gcTime: Infinity,
+		enabled: !!tagItem,
 	});
 
 	const onKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -91,6 +96,19 @@ const MeeteamTag = () => {
 		};
 	}, [isDropdownVisible]);
 
+	useEffect(() => {
+		if (tags) {
+			const tagsWithoutId = tags.map(tag => {
+				return tag.name;
+			});
+			setTagList(tagsWithoutId);
+			setFormData(prevFormData => ({
+				...prevFormData,
+				tags: tagsWithoutId,
+			}));
+		}
+	}, [tags, setFormData]);
+
 	return (
 		<S.MeeteamTag ref={dropdownRef}>
 			<section className='tag__box' onClick={onClickInput}>
@@ -136,7 +154,7 @@ const MeeteamTag = () => {
 				)}
 			</section>
 			<section className='tags-selected'>
-				{formData.tags.map((tagItem, _) => {
+				{formData.tags.map(tagItem => {
 					return (
 						<div className='tag__item txt2' key={tagItem}>
 							<span>{tagItem}</span>

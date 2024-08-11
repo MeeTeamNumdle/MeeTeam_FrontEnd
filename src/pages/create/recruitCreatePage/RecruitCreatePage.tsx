@@ -5,7 +5,7 @@ import {
 	ControlButtons,
 	Description,
 	DetailedInformation,
-	RecruitTags,
+	RecruitTagList,
 	RecruitRoleForm,
 	WarnRoleDelete,
 	WarnRoleCount,
@@ -172,7 +172,7 @@ const RecruitCreatePage = () => {
 				setFormData(INIT_FORM_DATA);
 			};
 		}
-	}, [data, setFormData]);
+	}, [data, setFormData, isSuccess, locationObj.pathname]);
 
 	useEffect(() => {
 		fixModalBackground(beforeSubmit || isWarnRoleDelete);
@@ -223,11 +223,14 @@ const RecruitCreatePage = () => {
 					/>
 					<DetailedInformation />
 					<RecruitRoleForm
-						applicantsList={data?.recruitmentRoles.map(role => {
-							return { roleId: role.roleId, applicantCount: role.applicantCount };
-						})}
+						applicantsList={
+							data?.recruitmentRoles.map(role => {
+								return { roleId: role.roleId, applicantCount: role.applicantCount };
+							}) || []
+						}
+						// applicantsListData={data?.recruitmentRoles}
 					/>
-					<RecruitTags />
+					<RecruitTagList tags={data?.tags} />
 					<ControlButtons id={id} />
 					{beforeSubmit && (
 						<article className='modal-background'>
