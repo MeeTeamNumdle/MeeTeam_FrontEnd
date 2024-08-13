@@ -19,7 +19,6 @@ const ReplyComment = ({
 	isWriter,
 	createAt,
 	profileImg,
-	groupOrder,
 	replyComment,
 }: CommentType) => {
 	const { id: recruitId } = useParams();
@@ -125,9 +124,9 @@ const ReplyComment = ({
 					<section className='comment-info'>
 						{!isEdit ? (
 							<span>
-								{value.split('\n').map(line => {
+								{value.split('\n').map((line, index) => {
 									return (
-										<span>
+										<span key={index}>
 											{line}
 											<br />
 										</span>
