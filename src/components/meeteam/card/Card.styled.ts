@@ -114,6 +114,6 @@ const RecruitCard = styled.article<RecruitStyle>`
 	}
 `;
 
-const S = { Card, PortpolioCard, RecruitCard };
+const S = { RecruitCard };
 
 export default S;
