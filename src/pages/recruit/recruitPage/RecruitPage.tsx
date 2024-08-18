@@ -8,6 +8,7 @@ import {
 	ModalPortal,
 	Modal,
 	Footer,
+	MainBanner,
 } from '../../../components';
 import S from './RecruitPage.styled';
 import {
@@ -42,7 +43,7 @@ import { fixModalBackground } from '../../../utils';
 const RecruitPage = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
-
+	const { isLogin } = useLogin();
 	const fieldRef = useRef<HTMLDivElement | null>(null);
 	const dropdownRef = useRef<HTMLDivElement | null>(null);
 	const [searchKeyword, setSearchKeyword] = useState('');
@@ -71,7 +72,8 @@ const RecruitPage = () => {
 	});
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [needLoginModal, setNeedLoginModal] = useRecoilState(needLoginModalState);
-	const { isLogin } = useLogin();
+	const [signupModalOpen, setSignupModalOpen] = useRecoilState(signupModalState);
+
 	const { data, isLoading } = useQuery({
 		queryKey: ['recruit_board', { filterState, isLogin, page }],
 		queryFn: () => getPostList({ filterState, isLogin, page }),
@@ -235,6 +237,25 @@ const RecruitPage = () => {
 		setPlaceholderText('제목을 검색해보세요.');
 	};
 
+	const signupModalProps = {
+		title: '프로필을 추가해보세요!',
+		content:
+			'프로필 입력정보를 추가하면\n팀을 만날 확률이 늘어납니다.\n내 프로필로 이동하시겠습니끼?',
+		defaultBtn: {
+			title: '나중에 하기',
+			small: true,
+			handleClick: () => setSignupModalOpen(false),
+		},
+		primaryBtn: {
+			title: '프로필로 이동',
+			small: true,
+			handleClick: () => {
+				setSignupModalOpen(false);
+				navigate(`/profile/${location.state?.userId}`);
+			},
+		},
+	};
+
 	useEffect(() => {
 		const outsideClick = (event: MouseEvent) => {
 			const { target } = event;
@@ -303,30 +324,9 @@ const RecruitPage = () => {
 		setSearchKeyword(filterState.keyword as any);
 	}, [filterState.keyword]);
 
-	// 회원가입 이후 팝업창 띄우기
-	const [signupModalOpen, setSignupModalOpen] = useRecoilState(signupModalState);
 	useEffect(() => {
 		fixModalBackground(signupModalOpen);
 	}, [signupModalOpen]);
-
-	const signupModalProps = {
-		title: '프로필을 추가해보세요!',
-		content:
-			'프로필 입력정보를 추가하면\n팀을 만날 확률이 늘어납니다.\n내 프로필로 이동하시겠습니끼?',
-		defaultBtn: {
-			title: '나중에 하기',
-			small: true,
-			handleClick: () => setSignupModalOpen(false),
-		},
-		primaryBtn: {
-			title: '프로필로 이동',
-			small: true,
-			handleClick: () => {
-				setSignupModalOpen(false);
-				navigate(`/profile/${location.state?.userId}`);
-			},
-		},
-	};
 
 	return (
 		<>
@@ -335,15 +335,7 @@ const RecruitPage = () => {
 				$isDetailedClick={isOpen}
 				$isDetailSelected={isDetailSelected}
 			>
-				<section className='main-banner'>
-					<section className='container-title'>
-						<span className='subtitle'>팀원을 찾고 있나요?</span>
-						<span className='title'>밋팀으로 팀원을 만나보세요!</span>
-					</section>
-					<section>
-						<img src={meeteam_banner_icon} fetchpriority='high' />
-					</section>
-				</section>
+				<MainBanner />
 				<section>
 					<section className='wrapper-title' ref={fieldRef}>
 						<h2>분야 전체</h2>
@@ -512,9 +504,9 @@ const RecruitPage = () => {
 					</section>
 				</article>
 				{needLoginModal.isOpen && (
-					<section className='modal-background'>
+					<ModalPortal>
 						<NeedLogin type={needLoginModal.type} />
-					</section>
+					</ModalPortal>
 				)}
 				{signupModalOpen && (
 					<ModalPortal>

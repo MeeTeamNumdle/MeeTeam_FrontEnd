@@ -85,6 +85,7 @@ import PortfolioModal from './portfolio/modal/PortfolioModal';
 import WarnRoleCount from './recruit/create/modal/warnRoleCount/WarnRoleCount';
 import AccountDelete from './recruit/recruitDetail/modal/accountDelete/AccountDelete';
 import FinalValidationModal from './recruit/create/modal/finalValidationModal.tsx/FinalValidationModal';
+import MainBanner from './recruit/recruitBoard/banner/MainBanner';
 
 export {
 	Header,
@@ -174,4 +175,5 @@ export {
 	WarnRoleCount,
 	AccountDelete,
 	FinalValidationModal,
+	MainBanner,
 };
