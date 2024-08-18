@@ -88,6 +88,7 @@ import FinalValidationModal from './recruit/create/modal/finalValidationModal.ts
 import MainBanner from './recruit/recruitBoard/banner/MainBanner';
 import FloatingButton from './recruit/recruitBoard/floatingButton/FloatingButton';
 import ModalBackground from './modalBackground/ModalBackground';
+import DropdownDetail from './dropdown/dropdownDetail/DropdownDetail';
 
 export {
 	Header,
@@ -180,4 +181,5 @@ export {
 	MainBanner,
 	FloatingButton,
 	ModalBackground,
+	DropdownDetail,
 };

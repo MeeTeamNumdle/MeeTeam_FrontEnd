@@ -11,6 +11,7 @@ import {
 	MainBanner,
 	FloatingButton,
 	ModalBackground,
+	DropdownDetail,
 } from '../../../components';
 import S from './RecruitPage.styled';
 import {
@@ -333,7 +334,6 @@ const RecruitPage = () => {
 			<S.RecruitPage
 				$isFieldClick={fieldValue.value.value !== '분야를 선택해주세요'}
 				$isDetailedClick={isOpen}
-				$isDetailSelected={isDetailSelected}
 			>
 				<MainBanner />
 				<section>
@@ -373,42 +373,16 @@ const RecruitPage = () => {
 								initialData='유형'
 								category
 							/>
-							<article className='dropdown-detailed' onClick={onClickDetailed} ref={dropdownRef}>
-								<section className='dropdown-box'>
-									<label className='selected'>{'상세조건'}</label>
-									<img src={isOpen ? DropdownArrowUp : DropdownArrow} />
-								</section>
-								{isOpen && (
-									<section className='container-dropdown' onClick={handlerChildDropdown}>
-										<section className='sidebar'>
-											<span
-												className={`body1 sidebar-elem ${isOpenDetail.skill ? 'active' : ''}`}
-												onClick={onClickDetails}
-											>
-												기술
-											</span>
-											<span
-												className={`body1 sidebar-elem ${isOpenDetail.role ? 'active' : ''}`}
-												onClick={onClickDetails}
-											>
-												역할
-											</span>
-											<span
-												className={`body1 sidebar-elem ${isOpenDetail.tag ? 'active' : ''}`}
-												onClick={onClickDetails}
-											>
-												태그
-											</span>
-										</section>
-										<DetailedInput
-											type={isOpenDetail.message}
-											closeHandler={closeHandler}
-											detailOptionsSelected={detailOptionsSelected}
-											detailOptionsNotSelected={detailOptionsNotSelected}
-										/>
-									</section>
-								)}
-							</article>
+							<DropdownDetail
+								isOpen={isOpen}
+								dropdownRef={dropdownRef}
+								isOpenDetail={isOpenDetail}
+								isDetailSelected={isDetailSelected}
+								onClick={onClickDetailed}
+								handleClose={closeHandler}
+								handleChildDropdown={handlerChildDropdown}
+								handleClickDetails={onClickDetails}
+							/>
 							<article className='clear' onClick={onClickClear}>
 								<img src={Clear} />
 								<span>초기화</span>
