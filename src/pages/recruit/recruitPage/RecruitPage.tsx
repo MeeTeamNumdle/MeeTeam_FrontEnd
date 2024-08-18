@@ -12,6 +12,7 @@ import {
 	FloatingButton,
 	ModalBackground,
 	DropdownDetail,
+	ClearConditions,
 } from '../../../components';
 import S from './RecruitPage.styled';
 import {
@@ -383,10 +384,7 @@ const RecruitPage = () => {
 								handleChildDropdown={handlerChildDropdown}
 								handleClickDetails={onClickDetails}
 							/>
-							<article className='clear' onClick={onClickClear}>
-								<img src={Clear} />
-								<span>초기화</span>
-							</article>
+							<ClearConditions onClick={onClickClear} />
 						</section>
 						<section className='container-options__search'>
 							<div>

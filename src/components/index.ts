@@ -89,6 +89,7 @@ import MainBanner from './recruit/recruitBoard/banner/MainBanner';
 import FloatingButton from './recruit/recruitBoard/floatingButton/FloatingButton';
 import ModalBackground from './modalBackground/ModalBackground';
 import DropdownDetail from './dropdown/dropdownDetail/DropdownDetail';
+import ClearConditions from './recruit/recruitBoard/clear/ClearConditions';
 
 export {
 	Header,
@@ -182,4 +183,5 @@ export {
 	FloatingButton,
 	ModalBackground,
 	DropdownDetail,
+	ClearConditions,
 };
