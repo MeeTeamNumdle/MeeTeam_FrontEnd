@@ -12,6 +12,7 @@ interface FieldPopup {
 			value: string;
 		};
 	};
+	isFieldClick: boolean;
 	onClick: () => void;
 	handleFieldMenu: (event: React.MouseEvent<HTMLSpanElement>) => void;
 	handleFieldClear: () => void;
@@ -22,13 +23,14 @@ const FieldPopup = ({
 	isOpen,
 	fieldRef,
 	fieldValue,
+	isFieldClick,
 	onClick,
 	handleFieldMenu,
 	handleFieldClear,
 	submitField,
 }: FieldPopup) => {
 	return (
-		<S.FieldPopup className='wrapper-title' ref={fieldRef}>
+		<S.FieldPopup ref={fieldRef} $isFieldClick={isFieldClick}>
 			<h2>분야 전체</h2>
 			<div className='sep'> | </div>
 			<div className='container-field' onClick={onClick}>

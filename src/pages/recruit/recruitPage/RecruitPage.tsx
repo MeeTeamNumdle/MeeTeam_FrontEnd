@@ -330,16 +330,14 @@ const RecruitPage = () => {
 
 	return (
 		<>
-			<S.RecruitPage
-				$isFieldClick={fieldValue.value.value !== '분야를 선택해주세요'}
-				$isDetailedClick={isOpen}
-			>
+			<S.RecruitPage $isDetailedClick={isOpen}>
 				<MainBanner />
 				<section>
 					<FieldPopup
 						isOpen={isFieldOpen}
 						fieldRef={fieldRef}
 						fieldValue={fieldValue}
+						isFieldClick={fieldValue.value.value !== '분야를 선택해주세요'}
 						onClick={handleFieldPopup}
 						handleFieldMenu={handleFieldMenu}
 						handleFieldClear={handleFieldClear}
