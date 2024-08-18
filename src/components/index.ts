@@ -87,6 +87,7 @@ import AccountDelete from './recruit/recruitDetail/modal/accountDelete/AccountDe
 import FinalValidationModal from './recruit/create/modal/finalValidationModal.tsx/FinalValidationModal';
 import MainBanner from './recruit/recruitBoard/banner/MainBanner';
 import FloatingButton from './recruit/recruitBoard/floatingButton/FloatingButton';
+import ModalBackground from './modalBackground/ModalBackground';
 
 export {
 	Header,
@@ -178,4 +179,5 @@ export {
 	FinalValidationModal,
 	MainBanner,
 	FloatingButton,
+	ModalBackground,
 };

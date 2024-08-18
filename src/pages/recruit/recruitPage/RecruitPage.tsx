@@ -10,6 +10,7 @@ import {
 	Footer,
 	MainBanner,
 	FloatingButton,
+	ModalBackground,
 } from '../../../components';
 import S from './RecruitPage.styled';
 import {
@@ -479,9 +480,9 @@ const RecruitPage = () => {
 					portfolioCreateHandler={portfolioCreateHandler}
 				/>
 				{needLoginModal.isOpen && (
-					<section className='modal-background'>
+					<ModalBackground>
 						<NeedLogin type={needLoginModal.type} />
-					</section>
+					</ModalBackground>
 				)}
 				{signupModalOpen && (
 					<ModalPortal>

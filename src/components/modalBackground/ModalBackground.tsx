@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
+import S from './ModalBackground.styled';
 
-const ModalBackground = () => {
-	return <div></div>;
+interface ModalBackgroundProps {
+	children: ReactNode;
+}
+
+const ModalBackground = ({ children }: ModalBackgroundProps) => {
+	return <S.ModalBackground>{children}</S.ModalBackground>;
 };
 
 export default ModalBackground;
