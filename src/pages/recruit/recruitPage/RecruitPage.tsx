@@ -3,7 +3,6 @@ import {
 	Dropdown,
 	RecruitCard,
 	Pagination,
-	DetailedInput,
 	NeedLogin,
 	ModalPortal,
 	Modal,
@@ -13,16 +12,11 @@ import {
 	ModalBackground,
 	DropdownDetail,
 	ClearConditions,
+	SearchBar,
+	FieldPopup,
 } from '../../../components';
 import S from './RecruitPage.styled';
-import {
-	Clear,
-	DropdownArrow,
-	DropdownArrowUp,
-	FilledBookmark,
-	SearchIcon,
-	XBtn,
-} from '../../../assets';
+import { FilledBookmark } from '../../../assets';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import {
 	detailedFilterState,
@@ -82,7 +76,7 @@ const RecruitPage = () => {
 		setIsOpen(prev => !prev);
 	};
 
-	const onClickField = (event: React.MouseEvent<HTMLSpanElement>) => {
+	const handleFieldMenu = (event: React.MouseEvent<HTMLSpanElement>) => {
 		const { innerText } = event.target as HTMLElement;
 		setFieldValue({
 			applied: false,
@@ -131,6 +125,10 @@ const RecruitPage = () => {
 		setIsOpen(false);
 	};
 
+	const handleFieldPopup = () => {
+		setIsFieldOpen(prev => !prev);
+	};
+
 	const onClickDetails = (event: React.MouseEvent<HTMLSpanElement>) => {
 		event.stopPropagation();
 		const { innerText } = event.target as HTMLElement;
@@ -161,7 +159,7 @@ const RecruitPage = () => {
 		}
 	};
 
-	const onClickClearField = () => {
+	const handleFieldClear = () => {
 		setFilterState(prev => ({ ...prev, field: null }));
 		setFieldValue({ applied: false, value: { id: null, value: '분야를 선택해주세요' } });
 		searchParams.delete('field');
@@ -338,32 +336,15 @@ const RecruitPage = () => {
 			>
 				<MainBanner />
 				<section>
-					<section className='wrapper-title' ref={fieldRef}>
-						<h2>분야 전체</h2>
-						<div className='sep'> | </div>
-						<div className='container-field' onClick={() => setIsFieldOpen(prev => !prev)}>
-							<h3>{fieldValue.applied ? fieldValue.value.value : '분야를 선택해주세요'}</h3>
-							<img src={DropdownArrow} />
-						</div>
-						{isFieldOpen && (
-							<article className='dropdown-field'>
-								<section className='container-keys'>
-									<span className='field-key' id={'1'} onClick={onClickField}>
-										개발
-									</span>
-								</section>
-								<article className='container-btns'>
-									<section className='clear' onClick={onClickClearField}>
-										<img src={Clear} />
-										<span>초기화</span>
-									</section>
-									<button type='button' onClick={submitField}>
-										적용
-									</button>
-								</article>
-							</article>
-						)}
-					</section>
+					<FieldPopup
+						isOpen={isFieldOpen}
+						fieldRef={fieldRef}
+						fieldValue={fieldValue}
+						onClick={handleFieldPopup}
+						handleFieldMenu={handleFieldMenu}
+						handleFieldClear={handleFieldClear}
+						submitField={submitField}
+					/>
 					<section className='wrapper-filters'>
 						<section className='container-filters'>
 							{isLogin && (
@@ -386,31 +367,21 @@ const RecruitPage = () => {
 							/>
 							<ClearConditions onClick={onClickClear} />
 						</section>
-						<section className='container-options__search'>
-							<div>
-								<img className='search-icon' src={SearchIcon} />
-							</div>
-							<div className='search-bar'>
-								<input
-									placeholder={placeholderText}
-									type='text'
-									onChange={handleKeywordChange}
-									value={searchKeyword}
-									onKeyDown={onKeyPress}
-									onFocus={handleFocusedPlaceholder}
-									onBlur={handleBlurredPlaceholder}
-								/>
-							</div>
-							{searchKeyword && (
-								<img className='clear-keyword' src={XBtn} onClick={onClickDeleteKeyword} />
-							)}
-						</section>
+						<SearchBar
+							placeholderText={placeholderText}
+							searchKeyword={searchKeyword}
+							onChange={handleKeywordChange}
+							onKeyPress={onKeyPress}
+							handleFocusedPlaceholder={handleFocusedPlaceholder}
+							handleBlurredPlaceholder={handleBlurredPlaceholder}
+							onClickDeleteKeyword={onClickDeleteKeyword}
+						/>
 					</section>
 				</section>
 				<hr />
 				<section>
-					<section className='container-contents'>
-						<div>
+					<article className='container-contents'>
+						<section>
 							<article className='bookmark-intro' onClick={bookmarkNavigateHandler}>
 								<img src={FilledBookmark} />
 								<span className='body2'>북마크 모아보기 {'❯'}</span>
@@ -431,8 +402,8 @@ const RecruitPage = () => {
 									<span>일치하는 결과가 없습니다.</span>
 								</section>
 							)}
-						</div>
-					</section>
+						</section>
+					</article>
 				</section>
 				<article className='container-pagination'>
 					{data && (
