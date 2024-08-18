@@ -86,6 +86,7 @@ import WarnRoleCount from './recruit/create/modal/warnRoleCount/WarnRoleCount';
 import AccountDelete from './recruit/recruitDetail/modal/accountDelete/AccountDelete';
 import FinalValidationModal from './recruit/create/modal/finalValidationModal.tsx/FinalValidationModal';
 import MainBanner from './recruit/recruitBoard/banner/MainBanner';
+import FloatingButton from './recruit/recruitBoard/floatingButton/FloatingButton';
 
 export {
 	Header,
@@ -176,4 +177,5 @@ export {
 	AccountDelete,
 	FinalValidationModal,
 	MainBanner,
+	FloatingButton,
 };

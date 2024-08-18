@@ -9,19 +9,14 @@ import {
 	Modal,
 	Footer,
 	MainBanner,
+	FloatingButton,
 } from '../../../components';
 import S from './RecruitPage.styled';
 import {
-	CancelWhite,
 	Clear,
-	Create,
 	DropdownArrow,
 	DropdownArrowUp,
 	FilledBookmark,
-	meeteam_banner_icon,
-	PlusWhite,
-	Portpolio,
-	Profile,
 	SearchIcon,
 	XBtn,
 } from '../../../assets';
@@ -235,6 +230,10 @@ const RecruitPage = () => {
 	const handleBlurredPlaceholder = () => {
 		setIsFocused(true);
 		setPlaceholderText('제목을 검색해보세요.');
+	};
+
+	const handleFloatingButton = () => {
+		setIsFloatingOpen(prev => !prev);
 	};
 
 	const signupModalProps = {
@@ -472,41 +471,17 @@ const RecruitPage = () => {
 						/>
 					)}
 				</article>
-				<article className='btn-floating' onClick={() => setIsFloatingOpen(prev => !prev)}>
-					{isFloatingOpen && (
-						<section className='floating-menu'>
-							<article className='container-menu'>
-								<span className='nav-info'>내 프로필 작성</span>
-								<section className='menu floating' onClick={profileCreateHandler}>
-									<img src={Profile} fetchpriority='high' />
-								</section>
-							</article>
-							<article className='container-menu'>
-								<span className='nav-info'>구인글 작성</span>
-								<section className='menu floating' onClick={recruitCreateHandler}>
-									<img src={Create} fetchpriority='high' />
-								</section>
-							</article>
-							<article className='container-menu'>
-								<span className='nav-info'>포트폴리오 등록</span>
-								<section className='menu floating' onClick={portfolioCreateHandler}>
-									<img src={Portpolio} fetchpriority='high' />
-								</section>
-							</article>
-						</section>
-					)}
-					<section className={`container-btn floating  ${isFloatingOpen && 'cancel-icon'}`}>
-						{isFloatingOpen ? (
-							<img className='floating-icon' src={CancelWhite} />
-						) : (
-							<img className='floating-icon add-icon' src={PlusWhite} />
-						)}
-					</section>
-				</article>
+				<FloatingButton
+					isFloatingOpen={isFloatingOpen}
+					onClick={handleFloatingButton}
+					recruitCreateHandler={recruitCreateHandler}
+					profileCreateHandler={profileCreateHandler}
+					portfolioCreateHandler={portfolioCreateHandler}
+				/>
 				{needLoginModal.isOpen && (
-					<ModalPortal>
+					<section className='modal-background'>
 						<NeedLogin type={needLoginModal.type} />
-					</ModalPortal>
+					</section>
 				)}
 				{signupModalOpen && (
 					<ModalPortal>
