@@ -19,7 +19,6 @@ const Comment = ({
 	isWriter,
 	createAt,
 	profileImg,
-	groupOrder,
 	groupNumber,
 }: CommentType) => {
 	const { id: recruitId } = useParams();
@@ -137,9 +136,9 @@ const Comment = ({
 							<span>
 								{value === null
 									? '삭제된 메세지입니다.'
-									: value.split('\n').map(line => {
+									: value.split('\n').map((line, index) => {
 											return (
-												<span>
+												<span key={index}>
 													{line}
 													<br />
 												</span>

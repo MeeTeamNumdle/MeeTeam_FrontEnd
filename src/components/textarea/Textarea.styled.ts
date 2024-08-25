@@ -5,24 +5,19 @@ const TextareaLabel = styled.label<{ $width?: string }>`
 	display: flex;
 	flex-direction: column;
 	${props => (props.$width ? `width: ${props.$width}` : `flex: 1;`)};
-
 	color: var(--Text-textColor2, #373f41);
-
-	/* Body/body1/medium */
 	font-size: 1.6rem;
 	font-style: normal;
 	font-weight: 500;
-	line-height: 1.9rem; /* 118.75% */
+	line-height: 1.9rem;
 	letter-spacing: 0.0032rem;
 
 	h6 {
 		margin-bottom: 0.8rem;
-
-		/* Body/body2/semibold */
 		font-size: 1.4rem;
 		font-style: normal;
 		font-weight: 600;
-		line-height: 1.7rem; /* 121.429% */
+		line-height: 1.7rem;
 		letter-spacing: 0.0028rem;
 	}
 `;
@@ -42,14 +37,12 @@ const TextareaContainer = styled.div`
 		position: absolute;
 		top: 5.4rem;
 		left: 1rem;
-		white-space: nowrap; // 줄바꿈 방지
+		white-space: nowrap;
 		color: var(--ButtonColors-Caution-outline-defaultLine, #f85858);
-
-		/* Text/t4 */
 		font-size: 1rem;
 		font-style: normal;
 		font-weight: 500;
-		line-height: 1.2rem; /* 120% */
+		line-height: 1.2rem;
 		letter-spacing: 0.002rem;
 	}
 `;
@@ -60,7 +53,6 @@ const Textarea = styled.textarea`
 	resize: none;
 	padding: 1.6rem 2rem;
 	height: 16rem;
-
 	border-radius: 1rem;
 	border: 0.1rem solid var(--Form-border-default, #e3e3e3);
 	background: var(--Form-fill-others, #fff);
