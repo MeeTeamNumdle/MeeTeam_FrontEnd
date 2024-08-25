@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { recruitInputState } from '../../../../../atom';
 import { useValid } from '../../../../../hooks';
 
-const ContainerScope = () => {
-	const [isSelected, setIsSelected] = useState<string>('');
+const ContainerScope = ({ scope }: { scope?: string }) => {
+	const [scopeType, setScopeType] = useState<string | undefined>(scope);
 	const [formData, setFormData] = useRecoilState(recruitInputState);
 	const { validMessage, isValid } = useValid(formData);
 
 	const handleScopeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const scope = event.target.value;
-		setIsSelected(scope);
+		setScopeType(scope);
 		setFormData(prev => ({ ...prev, scope: scope }));
 	};
+
+	useEffect(() => {
+		if (scope) {
+			setFormData(prev => ({ ...prev, scope: scope }));
+		}
+	}, [scope, setFormData]);
 
 	return (
 		<section className='container-scope'>
@@ -27,7 +33,7 @@ const ContainerScope = () => {
 						id='inside'
 						name='scope'
 						value='교내'
-						checked={formData.scope === '교내'}
+						checked={scopeType === '교내'}
 						onChange={handleScopeChange}
 					/>
 					<label htmlFor='inside'>교내</label>
@@ -39,7 +45,7 @@ const ContainerScope = () => {
 						id='outside'
 						name='scope'
 						value='교외'
-						checked={formData.scope === '교외'}
+						checked={scopeType === '교외'}
 						onChange={handleScopeChange}
 					/>
 					<label htmlFor='outside'>교외</label>

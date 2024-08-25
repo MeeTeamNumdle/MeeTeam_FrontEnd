@@ -38,7 +38,6 @@ const ReplyInput = styled.section`
 			textarea {
 				display: flex;
 				width: 100%;
-				/* width: 90.0164rem; */
 				height: 11.2rem;
 				padding: 1.6rem 2rem;
 				align-items: flex-start;

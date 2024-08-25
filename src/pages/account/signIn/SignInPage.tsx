@@ -44,10 +44,10 @@ const SignInPage = () => {
 			<header className='sign-in__header'>
 				<img src={MeeteamLogoLarge} alt='밋팀로고' fetchpriority='high' />
 			</header>
-			<article>
+			<article className='sign-in__wrapper'>
 				<div className='sign-in__social-login-marker'>
 					<hr className='sign-in__horizon' />
-					소셜 계정 로그인
+					<span className='sign-in__subtitle'>소셜 계정 로그인</span>
 					<hr className='sign-in__horizon' />
 				</div>
 				<div>

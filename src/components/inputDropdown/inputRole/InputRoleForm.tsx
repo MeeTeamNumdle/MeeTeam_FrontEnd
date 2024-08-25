@@ -54,7 +54,7 @@ const InputRoleForm = (props: InputRoleObj) => {
 		queryFn: () => getRoleKeyword(keywordRole as string),
 		staleTime: Infinity,
 		gcTime: Infinity,
-		enabled: keywordRole !== '',
+		enabled: !!keywordRole,
 	});
 
 	const { data: dataSkill, isLoading: isLoadingSkill } = useQuery({
@@ -62,7 +62,7 @@ const InputRoleForm = (props: InputRoleObj) => {
 		queryFn: () => getSkillKeyword(keywordSkill),
 		staleTime: Infinity,
 		gcTime: Infinity,
-		enabled: keywordSkill !== '',
+		enabled: !!keywordSkill,
 	});
 
 	const onKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {

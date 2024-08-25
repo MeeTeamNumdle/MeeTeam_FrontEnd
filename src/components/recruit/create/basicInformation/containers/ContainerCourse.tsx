@@ -7,13 +7,18 @@ import { useRecoilState } from 'recoil';
 import { recruitInputState } from '../../../../../atom';
 import { Keyword } from '../../../../../types';
 
-const ContainerCourse = () => {
+interface ContainerCourseProps {
+	course?: string | null;
+	professor?: string | null;
+}
+
+const ContainerCourse = ({ course, professor }: ContainerCourseProps) => {
 	const dropdownRef = useRef<HTMLDivElement | null>(null);
 	const [formData, setFormData] = useRecoilState(recruitInputState);
 	const [isChecked, setIsChecked] = useState<boolean>(formData.courseTag.isCourse);
 	const [name, setName] = useState({
-		course: formData.courseTag.courseTagName as string,
-		professor: formData.courseTag.courseProfessor as string,
+		course: course ?? '',
+		professor: professor ?? '',
 	});
 	const [dropdown, setDropdown] = useState({
 		course: false,
@@ -23,13 +28,15 @@ const ContainerCourse = () => {
 	const keywordProfessor = useDebounce(name.professor, 500);
 	const { data: dataCourse, isLoading: isLoadingCourse } = useQuery({
 		queryKey: ['searchCourse', keywordCourse],
-		queryFn: () => getCourseKeyword(keywordCourse),
+		queryFn: () => getCourseKeyword(keywordCourse ?? ''),
+		enabled: !!keywordCourse,
 		staleTime: Infinity,
 		gcTime: Infinity,
 	});
 	const { data: dataProfessor, isLoading: isLoadingProfessor } = useQuery({
 		queryKey: ['searchProfessor', keywordProfessor],
-		queryFn: () => getProfessorKeyword(keywordProfessor),
+		queryFn: () => getProfessorKeyword(keywordProfessor ?? ''),
+		enabled: !!keywordProfessor,
 		staleTime: Infinity,
 		gcTime: Infinity,
 	});

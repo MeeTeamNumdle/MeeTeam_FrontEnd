@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ReactQuill from 'react-quill';
 import { useRecoilState } from 'recoil';
 import { modules } from '../../../../utils';
@@ -7,8 +7,13 @@ import S from './DetailedInformation.styled';
 import { useValid } from '../../../../hooks';
 import 'react-quill/dist/quill.snow.css';
 
-const DetailedInformation = () => {
+interface DetailedInformationProps {
+	contents?: string;
+}
+
+const DetailedInformation = ({ contents }: DetailedInformationProps) => {
 	const quillRef = useRef<ReactQuill | null>(null);
+	const [editorContent, setEditorContent] = useState(contents);
 	const [formData, setFormData] = useRecoilState(recruitInputState);
 	const { validMessage, isValid } = useValid(formData);
 
@@ -19,10 +24,16 @@ const DetailedInformation = () => {
 	};
 
 	const onChangeContents = (contents: string) => {
+		setEditorContent(contents);
 		setFormData({ ...formData, content: contents });
 	};
 
-	//console.log(formData.content);
+	useEffect(() => {
+		if (contents) {
+			setEditorContent(contents);
+			setFormData(prev => ({ ...prev, content: contents }));
+		}
+	}, [contents, setFormData]);
 
 	return (
 		<S.DetailedInformation>
@@ -41,7 +52,7 @@ const DetailedInformation = () => {
 						theme='snow'
 						modules={modules}
 						onChange={onChangeContents}
-						value={formData.content}
+						value={editorContent}
 						onKeyDown={preventInput}
 					/>
 					{isValid.isSubmitted && !isValid.isContent && (

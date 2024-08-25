@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import {
 	WrapperScopeCategory,
 	ContainerProcedure,
@@ -11,14 +11,82 @@ import { recruitInputState } from '../../../../atom';
 import { useValid } from '../../../../hooks';
 import { simpleDate } from '../../../../utils';
 
-const BasicInformation = () => {
-	const [deadlineDate, setDeadlineDate] = useState(new Date());
-	const [startDate, setStartDate] = useState(new Date());
-	const [endDate, setEndDate] = useState(new Date());
+interface BasicInformation {
+	title?: string;
+	scope?: string;
+	category?: string;
+	deadline?: string;
+	startDate?: string;
+	endDate?: string;
+	proceedType?: string;
+	course?: string | null;
+	professor?: string | null;
+}
+
+type BasicAction =
+	| { type: 'SET_TITLE'; payload: string | undefined }
+	| { type: 'SET_SCOPE'; payload: string | undefined }
+	| { type: 'SET_CATEGORY'; payload: string | undefined }
+	| { type: 'SET_DEADLINE'; payload: string | undefined }
+	| { type: 'SET_START_DATE'; payload: string | undefined }
+	| { type: 'SET_END_DATE'; payload: string | undefined }
+	| { type: 'SET_PROCEED_TYPE'; payload: string | undefined }
+	| { type: 'SET_COURSE'; payload: string | null }
+	| { type: 'SET_PROFESSOR'; payload: string | null };
+
+const basicReducer = (state: BasicInformation, action: BasicAction): BasicInformation => {
+	switch (action.type) {
+		case 'SET_TITLE':
+			return { ...state, title: action.payload };
+		case 'SET_SCOPE':
+			return { ...state, scope: action.payload };
+		case 'SET_CATEGORY':
+			return { ...state, category: action.payload };
+		case 'SET_DEADLINE':
+			return { ...state, deadline: action.payload };
+		case 'SET_START_DATE':
+			return { ...state, startDate: action.payload };
+		case 'SET_END_DATE':
+			return { ...state, endDate: action.payload };
+		case 'SET_PROCEED_TYPE':
+			return { ...state, proceedType: action.payload };
+		case 'SET_COURSE':
+			return { ...state, course: action.payload };
+		case 'SET_PROFESSOR':
+			return { ...state, professor: action.payload };
+		default:
+			return state;
+	}
+};
+
+const BasicInformation = ({
+	title = '',
+	scope = '',
+	category = '',
+	deadline = '',
+	startDate = '',
+	endDate = '',
+	proceedType = '',
+	course = '',
+	professor = '',
+}: BasicInformation) => {
+	const initialState: BasicInformation = {
+		title,
+		scope,
+		category,
+		deadline,
+		startDate,
+		endDate,
+		proceedType,
+		course,
+		professor,
+	};
+	const [state, dispatch] = useReducer(basicReducer, initialState);
 	const [formData, setFormData] = useRecoilState(recruitInputState);
 	const { validMessage, isValid } = useValid(formData);
 
 	const onChangeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
+		dispatch({ type: 'SET_TITLE', payload: event.target.value });
 		setFormData(prev => ({ ...prev, title: event.target.value }));
 	};
 
@@ -30,35 +98,48 @@ const BasicInformation = () => {
 
 	const onChangeDate = (date: Date | null) => {
 		if (date) {
-			setDeadlineDate(() => {
-				const result = simpleDate(date);
-				setFormData(prevInfo => ({ ...prevInfo, deadline: result }));
-				return date;
-			});
+			const result = date ? date.toISOString() : '';
+			dispatch({ type: 'SET_DEADLINE', payload: result });
+			setFormData(prevInfo => ({ ...prevInfo, deadline: result }));
 		}
 	};
 
-	const onChangeStartDate = (date: Date | null) => {
+	const onChangeStartRecruitDate = (date: Date | null) => {
 		if (date) {
-			setStartDate(() => {
-				const result = simpleDate(date);
-				setFormData(prevInfo => ({ ...prevInfo, proceedingStart: result }));
-				return date;
-			});
+			const result = simpleDate(date);
+			dispatch({ type: 'SET_START_DATE', payload: result });
+			setFormData(prevInfo => ({ ...prevInfo, proceedingStart: result }));
 		}
 	};
 
-	const onChangeEndDate = (date: Date | null) => {
+	const onChangeEndRecruitDate = (date: Date | null) => {
 		if (date) {
-			setEndDate(() => {
-				const result = simpleDate(date);
-				setFormData(prevInfo => ({ ...prevInfo, proceedingEnd: result }));
-				return date;
-			});
+			const result = simpleDate(date);
+			dispatch({ type: 'SET_END_DATE', payload: result });
+			setFormData(prevInfo => ({ ...prevInfo, proceedingEnd: result }));
 		}
 	};
 
-	//console.log(formData.title, formData.deadline);
+	useEffect(() => {
+		dispatch({ type: 'SET_TITLE', payload: title });
+		dispatch({ type: 'SET_DEADLINE', payload: deadline });
+		dispatch({ type: 'SET_START_DATE', payload: startDate });
+		dispatch({ type: 'SET_END_DATE', payload: endDate });
+		dispatch({ type: 'SET_PROCEED_TYPE', payload: proceedType });
+		dispatch({ type: 'SET_COURSE', payload: course });
+		dispatch({ type: 'SET_PROFESSOR', payload: professor });
+
+		setFormData(prevInfo => ({
+			...prevInfo,
+			title,
+			deadline,
+			proceedingStart: startDate,
+			proceedingEnd: endDate,
+			proceedType,
+			course,
+			professor,
+		}));
+	}, [title, deadline, startDate, endDate, proceedType, course, professor, setFormData]);
 
 	return (
 		<S.BasicInformation $isTitled={formData.title}>
@@ -74,7 +155,7 @@ const BasicInformation = () => {
 						<input
 							type='text'
 							placeholder='40자 이내로 제목을 작성해주세요.'
-							value={formData.title}
+							value={state.title}
 							onChange={onChangeTitle}
 							maxLength={40}
 							onKeyDown={onKeyDown}
@@ -88,13 +169,16 @@ const BasicInformation = () => {
 							구인글 마감일 <span>{'*'}</span>
 						</span>
 						<div className='container-deadline__datepicker'>
-							<MuiDatepicker value={deadlineDate} handleChange={date => onChangeDate(date)} />
+							<MuiDatepicker
+								value={new Date(state.deadline as string)}
+								handleChange={date => onChangeDate(date)}
+							/>
 							{isValid.isSubmitted && !isValid.isDeadline && (
 								<p className='valid-msg'>{validMessage.deadline}</p>
 							)}
 						</div>
 					</article>
-					<WrapperScopeCategory />
+					<WrapperScopeCategory scope={scope} category={category} />
 					<article className='inputs-dates'>
 						<span className='input-subtitle'>
 							진행 기간 <span>{'*'}</span>
@@ -102,15 +186,15 @@ const BasicInformation = () => {
 						<section className='container-dates'>
 							<div className='start-date'>
 								<MuiDatepicker
-									value={startDate}
-									handleChange={date => onChangeStartDate(date)}
+									value={new Date(state.startDate as string)}
+									handleChange={date => onChangeStartRecruitDate(date)}
 									type='start'
 								/>
 							</div>
 							<div className='end-date'>
 								<MuiDatepicker
-									value={endDate}
-									handleChange={date => onChangeEndDate(date)}
+									value={new Date(state.endDate as string)}
+									handleChange={date => onChangeEndRecruitDate(date)}
 									type='end'
 								/>
 								{isValid.isSubmitted && !isValid.isEndDate && (
@@ -119,8 +203,8 @@ const BasicInformation = () => {
 							</div>
 						</section>
 					</article>
-					<ContainerProcedure />
-					<ContainerCourse />
+					<ContainerProcedure proceedType={state.proceedType} />
+					<ContainerCourse course={state.course} professor={state.professor} />
 				</section>
 			</section>
 			<hr className='under-info' />

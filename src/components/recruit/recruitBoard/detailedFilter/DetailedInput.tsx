@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, XBtn, Clear } from '../../../../assets';
 import { useQuery } from '@tanstack/react-query';
 import { getRoleKeyword, getSkillKeyword, getTagKeyword } from '../../../../service';
 import { useDebounce } from '../../../../hooks';
 import { Keyword, DetailedInfo } from '../../../../types';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { detailedFilterState, recruitFilterState } from '../../../../atom';
 import { useSearchParams } from 'react-router-dom';
 
@@ -23,36 +23,35 @@ const MESSAGE = {
 	},
 };
 
-const DetailedInput = ({
-	type,
-	closeHandler,
-	detailOptionsSelected,
-	detailOptionsNotSelected,
-}: DetailedInfo) => {
-	const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
+const DetailedInput = ({ type, closeHandler }: DetailedInfo) => {
+	const [tagItem, setTagItem] = useState('');
 	const [message, setMessage] = useState({
 		intro: MESSAGE.SKILL.INTRO,
 		message: MESSAGE.SKILL.MESSAGE,
 	});
-	const [tagItem, setTagItem] = useState('');
+	const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
 	const [detailedFilter, setDetailedFilter] = useRecoilState(detailedFilterState);
-	const [filterState, setFilterState] = useRecoilState(recruitFilterState);
-	const keyword = useDebounce(tagItem);
 	const [searchParams, setSearchParams] = useSearchParams();
+
+	const keyword = useDebounce(tagItem);
+	const setFilterState = useSetRecoilState(recruitFilterState);
 
 	const { data: dataRole, isLoading: isLoadingRole } = useQuery({
 		queryKey: ['searchRole', keyword],
 		queryFn: () => getRoleKeyword(keyword),
+		enabled: !!tagItem && type === '역할',
 	});
 
 	const { data: dataSkill, isLoading: isLoadingSkill } = useQuery({
 		queryKey: ['searchSkill', keyword],
 		queryFn: () => getSkillKeyword(keyword),
+		enabled: !!tagItem && type === '기술',
 	});
 
 	const { data: dataTag, isLoading: isLoadingTag } = useQuery({
 		queryKey: ['searchTag', keyword],
 		queryFn: () => getTagKeyword(keyword),
+		enabled: !!tagItem && type === '태그',
 	});
 
 	const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
