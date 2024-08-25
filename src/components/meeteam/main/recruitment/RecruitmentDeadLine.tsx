@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import S from './Recruitment.styeld';
-import { recruitmentInformation, DeadlineSelect } from '../../..';
+// import { recruitmentInformation, DeadlineSelect } from '../../..';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import { recruitmentInformationEditState, recruitmentState, deadlineState } from '../../../../atom';
 
@@ -27,7 +27,7 @@ const RecruitmentDeadLine = () => {
 			{recruitment ? (
 				editMode ? (
 					<>
-						<DeadlineSelect type='밋팀 관리 페이지' />
+						{/* <DeadlineSelect type='밋팀 관리 페이지' /> */}
 						<div className='recruitment__button-row'>
 							<S.RecruitmentCancelButton type='button' onClick={() => setEditMode(false)}>
 								취소

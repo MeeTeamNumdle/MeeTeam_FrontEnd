@@ -74,8 +74,6 @@ import Tag from './meeteam/tag/Tag';
 import ManageRecruitCard from './recruit/ManageRecruitCard';
 import Status from './meeteam/status/Status';
 import Dropdown from './dropdown/Dropdown';
-import DateSelect from './dateSelect/DateSelect';
-import DeadlineSelect from './dateSelect/DeadlineSelect';
 import Icon from './meeteam/icon/Icon';
 import ApplyModal from './recruit/recruitDetail/modal/ApplyModal';
 import ConfirmModal from './recruit/recruitDetail/modal/ConfirmModal';
@@ -133,7 +131,7 @@ import WriterFooter from './recruit/recruitDetail/footer/WriterFooter';
 import ApplierFooter from './recruit/recruitDetail/footer/ApplierFooter';
 import ClosedFooter from './recruit/recruitDetail/footer/ClosedFooter';
 import DetailedInput from './recruit/recruitBoard/detailedFilter/DetailedInput';
-import RecruitTags from './recruit/create/RecruitTags';
+import RecruitTagList from './recruit/create/RecruitTags';
 import ApplyCancel from './recruit/recruitDetail/modal/applyCancel/ApplyCancel';
 import ApplyClose from './recruit/recruitDetail/modal/applyClose/ApplyClose';
 import CommentDeleteModal from './recruit/recruitDetail/modal/commentDelete/CommentDeleteModal';
@@ -151,8 +149,9 @@ import Modal from './modal/Modal';
 import WarnRoleDelete from './recruit/recruitDetail/modal/warnRoleDelete/WarnRoleDelete';
 import Footer from './footer/Footer';
 import PortfolioModal from './portfolio/modal/PortfolioModal';
-import WarnRoleCount from './recruit/create/modal/WarnRoleCount';
+import WarnRoleCount from './recruit/create/modal/warnRoleCount/WarnRoleCount';
 import AccountDelete from './recruit/recruitDetail/modal/accountDelete/AccountDelete';
+import FinalValidationModal from './recruit/create/modal/finalValidationModal.tsx/FinalValidationModal';
 
 export {
 	Header,
@@ -217,7 +216,6 @@ export {
 	ManageRecruitCard,
 	Status,
 	Dropdown,
-	DeadlineSelect,
 	Icon,
 	MemberInviteModal,
 	MemberTest,
@@ -229,7 +227,6 @@ export {
 	CONTENT,
 	RecruitCard,
 	Pagination,
-	DateSelect,
 	CommentInput,
 	ReplyInput,
 	Comment,
@@ -282,7 +279,7 @@ export {
 	FinalModal,
 	DetailedInput,
 	ClosedFooter,
-	RecruitTags,
+	RecruitTagList,
 	ApplyCancel,
 	ApplyClose,
 	CommentDeleteModal,
@@ -301,4 +298,5 @@ export {
 	PortfolioModal,
 	WarnRoleCount,
 	AccountDelete,
+	FinalValidationModal,
 };

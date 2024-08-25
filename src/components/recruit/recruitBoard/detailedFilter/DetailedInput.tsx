@@ -43,16 +43,19 @@ const DetailedInput = ({
 	const { data: dataRole, isLoading: isLoadingRole } = useQuery({
 		queryKey: ['searchRole', keyword],
 		queryFn: () => getRoleKeyword(keyword),
+		enabled: !!tagItem && type === '역할',
 	});
 
 	const { data: dataSkill, isLoading: isLoadingSkill } = useQuery({
 		queryKey: ['searchSkill', keyword],
 		queryFn: () => getSkillKeyword(keyword),
+		enabled: !!tagItem && type === '기술',
 	});
 
 	const { data: dataTag, isLoading: isLoadingTag } = useQuery({
 		queryKey: ['searchTag', keyword],
 		queryFn: () => getTagKeyword(keyword),
+		enabled: !!tagItem && type === '태그',
 	});
 
 	const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {

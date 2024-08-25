@@ -1,18 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { recruitInputState } from '../../../../../atom';
 import { useRecoilState } from 'recoil';
 import { useValid } from '../../../../../hooks';
 
-const ContainerCategory = () => {
-	const [isSelected, setIsSelected] = useState<string>('');
+const ContainerCategory = ({ category }: { category?: string }) => {
+	const [categoryType, setCategoryType] = useState<string | undefined>(category);
 	const [formData, setFormData] = useRecoilState(recruitInputState);
 	const { validMessage, isValid } = useValid(formData);
 
 	const handleCategoryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const category = event.target.value;
-		setIsSelected(category);
+		setCategoryType(category);
 		setFormData(prev => ({ ...prev, category: category }));
 	};
+
+	useEffect(() => {
+		if (category) {
+			setFormData(prev => ({ ...prev, category: category }));
+		}
+	}, [category, setFormData]);
+
 	return (
 		<section className='container-category'>
 			<span className='input-subtitle'>
@@ -26,7 +33,7 @@ const ContainerCategory = () => {
 						id='project'
 						name='category'
 						value='프로젝트'
-						checked={formData.category === '프로젝트'}
+						checked={categoryType === '프로젝트'}
 						onChange={handleCategoryChange}
 					/>
 					<label htmlFor='project'>프로젝트</label>
@@ -38,7 +45,7 @@ const ContainerCategory = () => {
 						id='study'
 						name='category'
 						value='스터디'
-						checked={formData.category === '스터디'}
+						checked={categoryType === '스터디'}
 						onChange={handleCategoryChange}
 					/>
 					<label htmlFor='study'>스터디</label>
@@ -50,7 +57,7 @@ const ContainerCategory = () => {
 						id='contest'
 						name='category'
 						value='공모전'
-						checked={formData.category === '공모전'}
+						checked={categoryType === '공모전'}
 						onChange={handleCategoryChange}
 					/>
 					<label htmlFor='contest'>공모전</label>
