@@ -85,6 +85,13 @@ import PortfolioModal from './portfolio/modal/PortfolioModal';
 import WarnRoleCount from './recruit/create/modal/warnRoleCount/WarnRoleCount';
 import AccountDelete from './recruit/recruitDetail/modal/accountDelete/AccountDelete';
 import FinalValidationModal from './recruit/create/modal/finalValidationModal.tsx/FinalValidationModal';
+import MainBanner from './recruit/recruitBoard/banner/MainBanner';
+import FloatingButton from './recruit/recruitBoard/floatingButton/FloatingButton';
+import ModalBackground from './modalBackground/ModalBackground';
+import DropdownDetail from './dropdown/dropdownDetail/DropdownDetail';
+import ClearConditions from './recruit/recruitBoard/clear/ClearConditions';
+import SearchBar from './recruit/recruitBoard/searchBar/SearchBar';
+import FieldPopup from './recruit/recruitBoard/fieldPopup/FieldPopup';
 
 export {
 	Header,
@@ -174,4 +181,11 @@ export {
 	WarnRoleCount,
 	AccountDelete,
 	FinalValidationModal,
+	MainBanner,
+	FloatingButton,
+	ModalBackground,
+	DropdownDetail,
+	ClearConditions,
+	SearchBar,
+	FieldPopup,
 };

@@ -49,7 +49,7 @@ import PlusWhite from './PlusWhite.svg';
 import CancelWhite from './CancelWhite.svg';
 import Create from './Create.svg';
 import Profile from './Profile.svg';
-import Portpolio from './Portpolio.svg';
+import Portfolio from './Portfolio.svg';
 import User from './User.svg';
 import School from './School.svg';
 import DropdownArrowUp from './DropdownArrowUp.svg';
@@ -119,7 +119,7 @@ export {
 	PlusWhite,
 	Create,
 	Profile,
-	Portpolio,
+	Portfolio,
 	User,
 	School,
 	DropdownArrowUp,

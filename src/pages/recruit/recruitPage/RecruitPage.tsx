@@ -3,27 +3,20 @@ import {
 	Dropdown,
 	RecruitCard,
 	Pagination,
-	DetailedInput,
 	NeedLogin,
 	ModalPortal,
 	Modal,
 	Footer,
+	MainBanner,
+	FloatingButton,
+	ModalBackground,
+	DropdownDetail,
+	ClearConditions,
+	SearchBar,
+	FieldPopup,
 } from '../../../components';
 import S from './RecruitPage.styled';
-import {
-	CancelWhite,
-	Clear,
-	Create,
-	DropdownArrow,
-	DropdownArrowUp,
-	FilledBookmark,
-	meeteam_banner_icon,
-	PlusWhite,
-	Portpolio,
-	Profile,
-	SearchIcon,
-	XBtn,
-} from '../../../assets';
+import { FilledBookmark } from '../../../assets';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import {
 	detailedFilterState,
@@ -42,7 +35,7 @@ import { fixModalBackground } from '../../../utils';
 const RecruitPage = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
-
+	const { isLogin } = useLogin();
 	const fieldRef = useRef<HTMLDivElement | null>(null);
 	const dropdownRef = useRef<HTMLDivElement | null>(null);
 	const [searchKeyword, setSearchKeyword] = useState('');
@@ -71,7 +64,8 @@ const RecruitPage = () => {
 	});
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [needLoginModal, setNeedLoginModal] = useRecoilState(needLoginModalState);
-	const { isLogin } = useLogin();
+	const [signupModalOpen, setSignupModalOpen] = useRecoilState(signupModalState);
+
 	const { data, isLoading } = useQuery({
 		queryKey: ['recruit_board', { filterState, isLogin, page }],
 		queryFn: () => getPostList({ filterState, isLogin, page }),
@@ -82,7 +76,7 @@ const RecruitPage = () => {
 		setIsOpen(prev => !prev);
 	};
 
-	const onClickField = (event: React.MouseEvent<HTMLSpanElement>) => {
+	const handleFieldMenu = (event: React.MouseEvent<HTMLSpanElement>) => {
 		const { innerText } = event.target as HTMLElement;
 		setFieldValue({
 			applied: false,
@@ -131,6 +125,10 @@ const RecruitPage = () => {
 		setIsOpen(false);
 	};
 
+	const handleFieldPopup = () => {
+		setIsFieldOpen(prev => !prev);
+	};
+
 	const onClickDetails = (event: React.MouseEvent<HTMLSpanElement>) => {
 		event.stopPropagation();
 		const { innerText } = event.target as HTMLElement;
@@ -161,7 +159,7 @@ const RecruitPage = () => {
 		}
 	};
 
-	const onClickClearField = () => {
+	const handleFieldClear = () => {
 		setFilterState(prev => ({ ...prev, field: null }));
 		setFieldValue({ applied: false, value: { id: null, value: '분야를 선택해주세요' } });
 		searchParams.delete('field');
@@ -235,6 +233,29 @@ const RecruitPage = () => {
 		setPlaceholderText('제목을 검색해보세요.');
 	};
 
+	const handleFloatingButton = () => {
+		setIsFloatingOpen(prev => !prev);
+	};
+
+	const signupModalProps = {
+		title: '프로필을 추가해보세요!',
+		content:
+			'프로필 입력정보를 추가하면\n팀을 만날 확률이 늘어납니다.\n내 프로필로 이동하시겠습니끼?',
+		defaultBtn: {
+			title: '나중에 하기',
+			small: true,
+			handleClick: () => setSignupModalOpen(false),
+		},
+		primaryBtn: {
+			title: '프로필로 이동',
+			small: true,
+			handleClick: () => {
+				setSignupModalOpen(false);
+				navigate(`/profile/${location.state?.userId}`);
+			},
+		},
+	};
+
 	useEffect(() => {
 		const outsideClick = (event: MouseEvent) => {
 			const { target } = event;
@@ -303,74 +324,25 @@ const RecruitPage = () => {
 		setSearchKeyword(filterState.keyword as any);
 	}, [filterState.keyword]);
 
-	// 회원가입 이후 팝업창 띄우기
-	const [signupModalOpen, setSignupModalOpen] = useRecoilState(signupModalState);
 	useEffect(() => {
 		fixModalBackground(signupModalOpen);
 	}, [signupModalOpen]);
 
-	const signupModalProps = {
-		title: '프로필을 추가해보세요!',
-		content:
-			'프로필 입력정보를 추가하면\n팀을 만날 확률이 늘어납니다.\n내 프로필로 이동하시겠습니끼?',
-		defaultBtn: {
-			title: '나중에 하기',
-			small: true,
-			handleClick: () => setSignupModalOpen(false),
-		},
-		primaryBtn: {
-			title: '프로필로 이동',
-			small: true,
-			handleClick: () => {
-				setSignupModalOpen(false);
-				navigate(`/profile/${location.state?.userId}`);
-			},
-		},
-	};
-
 	return (
 		<>
-			<S.RecruitPage
-				$isFieldClick={fieldValue.value.value !== '분야를 선택해주세요'}
-				$isDetailedClick={isOpen}
-				$isDetailSelected={isDetailSelected}
-			>
-				<section className='main-banner'>
-					<section className='container-title'>
-						<span className='subtitle'>팀원을 찾고 있나요?</span>
-						<span className='title'>밋팀으로 팀원을 만나보세요!</span>
-					</section>
-					<section>
-						<img src={meeteam_banner_icon} fetchpriority='high' />
-					</section>
-				</section>
+			<S.RecruitPage $isDetailedClick={isOpen}>
+				<MainBanner />
 				<section>
-					<section className='wrapper-title' ref={fieldRef}>
-						<h2>분야 전체</h2>
-						<div className='sep'> | </div>
-						<div className='container-field' onClick={() => setIsFieldOpen(prev => !prev)}>
-							<h3>{fieldValue.applied ? fieldValue.value.value : '분야를 선택해주세요'}</h3>
-							<img src={DropdownArrow} />
-						</div>
-						{isFieldOpen && (
-							<article className='dropdown-field'>
-								<section className='container-keys'>
-									<span className='field-key' id={'1'} onClick={onClickField}>
-										개발
-									</span>
-								</section>
-								<article className='container-btns'>
-									<section className='clear' onClick={onClickClearField}>
-										<img src={Clear} />
-										<span>초기화</span>
-									</section>
-									<button type='button' onClick={submitField}>
-										적용
-									</button>
-								</article>
-							</article>
-						)}
-					</section>
+					<FieldPopup
+						isOpen={isFieldOpen}
+						fieldRef={fieldRef}
+						fieldValue={fieldValue}
+						isFieldClick={fieldValue.value.value !== '분야를 선택해주세요'}
+						onClick={handleFieldPopup}
+						handleFieldMenu={handleFieldMenu}
+						handleFieldClear={handleFieldClear}
+						submitField={submitField}
+					/>
 					<section className='wrapper-filters'>
 						<section className='container-filters'>
 							{isLogin && (
@@ -381,72 +353,33 @@ const RecruitPage = () => {
 								initialData='유형'
 								category
 							/>
-							<article className='dropdown-detailed' onClick={onClickDetailed} ref={dropdownRef}>
-								<section className='dropdown-box'>
-									<label className='selected'>{'상세조건'}</label>
-									<img src={isOpen ? DropdownArrowUp : DropdownArrow} />
-								</section>
-								{isOpen && (
-									<section className='container-dropdown' onClick={handlerChildDropdown}>
-										<section className='sidebar'>
-											<span
-												className={`body1 sidebar-elem ${isOpenDetail.skill ? 'active' : ''}`}
-												onClick={onClickDetails}
-											>
-												기술
-											</span>
-											<span
-												className={`body1 sidebar-elem ${isOpenDetail.role ? 'active' : ''}`}
-												onClick={onClickDetails}
-											>
-												역할
-											</span>
-											<span
-												className={`body1 sidebar-elem ${isOpenDetail.tag ? 'active' : ''}`}
-												onClick={onClickDetails}
-											>
-												태그
-											</span>
-										</section>
-										<DetailedInput
-											type={isOpenDetail.message}
-											closeHandler={closeHandler}
-											detailOptionsSelected={detailOptionsSelected}
-											detailOptionsNotSelected={detailOptionsNotSelected}
-										/>
-									</section>
-								)}
-							</article>
-							<article className='clear' onClick={onClickClear}>
-								<img src={Clear} />
-								<span>초기화</span>
-							</article>
+							<DropdownDetail
+								isOpen={isOpen}
+								dropdownRef={dropdownRef}
+								isOpenDetail={isOpenDetail}
+								isDetailSelected={isDetailSelected}
+								onClick={onClickDetailed}
+								handleClose={closeHandler}
+								handleChildDropdown={handlerChildDropdown}
+								handleClickDetails={onClickDetails}
+							/>
+							<ClearConditions onClick={onClickClear} />
 						</section>
-						<section className='container-options__search'>
-							<div>
-								<img className='search-icon' src={SearchIcon} />
-							</div>
-							<div className='search-bar'>
-								<input
-									placeholder={placeholderText}
-									type='text'
-									onChange={handleKeywordChange}
-									value={searchKeyword}
-									onKeyDown={onKeyPress}
-									onFocus={handleFocusedPlaceholder}
-									onBlur={handleBlurredPlaceholder}
-								/>
-							</div>
-							{searchKeyword && (
-								<img className='clear-keyword' src={XBtn} onClick={onClickDeleteKeyword} />
-							)}
-						</section>
+						<SearchBar
+							placeholderText={placeholderText}
+							searchKeyword={searchKeyword}
+							onChange={handleKeywordChange}
+							onKeyPress={onKeyPress}
+							handleFocusedPlaceholder={handleFocusedPlaceholder}
+							handleBlurredPlaceholder={handleBlurredPlaceholder}
+							onClickDeleteKeyword={onClickDeleteKeyword}
+						/>
 					</section>
 				</section>
 				<hr />
 				<section>
-					<section className='container-contents'>
-						<div>
+					<article className='container-contents'>
+						<section>
 							<article className='bookmark-intro' onClick={bookmarkNavigateHandler}>
 								<img src={FilledBookmark} />
 								<span className='body2'>북마크 모아보기 {'❯'}</span>
@@ -467,8 +400,8 @@ const RecruitPage = () => {
 									<span>일치하는 결과가 없습니다.</span>
 								</section>
 							)}
-						</div>
-					</section>
+						</section>
+					</article>
 				</section>
 				<article className='container-pagination'>
 					{data && (
@@ -480,41 +413,17 @@ const RecruitPage = () => {
 						/>
 					)}
 				</article>
-				<article className='btn-floating' onClick={() => setIsFloatingOpen(prev => !prev)}>
-					{isFloatingOpen && (
-						<section className='floating-menu'>
-							<article className='container-menu'>
-								<span className='nav-info'>내 프로필 작성</span>
-								<section className='menu floating' onClick={profileCreateHandler}>
-									<img src={Profile} fetchpriority='high' />
-								</section>
-							</article>
-							<article className='container-menu'>
-								<span className='nav-info'>구인글 작성</span>
-								<section className='menu floating' onClick={recruitCreateHandler}>
-									<img src={Create} fetchpriority='high' />
-								</section>
-							</article>
-							<article className='container-menu'>
-								<span className='nav-info'>포트폴리오 등록</span>
-								<section className='menu floating' onClick={portfolioCreateHandler}>
-									<img src={Portpolio} fetchpriority='high' />
-								</section>
-							</article>
-						</section>
-					)}
-					<section className={`container-btn floating  ${isFloatingOpen && 'cancel-icon'}`}>
-						{isFloatingOpen ? (
-							<img className='floating-icon' src={CancelWhite} />
-						) : (
-							<img className='floating-icon add-icon' src={PlusWhite} />
-						)}
-					</section>
-				</article>
+				<FloatingButton
+					isFloatingOpen={isFloatingOpen}
+					onClick={handleFloatingButton}
+					recruitCreateHandler={recruitCreateHandler}
+					profileCreateHandler={profileCreateHandler}
+					portfolioCreateHandler={portfolioCreateHandler}
+				/>
 				{needLoginModal.isOpen && (
-					<section className='modal-background'>
+					<ModalBackground>
 						<NeedLogin type={needLoginModal.type} />
-					</section>
+					</ModalBackground>
 				)}
 				{signupModalOpen && (
 					<ModalPortal>
