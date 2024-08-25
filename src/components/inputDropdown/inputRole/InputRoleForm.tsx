@@ -49,7 +49,7 @@ const InputRoleForm = (props: InputRoleObj) => {
 	const dropdownRef = useRef<HTMLDivElement | null>(null);
 	const { isValid } = useValid(info);
 
-	const { data: dataRole, isLoading: isLoadingRole } = useQuery({
+	const { data: dataRole, isLoading: isLoadingRoleQuery } = useQuery({
 		queryKey: ['searchRole', keywordRole],
 		queryFn: () => getRoleKeyword(keywordRole as string),
 		staleTime: Infinity,
@@ -329,6 +329,20 @@ const InputRoleForm = (props: InputRoleObj) => {
 		}
 	};
 
+	// 로딩 시간을 추가하기 위한 상태
+	const [isLoadingRole, setIsLoadingRole] = useState(true);
+
+	useEffect(() => {
+		if (!isLoadingRoleQuery) {
+			const timer = setTimeout(() => {
+				setIsLoadingRole(false);
+			}, 2000);
+			return () => clearTimeout(timer);
+		} else {
+			setIsLoadingRole(true);
+		}
+	}, [isLoadingRoleQuery]);
+
 	useOutsideClick(dropdownRef, dropdown.role, () => {
 		setDropdown(prev => ({
 			...prev,
@@ -391,12 +405,22 @@ const InputRoleForm = (props: InputRoleObj) => {
 					/>
 					{dropdown.role && (
 						<section className='dropdown'>
-							{!isLoadingRole &&
-								dataRole?.map((keyword: any) => (
-									<span key={keyword.id} onClick={onClickRole} id={keyword.id} className='option'>
+							{isLoadingRole ? (
+								<article className='dropdown-loading'>
+									<span>검색중...</span>
+								</article>
+							) : (
+								dataRole?.map((keyword: Keyword) => (
+									<span
+										key={keyword.id}
+										onClick={onClickRole}
+										id={keyword.id.toString()}
+										className='option'
+									>
 										{keyword.name}
 									</span>
-								))}
+								))
+							)}
 						</section>
 					)}
 					{isValid.isRoleSubmitted && !isValidBeforeSubmit.role.valid && (
@@ -471,7 +495,7 @@ const InputRoleForm = (props: InputRoleObj) => {
 						<section className='dropdown-skill'>
 							<section className='list-skill'>
 								{!isLoadingSkill &&
-									dataSkill?.map((elem, _) => (
+									dataSkill?.map(elem => (
 										<span
 											key={elem.id}
 											className='skill-element body1-medium option'
