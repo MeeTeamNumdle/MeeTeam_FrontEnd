@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useRecoilState } from 'recoil';
 import { isNotNumber } from '../../../utils';
 import { recruitInputState } from '../../../atom';
-import { useDebounce, useValid } from '../../../hooks';
+import { useDebounce, useOutsideClick, useValid } from '../../../hooks';
 import { GrayDelete, SearchIcon, XBtn } from '../../../assets';
 import { RoleForPost, Keyword } from '../../../types';
 import { getRoleKeyword, getSkillKeyword } from '../../../service';
@@ -329,33 +329,25 @@ const InputRoleForm = (props: InputRoleObj) => {
 		}
 	};
 
+	useOutsideClick(dropdownRef, dropdown.role, () => {
+		setDropdown(prev => ({
+			...prev,
+			role: false,
+		}));
+	});
+
+	useOutsideClick(dropdownRef, dropdown.skill, () => {
+		setDropdown(prev => ({
+			...prev,
+			skill: false,
+		}));
+	});
+
 	useEffect(() => {
 		if (containerRef.current) {
 			applyEllipsis(containerRef.current);
 		}
 	}, [dropdown.skill, roleData.skills]);
-
-	useEffect(() => {
-		const outsideClick = (event: MouseEvent) => {
-			const { target } = event;
-			if (dropdown.role && dropdownRef.current && !dropdownRef.current.contains(target as Node)) {
-				setDropdown(prev => ({
-					...prev,
-					role: false,
-				}));
-			}
-			if (dropdown.skill && dropdownRef.current && !dropdownRef.current.contains(target as Node)) {
-				setDropdown(prev => ({
-					...prev,
-					skill: false,
-				}));
-			}
-		};
-		document.addEventListener('mousedown', outsideClick);
-		return () => {
-			document.removeEventListener('mousedown', outsideClick);
-		};
-	}, [dropdownRef.current, dropdown.role, dropdown.skill]);
 
 	useEffect(() => {
 		if (isValid.isRoleSubmitted) {
