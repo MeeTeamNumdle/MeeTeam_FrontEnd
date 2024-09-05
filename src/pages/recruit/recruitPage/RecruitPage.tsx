@@ -30,7 +30,6 @@ import { getPostList } from '../../../service/recruit/board';
 import { useQuery } from '@tanstack/react-query';
 import { useFixModalBackground, useFocusToTop, useLogin, useOutsideClick } from '../../../hooks';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { fixModalBackground } from '../../../utils';
 
 const RecruitPage = () => {
 	const navigate = useNavigate();
