@@ -302,7 +302,7 @@ const RecruitPage = () => {
 	}, []);
 
 	useEffect(() => {
-		setSearchKeyword(filterState.keyword as any);
+		setSearchKeyword(filterState.keyword as string);
 	}, [filterState.keyword]);
 
 	return (
