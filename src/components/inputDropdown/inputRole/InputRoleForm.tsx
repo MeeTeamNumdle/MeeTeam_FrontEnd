@@ -329,20 +329,6 @@ const InputRoleForm = (props: InputRoleObj) => {
 		}
 	};
 
-	// 로딩 시간을 추가하기 위한 상태
-	const [isLoadingRole, setIsLoadingRole] = useState(true);
-
-	useEffect(() => {
-		if (!isLoadingRoleQuery) {
-			const timer = setTimeout(() => {
-				setIsLoadingRole(false);
-			}, 2000);
-			return () => clearTimeout(timer);
-		} else {
-			setIsLoadingRole(true);
-		}
-	}, [isLoadingRoleQuery]);
-
 	useOutsideClick(dropdownRef, dropdown.role, () => {
 		setDropdown(prev => ({
 			...prev,
@@ -405,7 +391,7 @@ const InputRoleForm = (props: InputRoleObj) => {
 					/>
 					{dropdown.role && (
 						<section className='dropdown'>
-							{isLoadingRole ? (
+							{isLoadingRoleQuery ? (
 								<article className='dropdown-loading'>
 									<span>검색중...</span>
 								</article>

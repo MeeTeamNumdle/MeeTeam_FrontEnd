@@ -57,15 +57,15 @@ import FloatingBackground from './FloatingBackground.svg';
 import Alert from './Alert.svg';
 import MeeteamLogoLarge from './MeeteamLogoLarge.svg';
 import Congratulation from './Congratulation.png';
-import NaverIcon from './NaverIcon.png';
+import NaverIcon from './NaverIcon.webp';
 import Clip from './Clip.svg';
 import Valid from './Valid.svg';
 import Invalid from './Invalid.svg';
 import LogoFooter from './LogoFooter.svg';
 import Email from './Email.svg';
 import GrayDelete from './GrayDelete.svg';
-import NotFoundIcon from './NotFoundIcon.png';
-import meeteam_banner_icon from './meeteam_banner_icon.png';
+import NotFoundIcon from './NotFoundIcon.webp';
+import meeteam_banner_icon from './meeteam_banner_icon.webp';
 
 export {
 	Exit,
