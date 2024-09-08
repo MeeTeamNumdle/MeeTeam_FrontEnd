@@ -81,8 +81,8 @@ const Header = () => {
 			<div className='header'>
 				<section className='header-leftside'>
 					<div className='header__logo' onClick={goRecruit}>
-						<img className='logo' src={Logo} fetchpriority='high' />
-						<img className='logo-name' src={LogoName} fetchpriority='high' />
+						<img className='logo' src={Logo} />
+						<img className='logo-name' src={LogoName} />
 						{isLogin && <span className='university'>{userInfo?.university}</span>}
 					</div>
 					<div className='header__navigation'>
