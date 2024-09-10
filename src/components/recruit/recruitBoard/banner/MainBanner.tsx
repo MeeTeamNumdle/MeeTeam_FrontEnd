@@ -10,7 +10,7 @@ const MainBanner = () => {
 				<span className='title'>밋팀으로 팀원을 만나보세요!</span>
 			</section>
 			<section>
-				<img src={meeteam_banner_icon} />
+				<img src={meeteam_banner_icon} alt='메인 배너' />
 			</section>
 		</S.Banner>
 	);

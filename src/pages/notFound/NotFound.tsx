@@ -11,7 +11,7 @@ const NotFound = () => {
 
 	return (
 		<S.NotFound>
-			<img src={NotFoundIcon} />
+			<img src={NotFoundIcon} alt='404 아이콘' />
 			<section className='container-title'>
 				<h1>죄송합니다.</h1>
 				<h1>요청하신 페이지는 찾을 수 없습니다.</h1>

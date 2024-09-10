@@ -81,8 +81,8 @@ const Header = () => {
 			<div className='header'>
 				<section className='header-leftside'>
 					<div className='header__logo' onClick={goRecruit}>
-						<img className='logo' src={Logo} />
-						<img className='logo-name' src={LogoName} />
+						<img className='logo' srcSet={Logo} fetchpriority='high' alt='로고 이미지' />
+						<img className='logo-name' srcSet={LogoName} fetchpriority='high' alt='로고 이름' />
 						{isLogin && <span className='university'>{userInfo?.university}</span>}
 					</div>
 					<div className='header__navigation'>
@@ -109,7 +109,7 @@ const Header = () => {
 										<div className='icon-border'>
 											<ProfileImage url={profileImage?.imageUrl} size='3rem' />
 										</div>
-										<img src={DropdownArrow} />
+										<img src={DropdownArrow} alt='드롭다운 아이콘' />
 									</article>
 								) : (
 									<span className='login'>로그인</span>

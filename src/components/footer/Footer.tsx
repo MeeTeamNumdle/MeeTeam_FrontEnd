@@ -16,8 +16,8 @@ const Footer = () => {
 			<section className='wrapper'>
 				<section className='wrapper-logo'>
 					<section className='container-logo'>
-						<img className='logo' src={LogoFooter} />
-						<img className='logo-name' src={LogoName} />
+						<img className='logo' src={LogoFooter} alt='로고 이미지' />
+						<img className='logo-name' src={LogoName} alt='로고 이름' />
 					</section>
 					{isMobile && (
 						<section className='wrapper-menu'>

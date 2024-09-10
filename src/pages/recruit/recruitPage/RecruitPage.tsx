@@ -358,7 +358,7 @@ const RecruitPage = () => {
 					<article className='container-contents'>
 						<section>
 							<article className='bookmark-intro' onClick={bookmarkNavigateHandler}>
-								<img src={FilledBookmark} />
+								<img src={FilledBookmark} alt='bookmark-icon' />
 								<span className='body2'>북마크 모아보기 {'❯'}</span>
 							</article>
 							{isLoading ? (
