@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import S from './Header.styled';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { DropdownArrow, Logo, LogoName } from '../../assets';
+import { DropdownArrow } from '../../assets';
 import { ProfileImage, WaitModal } from '..';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { recruitFilterState, userState, waitModalState, loginState } from '../../atom';
@@ -81,8 +81,13 @@ const Header = () => {
 			<div className='header'>
 				<section className='header-leftside'>
 					<div className='header__logo' onClick={goRecruit}>
-						<img className='logo' srcSet={Logo} fetchpriority='high' alt='로고 이미지' />
-						<img className='logo-name' srcSet={LogoName} fetchpriority='high' alt='로고 이름' />
+						<img
+							className='logo-name'
+							src='logo_typo_large.webp'
+							srcSet='logo_typo_small.webp 1000w,  logo_typo_medium.webp 3000w, logo_typo_large.webp 5000w'
+							fetchpriority='high'
+							alt='logo_typo'
+						/>
 						{isLogin && <span className='university'>{userInfo?.university}</span>}
 					</div>
 					<div className='header__navigation'>

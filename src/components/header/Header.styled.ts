@@ -29,9 +29,7 @@ const Header = styled.header<{ $isLogin?: boolean }>`
 
 	.header__logo {
 		display: flex;
-		height: 1.29563rem;
 		align-items: center;
-		flex-shrink: 0;
 		cursor: pointer;
 
 		.logo,
@@ -41,6 +39,7 @@ const Header = styled.header<{ $isLogin?: boolean }>`
 
 		.logo-name {
 			margin-left: 0.8rem;
+			width: 10rem;
 		}
 
 		.university {
