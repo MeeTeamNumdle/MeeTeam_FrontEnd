@@ -5,8 +5,13 @@ import { DropdownArrow, Logo, LogoName } from '../../assets';
 import { ProfileImage, WaitModal } from '..';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { recruitFilterState, userState, waitModalState, loginState } from '../../atom';
-import { useSignOut, useLogin, useReadProfileImage } from '../../hooks';
-import { fixModalBackground } from '../../utils';
+import {
+	useSignOut,
+	useLogin,
+	useReadProfileImage,
+	useOutsideClick,
+	useFixModalBackground,
+} from '../../hooks';
 
 const Header = () => {
 	const navigate = useNavigate();
@@ -60,6 +65,9 @@ const Header = () => {
 		setOpenDrop(false);
 	};
 
+	useOutsideClick(dropdownRef, openDrop, setOpenDrop);
+	useFixModalBackground(isWait);
+
 	useEffect(() => {
 		if (location.pathname === `/recruitment/postings/${id}` || location.pathname === '/') {
 			setIsHere({ recruit: true, galary: false, inform: false });
@@ -67,23 +75,6 @@ const Header = () => {
 			setIsHere({ recruit: false, galary: false, inform: false });
 		}
 	}, [location.pathname, id]);
-
-	useEffect(() => {
-		const outsideClick = (event: MouseEvent) => {
-			const { target } = event;
-			if (openDrop && dropdownRef.current && !dropdownRef.current.contains(target as Node)) {
-				setOpenDrop(false);
-			}
-		};
-		document.addEventListener('mousedown', outsideClick);
-		return () => {
-			document.removeEventListener('mousedown', outsideClick);
-		};
-	}, [openDrop]);
-
-	useEffect(() => {
-		fixModalBackground(isWait);
-	}, [isWait]);
 
 	return (
 		<S.Header $isLogin={isLogin}>

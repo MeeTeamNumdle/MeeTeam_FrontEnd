@@ -29,6 +29,9 @@ import { useBookmark } from './useBookMark';
 import useLogin from './useLogin';
 import { useComment, useCommentDelete, useCommentEdit } from './useComment';
 import useScrollToTop from './useScrollToTop';
+import { useOutsideClick } from './useOutsideClick';
+import { useFocusToTop } from './useFocusOnTop';
+import { useFixModalBackground } from './useFixModalBackground';
 
 export {
 	useCheckExist,
@@ -61,4 +64,7 @@ export {
 	useScrollToTop,
 	useSignOut,
 	useReadProfileImage,
+	useOutsideClick,
+	useFocusToTop,
+	useFixModalBackground,
 };

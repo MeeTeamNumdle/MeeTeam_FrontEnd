@@ -28,9 +28,8 @@ import {
 } from '../../../atom';
 import { getPostList } from '../../../service/recruit/board';
 import { useQuery } from '@tanstack/react-query';
-import { useLogin } from '../../../hooks';
+import { useFixModalBackground, useFocusToTop, useLogin, useOutsideClick } from '../../../hooks';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { fixModalBackground } from '../../../utils';
 
 const RecruitPage = () => {
 	const navigate = useNavigate();
@@ -256,29 +255,11 @@ const RecruitPage = () => {
 		},
 	};
 
-	useEffect(() => {
-		const outsideClick = (event: MouseEvent) => {
-			const { target } = event;
-			if (isOpen && dropdownRef.current && !dropdownRef.current.contains(target as Node)) {
-				setIsOpen(false);
-			}
-			if (isFieldOpen && fieldRef.current && !fieldRef.current.contains(target as Node)) {
-				setIsFieldOpen(false);
-			}
-		};
-		document.addEventListener('mousedown', outsideClick);
-		return () => {
-			document.removeEventListener('mousedown', outsideClick);
-		};
-	}, [dropdownRef.current, isOpen, fieldRef.current, isFieldOpen]);
-
-	useEffect(() => {
-		window.scrollTo(0, 0);
-	}, [page]);
-
-	useEffect(() => {
-		fixModalBackground(needLoginModal.isOpen);
-	}, [needLoginModal.isOpen]);
+	useOutsideClick(dropdownRef, isOpen, setIsOpen);
+	useOutsideClick(fieldRef, isFieldOpen, setIsFieldOpen);
+	useFixModalBackground(needLoginModal.isOpen);
+	useFixModalBackground(signupModalOpen);
+	useFocusToTop(page);
 
 	useEffect(() => {
 		setPreviousLocationState(location.pathname + location.search);
@@ -323,10 +304,6 @@ const RecruitPage = () => {
 	useEffect(() => {
 		setSearchKeyword(filterState.keyword as any);
 	}, [filterState.keyword]);
-
-	useEffect(() => {
-		fixModalBackground(signupModalOpen);
-	}, [signupModalOpen]);
 
 	return (
 		<>

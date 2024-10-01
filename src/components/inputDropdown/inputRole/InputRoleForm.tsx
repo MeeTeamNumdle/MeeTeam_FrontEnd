@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useRecoilState } from 'recoil';
 import { isNotNumber } from '../../../utils';
 import { recruitInputState } from '../../../atom';
-import { useDebounce, useValid } from '../../../hooks';
+import { useDebounce, useOutsideClick, useValid } from '../../../hooks';
 import { GrayDelete, SearchIcon, XBtn } from '../../../assets';
 import { RoleForPost, Keyword } from '../../../types';
 import { getRoleKeyword, getSkillKeyword } from '../../../service';
@@ -49,7 +49,7 @@ const InputRoleForm = (props: InputRoleObj) => {
 	const dropdownRef = useRef<HTMLDivElement | null>(null);
 	const { isValid } = useValid(info);
 
-	const { data: dataRole, isLoading: isLoadingRole } = useQuery({
+	const { data: dataRole, isLoading: isLoadingRoleQuery } = useQuery({
 		queryKey: ['searchRole', keywordRole],
 		queryFn: () => getRoleKeyword(keywordRole as string),
 		staleTime: Infinity,
@@ -329,33 +329,25 @@ const InputRoleForm = (props: InputRoleObj) => {
 		}
 	};
 
+	useOutsideClick(dropdownRef, dropdown.role, () => {
+		setDropdown(prev => ({
+			...prev,
+			role: false,
+		}));
+	});
+
+	useOutsideClick(dropdownRef, dropdown.skill, () => {
+		setDropdown(prev => ({
+			...prev,
+			skill: false,
+		}));
+	});
+
 	useEffect(() => {
 		if (containerRef.current) {
 			applyEllipsis(containerRef.current);
 		}
 	}, [dropdown.skill, roleData.skills]);
-
-	useEffect(() => {
-		const outsideClick = (event: MouseEvent) => {
-			const { target } = event;
-			if (dropdown.role && dropdownRef.current && !dropdownRef.current.contains(target as Node)) {
-				setDropdown(prev => ({
-					...prev,
-					role: false,
-				}));
-			}
-			if (dropdown.skill && dropdownRef.current && !dropdownRef.current.contains(target as Node)) {
-				setDropdown(prev => ({
-					...prev,
-					skill: false,
-				}));
-			}
-		};
-		document.addEventListener('mousedown', outsideClick);
-		return () => {
-			document.removeEventListener('mousedown', outsideClick);
-		};
-	}, [dropdownRef.current, dropdown.role, dropdown.skill]);
 
 	useEffect(() => {
 		if (isValid.isRoleSubmitted) {
@@ -399,12 +391,22 @@ const InputRoleForm = (props: InputRoleObj) => {
 					/>
 					{dropdown.role && (
 						<section className='dropdown'>
-							{!isLoadingRole &&
-								dataRole?.map((keyword: any) => (
-									<span key={keyword.id} onClick={onClickRole} id={keyword.id} className='option'>
+							{isLoadingRoleQuery ? (
+								<article className='dropdown-loading'>
+									<span>검색중...</span>
+								</article>
+							) : (
+								dataRole?.map((keyword: Keyword) => (
+									<span
+										key={keyword.id}
+										onClick={onClickRole}
+										id={keyword.id.toString()}
+										className='option'
+									>
 										{keyword.name}
 									</span>
-								))}
+								))
+							)}
 						</section>
 					)}
 					{isValid.isRoleSubmitted && !isValidBeforeSubmit.role.valid && (
@@ -479,7 +481,7 @@ const InputRoleForm = (props: InputRoleObj) => {
 						<section className='dropdown-skill'>
 							<section className='list-skill'>
 								{!isLoadingSkill &&
-									dataSkill?.map((elem, _) => (
+									dataSkill?.map(elem => (
 										<span
 											key={elem.id}
 											className='skill-element body1-medium option'

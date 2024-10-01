@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import S from './MeeteamTag.styled';
 import { useRecoilState } from 'recoil';
 import { recruitInputState } from '../../atom';
-import { useDebounce } from '../../hooks';
+import { useDebounce, useOutsideClick } from '../../hooks';
 import { useQuery } from '@tanstack/react-query';
 import { getTagKeyword } from '../../service';
 import { Search, XBtn } from '../../assets';
@@ -78,23 +78,12 @@ const MeeteamTag = ({ tags }: RecruitTagListProps) => {
 		}
 	};
 
-	useEffect(() => {
-		const outsideClick = (event: MouseEvent) => {
-			const { target } = event;
-			if (
-				isDropdownVisible &&
-				dropdownRef.current &&
-				!dropdownRef.current.contains(target as Node)
-			) {
-				setIsDropdownVisible(false);
-				setTagItem('');
-			}
-		};
-		document.addEventListener('mousedown', outsideClick);
-		return () => {
-			document.removeEventListener('mousedown', outsideClick);
-		};
-	}, [isDropdownVisible]);
+	const handleClickOutside = () => {
+		setIsDropdownVisible(false);
+		setTagItem('');
+	};
+
+	useOutsideClick(dropdownRef, isDropdownVisible, handleClickOutside);
 
 	useEffect(() => {
 		if (tags) {
