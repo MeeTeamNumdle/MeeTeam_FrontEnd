@@ -54,6 +54,11 @@ const InputRoleForm = styled.article<InputRoleForm>`
 		box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
 	}
 
+	.dropdown-loading {
+		width: 100%;
+		height: 5rem;
+	}
+
 	.option {
 		cursor: pointer;
 	}

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import S from './Dropdown.styled';
-import { useDebounce, useLogin } from '../../hooks';
+import { useDebounce, useLogin, useOutsideClick } from '../../hooks';
 import { useQuery } from '@tanstack/react-query';
 import { getCourseKeyword, getProfessorKeyword } from '../../service';
 import { useRecoilState, useSetRecoilState } from 'recoil';
@@ -195,26 +195,13 @@ const Dropdown = ({ data, initialData, scope, category, applicant, roleObj }: Dr
 		event.stopPropagation();
 	};
 
-	useEffect(() => {
-		const outsideClick = (event: MouseEvent) => {
-			const { target } = event;
-			if (showDropdown && dropdownRef.current && !dropdownRef.current.contains(target as Node)) {
-				setShowDropdown(false);
-			}
-
-			if (dropdown.course && insideRef.current && !insideRef.current.contains(target as Node)) {
-				setDropdown(prev => ({ ...prev, course: false }));
-			}
-
-			if (dropdown.professor && insideRef.current && !insideRef.current.contains(target as Node)) {
-				setDropdown(prev => ({ ...prev, professor: false }));
-			}
-		};
-		document.addEventListener('mousedown', outsideClick);
-		return () => {
-			document.removeEventListener('mousedown', outsideClick);
-		};
-	}, [dropdownRef.current, showDropdown, dropdown.course, dropdown.professor]);
+	useOutsideClick(dropdownRef, showDropdown, setShowDropdown);
+	useOutsideClick(insideRef, dropdown.course, () =>
+		setDropdown(prev => ({ ...prev, course: false }))
+	);
+	useOutsideClick(insideRef, dropdown.professor, () =>
+		setDropdown(prev => ({ ...prev, professor: false }))
+	);
 
 	useEffect(() => {
 		if (scope && filterState.scope !== null) {
@@ -225,7 +212,7 @@ const Dropdown = ({ data, initialData, scope, category, applicant, roleObj }: Dr
 			setCurrentValue('범위');
 			setIsScopeSelected(false);
 		}
-	}, [filterState.scope]);
+	}, [filterState.scope, scope]);
 
 	useEffect(() => {
 		if (category && filterState.category !== null) {
@@ -236,7 +223,7 @@ const Dropdown = ({ data, initialData, scope, category, applicant, roleObj }: Dr
 			setCurrentValue('유형');
 			setIsCategorySelected(false);
 		}
-	}, [filterState.category]);
+	}, [filterState.category, category]);
 
 	return (
 		<S.Dropdown

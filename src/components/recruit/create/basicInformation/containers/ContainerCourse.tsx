@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import S from '../BasicInformation.styled';
 import { useQuery } from '@tanstack/react-query';
-import { useDebounce } from '../../../../../hooks';
+import { useDebounce, useOutsideClick } from '../../../../../hooks';
 import { getCourseKeyword, getProfessorKeyword } from '../../../../../service';
 import { useRecoilState } from 'recoil';
 import { recruitInputState } from '../../../../../atom';
@@ -86,25 +86,12 @@ const ContainerCourse = ({ course, professor }: ContainerCourseProps) => {
 		}
 	};
 
-	useEffect(() => {
-		const outsideClick = (event: MouseEvent) => {
-			const { target } = event;
-			if (dropdown.course && dropdownRef.current && !dropdownRef.current.contains(target as Node)) {
-				setDropdown(prev => ({ ...prev, course: false }));
-			}
-			if (
-				dropdown.professor &&
-				dropdownRef.current &&
-				!dropdownRef.current.contains(target as Node)
-			) {
-				setDropdown(prev => ({ ...prev, professor: false }));
-			}
-		};
-		document.addEventListener('mousedown', outsideClick);
-		return () => {
-			document.removeEventListener('mousedown', outsideClick);
-		};
-	}, [dropdown.course, dropdown.professor]);
+	useOutsideClick(dropdownRef, dropdown.course, () =>
+		setDropdown(prev => ({ ...prev, course: false }))
+	);
+	useOutsideClick(dropdownRef, dropdown.professor, () =>
+		setDropdown(prev => ({ ...prev, professor: false }))
+	);
 
 	return (
 		<S.ContainerCourse $isChecked={isChecked} ref={dropdownRef}>
