@@ -82,9 +82,10 @@ const Header = () => {
 				<section className='header-leftside'>
 					<div className='header__logo' onClick={goRecruit}>
 						<img
-							className='logo-name'
+							className='logo'
 							src='logo_typo_large.webp'
-							srcSet='logo_typo_small.webp 1000w,  logo_typo_medium.webp 3000w, logo_typo_large.webp 5000w'
+							srcSet='logo_typo_small.webp 600w,  logo_typo_medium.webp 900w, logo_typo_large.webp 1280w'
+							// eslint-disable-next-line react/no-unknown-property
 							fetchpriority='high'
 							alt='logo_typo'
 						/>
@@ -177,4 +178,4 @@ const Header = () => {
 	);
 };
 
-export default React.memo(Header);
+export default Header;
