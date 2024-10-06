@@ -37,8 +37,6 @@ const Banner = styled.section`
 	}
 
 	img {
-		width: 178px;
-		height: 178px;
 		aspect-ratio: 1/1;
 	}
 
@@ -60,8 +58,6 @@ const Banner = styled.section`
 		}
 
 		img {
-			width: 120px;
-			height: 120px;
 			aspect-ratio: 1/1;
 		}
 	}
@@ -82,8 +78,6 @@ const Banner = styled.section`
 		}
 
 		img {
-			width: 90px;
-			height: 90px;
 			aspect-ratio: 1/1;
 		}
 	}
