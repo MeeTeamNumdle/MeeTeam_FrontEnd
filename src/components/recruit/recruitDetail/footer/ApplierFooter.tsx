@@ -52,7 +52,7 @@ const ApplierFooter = ({ deadline, isApplied, isBookmarked }: ApplierData) => {
 	return (
 		<>
 			<button type='button' className='btn-bookmark' onClick={onClickBookmark}>
-				<img src={isBookmarked ? FilledBookmark : UnfilledBookmark} />
+				<img src={isBookmarked ? FilledBookmark : UnfilledBookmark} alt='북마크 아이콘' />
 				<span>북마크</span>
 			</button>
 			{isApplied ? (

@@ -180,7 +180,7 @@ const ApplierManagePage = () => {
 								<article className='input-link'>
 									{!isOpenChat ? (
 										<section className='container-input__link'>
-											<img src={LinkIcon} />
+											<img src={LinkIcon} alt='link-icon' />
 											<span className='body1-medium input-prev'>
 												{!recruitManageInfo.link
 													? '오픈채팅방 주소를 입력해주세요.'
@@ -241,7 +241,7 @@ const ApplierManagePage = () => {
 						<article className={`current-recruit ${!isOpenCurrent && 'closed'}`}>
 							<section className='container-title' onClick={() => setIsOpenCurrent(prev => !prev)}>
 								<span className='body1-semibold'>모집 현황</span>
-								<img src={isOpenCurrent ? DropdownArrowUp : DropdownArrow} />
+								<img src={isOpenCurrent ? DropdownArrowUp : DropdownArrow} alt='dropdown-icon' />
 							</section>
 							{isOpenCurrent && (
 								<section className='container-roles'>
@@ -261,9 +261,9 @@ const ApplierManagePage = () => {
 					)}
 					<article className='btn-floating' onClick={scrollToTop}>
 						<section className='background'>
-							<img src={FloatingBackground} />
+							<img src={FloatingBackground} alt='floating-icon' />
 							<section className='arrow'>
-								<img src={ArrowTop} />
+								<img src={ArrowTop} alt='arrow-icon' />
 								<span>TOP</span>
 							</section>
 						</section>

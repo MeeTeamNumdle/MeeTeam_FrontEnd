@@ -109,7 +109,7 @@ const ReplyComment = ({
 	return (
 		<S.ReplyComment>
 			<section className='wrapper'>
-				<img className='reply-icon' src={Reply} />
+				<img className='reply-icon' src={Reply} alt='답변 아이콘' />
 				<article className='container'>
 					<section className='comment-icon'>
 						<section>

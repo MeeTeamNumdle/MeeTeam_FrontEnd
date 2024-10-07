@@ -3,7 +3,6 @@ import styled from 'styled-components';
 const Footer = styled.article`
 	width: 100%;
 	background: #f6f6f6;
-	height: 24.8rem;
 
 	.wrapper {
 		width: clamp(45%, 96rem, 75%);
@@ -47,16 +46,8 @@ const Footer = styled.article`
 		}
 
 		.logo {
-			width: 3.9514rem;
-			height: 4.424rem;
-			flex-shrink: 0;
-		}
-
-		.logo-name {
-			width: 4.9949rem;
-			height: 3.008rem;
-			flex-shrink: 0;
-			margin-left: 1.05rem;
+			max-height: 8rem;
+			aspect-ratio: 1.8/1;
 		}
 
 		.container-copyright {
@@ -67,38 +58,24 @@ const Footer = styled.article`
 	}
 
 	.wrapper-menu {
+		width: 50%;
 		display: flex;
-		margin-top: 7.63rem;
-		gap: 10rem;
+		justify-content: space-between;
+		margin-top: 7.6rem;
 		cursor: pointer;
 	}
 
-	@media (max-width: 1200px) {
-		.wrapper {
-			flex-direction: column;
-			align-items: center;
-			text-align: center;
-			padding: 4rem 0;
-		}
-
-		.wrapper-logo {
-			margin-bottom: 2rem;
-		}
-
-		.wrapper-menu {
-			margin-top: 3rem;
-			gap: 5rem;
-		}
-	}
-
-	@media (max-width: 768px) {
-		height: auto;
+	@media (max-width: 900px) {
+		width: 100%;
 
 		.wrapper {
+			display: flex;
+			gap: 10rem;
 			padding: 3rem 1rem;
 		}
 
 		.wrapper-menu {
+			display: flex;
 			flex-direction: column;
 			gap: 2rem;
 			margin-top: 2rem;
@@ -109,22 +86,27 @@ const Footer = styled.article`
 			align-items: center;
 		}
 
+		.logo {
+			height: 7rem;
+			aspect-ratio: 1.8/1;
+		}
+
 		.container-copyright {
 			margin-top: 2rem;
 			align-items: center;
 		}
 	}
 
-	@media (max-width: 480px) {
-		.logo {
-			width: 3rem;
-			height: 3.5rem;
+	@media (max-width: 600px) {
+		.wrapper {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
 		}
 
-		.logo-name {
-			width: 4rem;
-			height: 2.5rem;
-			margin-left: 0.5rem;
+		.logo {
+			height: 6rem;
+			aspect-ratio: 1.8/1;
 		}
 
 		h5 {
@@ -137,7 +119,6 @@ const Footer = styled.article`
 
 		.wrapper-menu {
 			margin-top: 2.5rem;
-			margin-bottom: -1rem;
 		}
 	}
 `;

@@ -27,6 +27,18 @@ import {
 	AccountSetting,
 } from './pages/index.ts';
 import './globalStyle.css';
+import { getPostList } from './service/recruit/board.ts';
+import { FilterData } from './types/index.ts';
+
+const filterState: FilterData = {
+	field: null,
+	scope: null,
+	category: null,
+	keyword: null,
+	skill: undefined,
+	role: undefined,
+	tag: undefined,
+};
 
 const router = createBrowserRouter([
 	{
@@ -36,6 +48,9 @@ const router = createBrowserRouter([
 			{
 				path: '',
 				element: <RecruitPage />,
+				loader: () => {
+					return getPostList({ filterState: filterState, page: 1 });
+				},
 			},
 			{
 				path: 'recruitment/postings/:id',

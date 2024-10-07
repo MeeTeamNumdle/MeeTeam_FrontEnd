@@ -24,28 +24,28 @@ const FloatingButton = ({
 					<article className='container-menu'>
 						<span className='nav-info'>내 프로필 작성</span>
 						<section className='menu floating' onClick={profileCreateHandler}>
-							<img src={Profile} fetchpriority='high' />
+							<img src={Profile} alt='프로필 아이콘' />
 						</section>
 					</article>
 					<article className='container-menu'>
 						<span className='nav-info'>구인글 작성</span>
 						<section className='menu floating' onClick={recruitCreateHandler}>
-							<img src={Create} fetchpriority='high' />
+							<img src={Create} alt='생성 아이콘' />
 						</section>
 					</article>
 					<article className='container-menu'>
 						<span className='nav-info'>포트폴리오 등록</span>
 						<section className='menu floating' onClick={portfolioCreateHandler}>
-							<img src={Portfolio} fetchpriority='high' />
+							<img src={Portfolio} alt='포트폴리오 아이콘' />
 						</section>
 					</article>
 				</section>
 			)}
 			<section className={`container-btn floating  ${isFloatingOpen && 'cancel-icon'}`}>
 				{isFloatingOpen ? (
-					<img className='floating-icon' src={CancelWhite} />
+					<img className='floating-icon' src={CancelWhite} alt='취소 아이콘' />
 				) : (
-					<img className='floating-icon add-icon' src={PlusWhite} />
+					<img className='floating-icon add-icon' src={PlusWhite} alt='추가 아이콘' />
 				)}
 			</section>
 		</S.FloatingButton>

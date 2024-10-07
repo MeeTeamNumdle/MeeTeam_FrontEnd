@@ -111,7 +111,7 @@ const MeeteamTag = ({ tags }: RecruitTagListProps) => {
 					onKeyPress={onKeyPress}
 					className='tag-input body1-medium'
 				/>
-				<img src={Search} className='icon-search' />
+				<img src={Search} className='icon-search' alt='검색 아이콘' />
 				{isDropdownVisible && (
 					<div className='tag-dropdown'>
 						{isSuccess &&
@@ -148,7 +148,7 @@ const MeeteamTag = ({ tags }: RecruitTagListProps) => {
 						<div className='tag__item txt2' key={tagItem}>
 							<span>{tagItem}</span>
 							<button type='button' className='btn-delete' onClick={() => deleteTagItem(tagItem)}>
-								<img src={XBtn} />
+								<img src={XBtn} alt='취소 아이콘' />
 							</button>
 						</div>
 					);

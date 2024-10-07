@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Banner = styled.section`
 	margin-top: 5rem;
 	width: 100%;
-	height: 206px;
+	height: 200px;
 	flex-shrink: 0;
 	border-radius: 20px;
 	background: linear-gradient(90deg, #3f80ff 0%, #c9deff 100%);
@@ -12,6 +12,7 @@ const Banner = styled.section`
 	align-items: center;
 	padding: 0 11rem;
 	box-sizing: border-box;
+	font-family: Pretendard;
 
 	.container-title {
 		display: flex;
@@ -21,9 +22,7 @@ const Banner = styled.section`
 
 	.subtitle {
 		color: #fff;
-		font-family: Pretendard;
 		font-size: 21.6px;
-		font-style: normal;
 		font-weight: 500;
 		line-height: 34.8px;
 		letter-spacing: 0.864px;
@@ -31,21 +30,17 @@ const Banner = styled.section`
 
 	.title {
 		color: #fff;
-		font-family: Pretendard;
 		font-size: 28.8px;
-		font-style: normal;
 		font-weight: 700;
 		line-height: 34.8px;
 		letter-spacing: 1.152px;
 	}
 
 	img {
-		width: 177px;
-		height: 178px;
-		flex-shrink: 0;
+		aspect-ratio: 1/1;
 	}
 
-	@media (max-width: 768px) {
+	@media (max-width: 900px) {
 		font-size: 1rem;
 		padding: 0 2rem;
 		height: 160px;
@@ -61,9 +56,15 @@ const Banner = styled.section`
 			line-height: 1.6rem;
 			letter-spacing: 0.04rem;
 		}
+
+		img {
+			aspect-ratio: 1/1;
+		}
 	}
 
-	@media (max-width: 431px) {
+	@media (max-width: 600px) {
+		height: 120px;
+
 		.title {
 			font-size: 1.6rem;
 			line-height: 2rem;
@@ -77,8 +78,7 @@ const Banner = styled.section`
 		}
 
 		img {
-			width: 90px;
-			height: 90px;
+			aspect-ratio: 1/1;
 		}
 	}
 `;

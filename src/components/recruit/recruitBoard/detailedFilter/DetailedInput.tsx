@@ -187,7 +187,7 @@ const DetailedInput = ({ type, closeHandler }: DetailedInfo) => {
 			<span className='body1 intro-msg'>{message.intro}</span>
 			<article className='search' onClick={onClickSearchBar}>
 				<input type='text' placeholder={message.message} value={tagItem} onChange={onChangeInput} />
-				<img src={Search} />
+				<img src={Search} alt='검색 아이콘' />
 			</article>
 			{isOpenMenu && (
 				<section className='role-menu'>
@@ -222,7 +222,7 @@ const DetailedInput = ({ type, closeHandler }: DetailedInfo) => {
 						<article className='tags' key={elem.id}>
 							<span>{elem.name}</span>
 							<button type='button' onClick={event => onClickDelete(event, elem.id)}>
-								<img src={XBtn} />
+								<img src={XBtn} alt='제거 아이콘' />
 							</button>
 						</article>
 					))}
@@ -231,7 +231,7 @@ const DetailedInput = ({ type, closeHandler }: DetailedInfo) => {
 						<article className='tags' key={elem.id}>
 							<span>{elem.name}</span>
 							<button type='button' onClick={event => onClickDelete(event, elem.id)}>
-								<img src={XBtn} />
+								<img src={XBtn} alt='제거 아이콘' />
 							</button>
 						</article>
 					))}
@@ -240,14 +240,14 @@ const DetailedInput = ({ type, closeHandler }: DetailedInfo) => {
 						<article className='tags' key={elem.id}>
 							<span>{elem.name}</span>
 							<button type='button' onClick={event => onClickDelete(event, elem.id)}>
-								<img src={XBtn} />
+								<img src={XBtn} alt='제거 아이콘' />
 							</button>
 						</article>
 					))}
 			</article>
 			<article className='container-btns'>
 				<section className='clear' onClick={onClickErase}>
-					<img src={Clear} />
+					<img src={Clear} alt='초기화 아이콘' />
 					<span>초기화</span>
 				</section>
 				<button type='button' onClick={onClickApply}>

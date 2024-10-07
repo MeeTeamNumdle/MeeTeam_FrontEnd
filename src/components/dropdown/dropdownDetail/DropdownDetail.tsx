@@ -38,7 +38,7 @@ const DropdownDetail = ({
 		>
 			<section className='dropdown-box'>
 				<label className='selected'>{'상세조건'}</label>
-				<img src={isOpen ? DropdownArrowUp : DropdownArrow} />
+				<img src={isOpen ? DropdownArrowUp : DropdownArrow} alt='드롭다운 아이콘' />
 			</section>
 			{isOpen && (
 				<section className='container-dropdown' onClick={handleChildDropdown}>

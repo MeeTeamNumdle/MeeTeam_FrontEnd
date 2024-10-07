@@ -35,7 +35,7 @@ const FieldPopup = ({
 			<div className='sep'> | </div>
 			<div className='container-field' onClick={onClick}>
 				<h3>{fieldValue.applied ? fieldValue.value.value : '분야를 선택해주세요'}</h3>
-				<img src={DropdownArrow} />
+				<img src={DropdownArrow} alt='드롭다운 아이콘' />
 			</div>
 			{isOpen && (
 				<article className='dropdown-field'>
@@ -46,7 +46,7 @@ const FieldPopup = ({
 					</section>
 					<article className='container-btns'>
 						<section className='clear' onClick={handleFieldClear}>
-							<img src={Clear} />
+							<img src={Clear} alt='초기화 아이콘' />
 							<span>초기화</span>
 						</section>
 						<button type='button' onClick={submitField}>

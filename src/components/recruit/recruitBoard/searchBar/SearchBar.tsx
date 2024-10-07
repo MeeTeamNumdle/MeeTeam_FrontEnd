@@ -24,7 +24,7 @@ const SearchBar = ({
 	return (
 		<S.SearchBar className='container-options__search'>
 			<section>
-				<img className='search-icon' src={SearchIcon} />
+				<img className='search-icon' src={SearchIcon} alt='검색 아이콘' />
 			</section>
 			<section>
 				<input
@@ -37,7 +37,14 @@ const SearchBar = ({
 					onBlur={handleBlurredPlaceholder}
 				/>
 			</section>
-			{searchKeyword && <img className='clear-keyword' src={XBtn} onClick={onClickDeleteKeyword} />}
+			{searchKeyword && (
+				<img
+					className='clear-keyword'
+					src={XBtn}
+					onClick={onClickDeleteKeyword}
+					alt='취소 아이콘'
+				/>
+			)}
 		</S.SearchBar>
 	);
 };

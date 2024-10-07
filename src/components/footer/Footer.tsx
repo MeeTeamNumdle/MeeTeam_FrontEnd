@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import S from './Footer.styled';
-import { LogoFooter, LogoName } from '../../assets';
 
 const Footer = () => {
-	const [isMobile, setIsMobile] = useState(window.innerWidth < 481);
+	const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
 
 	useEffect(() => {
-		const handleResize = () => setIsMobile(window.innerWidth < 481);
+		const handleResize = () => setIsMobile(window.innerWidth < 600);
 		window.addEventListener('resize', handleResize);
 		return () => window.removeEventListener('resize', handleResize);
 	}, []);
@@ -16,8 +15,13 @@ const Footer = () => {
 			<section className='wrapper'>
 				<section className='wrapper-logo'>
 					<section className='container-logo'>
-						<img className='logo' src={LogoFooter} />
-						<img className='logo-name' src={LogoName} />
+						<img
+							className='logo'
+							src='logo_typo_large.webp'
+							srcSet='logo_typo_small.webp 600w,  logo_typo_medium.webp 900w, logo_typo_large.webp 1280w'
+							alt='logo_typo'
+							decoding='async'
+						/>
 					</section>
 					{isMobile && (
 						<section className='wrapper-menu'>

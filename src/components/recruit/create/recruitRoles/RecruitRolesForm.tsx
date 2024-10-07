@@ -133,7 +133,7 @@ const RecruitRoleForm = ({ applicantsList, applicantsListData }: RecruitRoleForm
 						))}
 					</article>
 					<article className='wrapper-btn__add' onClick={handleAddRole}>
-						<img src={BluePlus} className='blue-plus' />
+						<img src={BluePlus} className='blue-plus' alt='추가 아이콘' />
 						<button type='button' className='btn-add h5'>
 							역할 추가
 						</button>

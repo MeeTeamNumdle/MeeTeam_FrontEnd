@@ -26,7 +26,7 @@ const Toast = ({ message }: ToastInfo) => {
 
 	return (
 		<S.ToastContainer isOpen={isOpen}>
-			<img src={Alert} />
+			<img src={Alert} alt='경고 아이콘' />
 			<span className='body1-medium white'>{message}</span>
 		</S.ToastContainer>
 	);

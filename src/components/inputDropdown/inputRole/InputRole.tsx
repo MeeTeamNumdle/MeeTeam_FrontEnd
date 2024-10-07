@@ -32,7 +32,7 @@ const InputRole = ({ id, role, count, skill, onDelete }: InputRole) => {
 				</section>
 			</section>
 			<button type='button' className='add-btn' onClick={onClickDelete}>
-				<img src={XBtn} />
+				<img src={XBtn} alt='취소 아이콘' />
 			</button>
 		</S.InputRole>
 	);
