@@ -18,10 +18,12 @@ import { useRecoilState } from 'recoil';
 import { uploadImageListState } from '../../../atom';
 import { TrashCan } from '../../../assets';
 import DOMPurify from 'dompurify';
+// import { useFetchImageWithCacheControl } from '../../../hooks/useImage';
 
 const PortfolioDetailsPage = () => {
 	const { portfolioId } = useParams() as { portfolioId: string };
 	const { data: portfolio, isSuccess } = useReadPortfolio(portfolioId);
+	// const {data:testing} = useFetchImageWithCacheControl
 
 	const navigate = useNavigate();
 

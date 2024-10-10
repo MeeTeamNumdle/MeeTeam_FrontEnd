@@ -12,6 +12,7 @@ import { useParams, useNavigate } from 'react-router';
 import { useRecoilValue } from 'recoil';
 import { userState } from '../../../atom';
 import { BlackEmail, BlackPhone } from '../../../assets';
+import { useFetchImageWithCacheControl } from '../../../hooks/useImage';
 
 const MESSAGE = {
 	aboutMe: '간단한 자기 소개를 적어주세요',
@@ -26,6 +27,7 @@ const ProfileDetailsPage = () => {
 
 	const { userId } = useParams() as { userId: string };
 	const { data: user, isSuccess } = useReadProfile(userId);
+	const { data: imageUrl } = useFetchImageWithCacheControl(user?.imageUrl || '');
 
 	const navigate = useNavigate();
 
@@ -41,7 +43,7 @@ const ProfileDetailsPage = () => {
 		isSuccess && (
 			<S.ProfileLayout>
 				<S.ProfileHeader>
-					<ProfileImage userId={userId} size='14rem' url={user?.imageUrl} />
+					<ProfileImage userId={userId} size='14rem' url={imageUrl} />
 					<S.ProfileColumn>
 						<div className='profile-header__row'>
 							<h2>{user?.nickname}</h2>

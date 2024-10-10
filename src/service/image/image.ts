@@ -58,3 +58,41 @@ export const uploadImageFile = async ({ presignedUrl, imageFile }: UploadImageFi
 		return null;
 	}
 };
+
+let cachedEtag = '';
+
+export const fetchImageWithCacheControl = async (imageUrl: string) => {
+	try {
+		const headers = {} as any;
+
+		if (cachedEtag) {
+			headers['If-None-Match'] = cachedEtag;
+		}
+
+		const response = await fetch(imageUrl, {
+			method: 'GET',
+			headers: {
+				...headers,
+				Accept: 'image/*',
+				Origin: 'https://www.meeteam.co.kr',
+			},
+			// mode: 'cors',
+		});
+
+		if (response.status === 304) {
+			console.log('Using cached image');
+			return;
+		}
+
+		if (!response.ok) {
+			throw new Error('Failed to fetch image');
+		}
+
+		cachedEtag = response.headers.get('ETag') || '';
+		const blob = await response.blob();
+
+		return URL.createObjectURL(blob);
+	} catch (error) {
+		console.error(error);
+	}
+};

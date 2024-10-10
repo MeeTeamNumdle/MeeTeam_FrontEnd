@@ -1,3 +1,4 @@
+import { fetchImageWithCacheControl } from './../service/image/image';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { readImagePresignedUrl, readImageListPresignedUrl, uploadImageFile } from '../service';
 
@@ -11,6 +12,7 @@ const imageKeys = {
 		portfolioId?: string;
 	}) => ['readImageListPresignedUrl', fileName, portfolioId],
 	uploadImageFile: ['useUploadImageFile'],
+	fetchImageWithCacheControl: ['fetchImageWithCacheControl'],
 };
 
 /**
@@ -44,5 +46,16 @@ export const useUploadImageFile = ({ onSuccess }: { onSuccess: () => void }) => 
 		onSuccess: () => {
 			onSuccess?.();
 		},
+	});
+};
+
+export const useFetchImageWithCacheControl = (imageUrl: string) => {
+	console.group('useFetchImageWithCacheControl');
+	console.log(imageUrl);
+	console.groupEnd();
+	return useQuery({
+		queryKey: imageKeys.fetchImageWithCacheControl,
+		queryFn: () => fetchImageWithCacheControl(imageUrl),
+		enabled: !!imageUrl,
 	});
 };
