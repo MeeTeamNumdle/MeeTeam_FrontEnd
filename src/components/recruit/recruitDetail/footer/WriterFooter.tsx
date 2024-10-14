@@ -28,10 +28,10 @@ const WriterFooter = ({ pageNum, onClickEditPage }: WriterFooter) => {
 	return (
 		<>
 			<button type='button' className='btn-edit default' onClick={onClickEditPage}>
-				<img src={Edit} />
+				<img src={Edit} alt='수정 아이콘' />
 			</button>
 			<button type='button' className='btn-delete default' onClick={onClickDelete}>
-				<img src={TrashCan} />
+				<img src={TrashCan} alt='휴지통 아이콘' />
 			</button>
 			<button
 				type='button'

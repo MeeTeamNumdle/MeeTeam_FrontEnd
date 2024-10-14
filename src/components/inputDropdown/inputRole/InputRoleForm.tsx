@@ -412,7 +412,7 @@ const InputRoleForm = (props: InputRoleObj) => {
 					{isValid.isRoleSubmitted && !isValidBeforeSubmit.role.valid && (
 						<p className='valid-message__role txt4'>{isValidBeforeSubmit.role.message}</p>
 					)}
-					<img className='icon-search role-search' src={SearchIcon} />
+					<img className='icon-search role-search' src={SearchIcon} alt='검색 아이콘' />
 				</section>
 				<section className='wrapper-count container-input'>
 					<input
@@ -441,7 +441,7 @@ const InputRoleForm = (props: InputRoleObj) => {
 													onClick={event => deleteTagHandler(event, tagItem.id)}
 													className='btn-delete__tag'
 												>
-													<img src={XBtn} />
+													<img src={XBtn} alt='취소 아이콘' />
 												</button>
 											</article>
 										);
@@ -459,7 +459,7 @@ const InputRoleForm = (props: InputRoleObj) => {
 													onClick={event => deleteTagHandler(event, tagItem.id)}
 													className='btn-delete__tag'
 												>
-													<img src={XBtn} />
+													<img src={XBtn} alt='취소 아이콘' />
 												</button>
 											</article>
 										);
@@ -513,7 +513,7 @@ const InputRoleForm = (props: InputRoleObj) => {
 															onClick={event => deleteTagHandler(event, tagItem.id)}
 															className='btn-delete__tag'
 														>
-															<img src={XBtn} />
+															<img src={XBtn} alt='취소 아이콘' />
 														</button>
 													</article>
 												);
@@ -528,7 +528,7 @@ const InputRoleForm = (props: InputRoleObj) => {
 															onClick={event => deleteTagHandler(event, skill.id)}
 															className='btn-delete__tag'
 														>
-															<img src={XBtn} />
+															<img src={XBtn} alt='취소 아이콘' />
 														</button>
 													</article>
 												);
@@ -539,11 +539,11 @@ const InputRoleForm = (props: InputRoleObj) => {
 							</section>
 						</section>
 					)}
-					<img className='icon-search skill-search' src={SearchIcon} />
+					<img className='icon-search skill-search' src={SearchIcon} alt='검색 아이콘' />
 				</section>
 				<section>
 					<button className='btn-delete' type='button' onClick={deleteRoleHandler}>
-						<img src={GrayDelete} />
+						<img src={GrayDelete} alt='제거 아이콘' />
 					</button>
 				</section>
 			</article>

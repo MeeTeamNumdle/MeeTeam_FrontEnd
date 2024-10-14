@@ -249,7 +249,7 @@ const Dropdown = ({ data, initialData, scope, category, applicant, roleObj }: Dr
 						</div>
 					)}
 					{applicant && <div className='value'>{currentValue}</div>}
-					<img src={showDropdown ? DropdownArrowUp : DropdownArrow} />
+					<img src={showDropdown ? DropdownArrowUp : DropdownArrow} alt='드롭다운 아이콘' />
 				</div>
 				{showDropdown && (
 					<>
@@ -345,7 +345,7 @@ const Dropdown = ({ data, initialData, scope, category, applicant, roleObj }: Dr
 													</section>
 													<section className='control-btn'>
 														<section className='clear' onClick={onClickClearInfo}>
-															<img src={Clear} />
+															<img src={Clear} alt='초기화 아이콘' />
 															<span>초기화</span>
 														</section>
 														<button type='button' onClick={submitInfo}>

@@ -77,7 +77,7 @@ const RecruitCard = ({
 						<article className='tag category'>{category}</article>
 					</section>
 					<section onClick={onClickBookmark}>
-						<img src={isBookmarked ? FilledBookmark : UnfilledBookmark} />
+						<img src={isBookmarked ? FilledBookmark : UnfilledBookmark} alt='북마크 아이콘' />
 					</section>
 				</section>
 				<article className='content-title'>{title}</article>
@@ -97,4 +97,4 @@ const RecruitCard = ({
 	);
 };
 
-export default React.memo(RecruitCard);
+export default RecruitCard;

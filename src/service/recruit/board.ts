@@ -3,7 +3,7 @@ import { ListResult, FilterData } from '../../types';
 
 interface FilterItem {
 	filterState: FilterData;
-	isLogin: boolean;
+	isLogin?: boolean;
 	page: number;
 }
 

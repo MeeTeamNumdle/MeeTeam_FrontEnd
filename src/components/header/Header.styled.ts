@@ -3,6 +3,8 @@ import styled from 'styled-components';
 const Header = styled.header<{ $isLogin?: boolean }>`
 	position: relative;
 	border-bottom: 0.375px solid #e3e3e3;
+	margin: 0 auto;
+	max-width: clamp(45%, 96rem, 75%);
 
 	.body2-semibold {
 		color: #8e8e8e;
@@ -15,7 +17,7 @@ const Header = styled.header<{ $isLogin?: boolean }>`
 	.header {
 		display: flex;
 		height: 6.75rem;
-		width: clamp(45%, 96rem, 75%);
+
 		align-items: center;
 		flex-shrink: 0;
 		background-color: #fff;
@@ -29,18 +31,12 @@ const Header = styled.header<{ $isLogin?: boolean }>`
 
 	.header__logo {
 		display: flex;
-		height: 1.29563rem;
 		align-items: center;
-		flex-shrink: 0;
 		cursor: pointer;
 
-		.logo,
-		.logo-name {
-			width: 4rem;
-		}
-
-		.logo-name {
-			margin-left: 0.8rem;
+		.logo {
+			max-height: 6.4rem;
+			aspect-ratio: 1.8 / 1;
 		}
 
 		.university {
@@ -169,14 +165,32 @@ const Header = styled.header<{ $isLogin?: boolean }>`
 		background-color: rgba(0, 0, 0, 0.15);
 	}
 
-	/* 작은 화면 (모바일) */
-	@media (min-width: 359px) and (max-width: 600px) {
+	@media (max-width: 900px) {
+		width: clamp(10%, 96rem, 90%);
+		max-width: 100%;
+
+		.header__navigation {
+			gap: 2rem;
+			margin-left: 3rem;
+		}
+
+		.header__logo {
+			display: flex;
+			align-items: center;
+
+			.logo {
+				aspect-ratio: 1.8 / 1;
+				height: 6rem;
+			}
+		}
+	}
+
+	@media (max-width: 600px) {
+		width: clamp(0%, 60rem, 100%);
+		max-width: 100%;
+
 		.header {
-			/* flex-direction: column; */
-			/* width: 70%; */
 			width: 100%;
-			/* justify-content: center;
-			gap: 8rem; */
 			padding: 0 2rem;
 		}
 
@@ -187,14 +201,13 @@ const Header = styled.header<{ $isLogin?: boolean }>`
 		}
 
 		.header__logo {
-			width: 100%;
 			display: flex;
 			align-items: center;
 			margin-bottom: 1rem;
 
 			.logo {
-				width: 4rem;
-				height: 4rem;
+				aspect-ratio: 1.8 / 1;
+				height: 5.6rem;
 			}
 		}
 
@@ -207,25 +220,6 @@ const Header = styled.header<{ $isLogin?: boolean }>`
 			gap: 1rem;
 			width: 100%;
 			align-items: center;
-		}
-	}
-
-	/* 중간 화면 (태블릿) */
-	@media (min-width: 601px) and (max-width: 1200px) {
-		.header {
-			width: clamp(45%, 96rem, 75%);
-		}
-
-		.header__navigation {
-			gap: 2rem;
-			margin-left: 3rem;
-		}
-	}
-
-	/* 큰 화면 (데스크탑) */
-	@media (min-width: 1201px) {
-		.header {
-			width: clamp(45%, 96rem, 75%);
 		}
 	}
 `;
