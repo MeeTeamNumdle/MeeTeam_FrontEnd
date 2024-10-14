@@ -50,7 +50,7 @@ const ReplyInput = ({ pageNum, groupNumber, onClickCancel, replyInputHandler }: 
 	return (
 		<React.Fragment>
 			<S.ReplyInput>
-				<img className='reply-icon' src={Reply} />
+				<img className='reply-icon' src={Reply} alt='답변 아이콘' />
 				<article className='wrapper-reply__input'>
 					<section className='container-user__icon'>
 						<div>

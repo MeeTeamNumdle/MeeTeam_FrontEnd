@@ -55,22 +55,22 @@ const ApplicantCard = ({
 						{!isOpen && (
 							<>
 								<section className='user-element'>
-									<img src={User} />
+									<img src={User} alt='유저 아이콘' />
 									<span className='body2-medium'>{name}</span>
 								</section>
 								<section className='user-element'>
-									<img src={School} />
+									<img src={School} alt='학교 아이콘' />
 									<span className='body2-medium'>{universityName}</span>
 								</section>
 								<section className='user-element'>
-									<img src={School} />
+									<img src={School} alt='학교 아이콘' />
 									<span className='body2-medium score'>{score !== 0 ? score : '-'}</span>
 								</section>
 							</>
 						)}
 						<section className='user-element more' onClick={onClickView}>
 							<span className='body2-medium'>{!isOpen ? '더보기' : '접기'}</span>
-							<img src={!isOpen ? DropdownArrow : DropdownArrowUp} />
+							<img src={!isOpen ? DropdownArrow : DropdownArrowUp} alt='드롭다운 아이콘' />
 						</section>
 					</section>
 				</section>

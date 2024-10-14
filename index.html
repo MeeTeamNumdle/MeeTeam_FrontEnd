@@ -3,6 +3,13 @@
 	<head>
 		<meta charset="UTF-8" />
 		<link rel="icon" href="/favicon.ico" />
+		<link
+			rel="preload"
+			fetchpriority="high"
+			as="image"
+			href="/meeteam_banner_icon_large.webp"
+			type="image/webp"
+		/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="page-enter" content="blendTrans(duration=1)" />
 		<meta http-equiv="page-exit" content="blendTrans(duration=1)" />
@@ -20,32 +27,6 @@
 		<meta property="og:image" content="https://www.meeteam.co.kr/meeteam-og.png" />
 		<meta property="og:description" content="대학생을 위한 포트폴리오 기반 구인 플랫폼" />
 		<title>밋팀</title>
-		<script>
-			(function (m, a, z, e) {
-				var s, t;
-				try {
-					t = m.sessionStorage.getItem('maze-us');
-				} catch (err) {}
-
-				if (!t) {
-					t = new Date().getTime();
-					try {
-						m.sessionStorage.setItem('maze-us', t);
-					} catch (err) {}
-				}
-
-				s = a.createElement('script');
-				s.src = z + '?apiKey=' + e;
-				s.async = true;
-				a.getElementsByTagName('head')[0].appendChild(s);
-				m.mazeUniversalSnippetApiKey = e;
-			})(
-				window,
-				document,
-				'https://snippet.maze.co/maze-universal-loader.js',
-				'b15ee4c4-3e84-457f-be5e-9f422804335c'
-			);
-		</script>
 	</head>
 	<body>
 		<div id="root"></div>

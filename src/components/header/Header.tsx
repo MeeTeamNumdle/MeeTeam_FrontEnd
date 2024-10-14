@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import S from './Header.styled';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { DropdownArrow, Logo, LogoName } from '../../assets';
+import { DropdownArrow } from '../../assets';
 import { ProfileImage, WaitModal } from '..';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { recruitFilterState, userState, waitModalState, loginState } from '../../atom';
@@ -81,8 +81,14 @@ const Header = () => {
 			<div className='header'>
 				<section className='header-leftside'>
 					<div className='header__logo' onClick={goRecruit}>
-						<img className='logo' src={Logo} fetchpriority='high' />
-						<img className='logo-name' src={LogoName} fetchpriority='high' />
+						<img
+							className='logo'
+							src='logo_typo_large.webp'
+							srcSet='logo_typo_small.webp 600w,  logo_typo_medium.webp 900w, logo_typo_large.webp 1280w'
+							// eslint-disable-next-line react/no-unknown-property
+							fetchpriority='high'
+							alt='logo_typo'
+						/>
 						{isLogin && <span className='university'>{userInfo?.university}</span>}
 					</div>
 					<div className='header__navigation'>
@@ -109,7 +115,7 @@ const Header = () => {
 										<div className='icon-border'>
 											<ProfileImage url={profileImage?.imageUrl} size='3rem' />
 										</div>
-										<img src={DropdownArrow} />
+										<img src={DropdownArrow} alt='드롭다운 아이콘' />
 									</article>
 								) : (
 									<span className='login'>로그인</span>
@@ -172,4 +178,4 @@ const Header = () => {
 	);
 };
 
-export default React.memo(Header);
+export default Header;

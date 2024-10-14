@@ -8,7 +8,7 @@ interface ClearConditionsProps {
 const ClearConditions = ({ onClick }: ClearConditionsProps) => {
 	return (
 		<article className='clear' onClick={onClick}>
-			<img src={Clear} />
+			<img src={Clear} alt='초기화 아이콘' />
 			<span>초기화</span>
 		</article>
 	);

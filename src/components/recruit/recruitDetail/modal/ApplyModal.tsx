@@ -142,7 +142,7 @@ const ApplyModal = () => {
 							))}
 						</ul>
 					)}
-					<img src={DropdownArrow} />
+					<img src={DropdownArrow} alt='드롭다운 아이콘' />
 				</article>
 			</article>
 			<article className='container-message'>
