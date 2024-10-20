@@ -17,9 +17,9 @@ const Footer = () => {
 					<section className='container-logo'>
 						<img
 							className='logo'
-							src='logo_typo_large.webp'
-							srcSet='logo_typo_small.webp 600w,  logo_typo_medium.webp 900w, logo_typo_large.webp 1280w'
-							alt='logo_typo'
+							src='/logo_typo_large.webp'
+							srcSet='/logo_typo_small.webp 600w,  /logo_typo_medium.webp 900w, /logo_typo_large.webp 1280w'
+							alt='/logo_typo'
 							decoding='async'
 						/>
 					</section>
