@@ -26,14 +26,14 @@ const ContainerCourse = ({ course, professor }: ContainerCourseProps) => {
 	});
 	const keywordCourse = useDebounce(name.course, 500);
 	const keywordProfessor = useDebounce(name.professor, 500);
-	const { data: dataCourse, isLoading: isLoadingCourse } = useQuery({
+	const { data: dataCourse, isFetching: isFetchingCourse } = useQuery({
 		queryKey: ['searchCourse', keywordCourse],
 		queryFn: () => getCourseKeyword(keywordCourse ?? ''),
 		enabled: !!keywordCourse,
 		staleTime: Infinity,
 		gcTime: Infinity,
 	});
-	const { data: dataProfessor, isLoading: isLoadingProfessor } = useQuery({
+	const { data: dataProfessor, isFetching: isFetchingProfessor } = useQuery({
 		queryKey: ['searchProfessor', keywordProfessor],
 		queryFn: () => getProfessorKeyword(keywordProfessor ?? ''),
 		enabled: !!keywordProfessor,
@@ -42,8 +42,9 @@ const ContainerCourse = ({ course, professor }: ContainerCourseProps) => {
 	});
 
 	const onChangeCourse = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-		setName(prev => ({ ...prev, course: event.target.value }));
-		setDropdown({ course: true, professor: false });
+		const keyword = event.target.value;
+		setName(prev => ({ ...prev, course: keyword }));
+		setDropdown({ course: keyword.length > 0, professor: false });
 	}, []);
 
 	const onChangeProfessor = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
@@ -118,12 +119,15 @@ const ContainerCourse = ({ course, professor }: ContainerCourseProps) => {
 					/>
 					{dropdown.course && (
 						<section className='dropdown'>
-							{!isLoadingCourse &&
+							{isFetchingCourse ? (
+								<article>검색중입니다...</article>
+							) : (
 								dataCourse?.map((keyword: Keyword) => (
 									<span key={keyword.id} onClick={onClickCourse} className='option'>
 										{keyword.name}
 									</span>
-								))}
+								))
+							)}
 						</section>
 					)}
 				</section>
@@ -139,12 +143,15 @@ const ContainerCourse = ({ course, professor }: ContainerCourseProps) => {
 					/>
 					{dropdown.professor && (
 						<section className='dropdown'>
-							{!isLoadingProfessor &&
+							{isFetchingProfessor ? (
+								<article>검색중입니다...</article>
+							) : (
 								dataProfessor?.map((keyword: Keyword) => (
 									<span key={keyword.id} onClick={onClickProfessor} className='option'>
 										{keyword.name}
 									</span>
-								))}
+								))
+							)}
 						</section>
 					)}
 				</section>
