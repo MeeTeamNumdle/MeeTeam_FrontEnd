@@ -20,7 +20,7 @@ import {
 	ModalPortal,
 	Modal,
 } from '../../../components';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { uploadImageState, userState } from '../../../atom';
 import { Skill, Award, Link } from '../../../types';
 import {
@@ -78,6 +78,7 @@ const ProfileEditPage = () => {
 
 	const updateProfileInSuccess = (userId: string) => {
 		navigate(`/profile/${userId}`);
+		setUploadImage(null); // 전역 업로드 이미지 초기화
 	};
 
 	const { mutate: updateProfile } = useUpdateProfile({
@@ -86,7 +87,7 @@ const ProfileEditPage = () => {
 	});
 
 	// 이미지 업로드
-	const uploadImage = useRecoilValue(uploadImageState);
+	const [uploadImage, setUploadImage] = useRecoilState(uploadImageState);
 	const {
 		data: imageResponse,
 		refetch: readImagePresignedUrl,
