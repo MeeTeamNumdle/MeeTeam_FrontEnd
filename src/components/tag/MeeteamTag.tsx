@@ -20,7 +20,7 @@ const MeeteamTag = ({ tags }: RecruitTagListProps) => {
 	const dropdownRef = useRef<HTMLDivElement | null>(null);
 	const keywordTag = useDebounce(tagItem, 500);
 
-	const { data, isSuccess } = useQuery({
+	const { data, isSuccess, isFetching } = useQuery({
 		queryKey: ['keywordTag', keywordTag],
 		queryFn: () => getTagKeyword(keywordTag),
 		staleTime: Infinity,
@@ -30,6 +30,11 @@ const MeeteamTag = ({ tags }: RecruitTagListProps) => {
 
 	const onKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
 		const target = event.currentTarget;
+
+		if (target.value.length > 0) {
+			setIsDropdownVisible(true);
+		}
+
 		if (target.value.length !== 0 && event.key === 'Enter') {
 			event.preventDefault();
 			submitTagItem();
@@ -59,10 +64,6 @@ const MeeteamTag = ({ tags }: RecruitTagListProps) => {
 			setFormData(prev => ({ ...prev, tags: updatedList }));
 			return updatedList;
 		});
-	};
-
-	const onClickInput = () => {
-		setIsDropdownVisible(true);
 	};
 
 	const onClickTagOptions = (selectedTag: string, event: React.MouseEvent<HTMLSpanElement>) => {
@@ -100,7 +101,7 @@ const MeeteamTag = ({ tags }: RecruitTagListProps) => {
 
 	return (
 		<S.MeeteamTag ref={dropdownRef}>
-			<section className='tag__box' onClick={onClickInput}>
+			<section className='tag__box'>
 				<input
 					type='text'
 					placeholder={'태그는 최대 5개까지 가능합니다.'}
@@ -137,6 +138,11 @@ const MeeteamTag = ({ tags }: RecruitTagListProps) => {
 									</span>
 									<span className='body1-medium'>{tagItem}</span>
 								</section>
+							</section>
+						)}
+						{isFetching && keywordTag.length === 0 && (
+							<section className='no-result'>
+								<span className='body1-medium'>태그를 입력해주세요.</span>
 							</section>
 						)}
 					</div>
