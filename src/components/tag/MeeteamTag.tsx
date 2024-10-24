@@ -32,7 +32,6 @@ const MeeteamTag = ({ tags }: RecruitTagListProps) => {
 		const target = event.currentTarget;
 
 		if (target.value.length > 0) {
-			console.log('왜 안됨?');
 			setIsDropdownVisible(true);
 		}
 
