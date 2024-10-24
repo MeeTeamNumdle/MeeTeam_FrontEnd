@@ -49,7 +49,7 @@ const InputRoleForm = (props: InputRoleObj) => {
 	const dropdownRef = useRef<HTMLDivElement | null>(null);
 	const { isValid } = useValid(info);
 
-	const { data: dataRole, isLoading: isLoadingRoleQuery } = useQuery({
+	const { data: dataRole, isFetching: isFetchingRole } = useQuery({
 		queryKey: ['searchRole', keywordRole],
 		queryFn: () => getRoleKeyword(keywordRole as string),
 		staleTime: Infinity,
@@ -57,7 +57,7 @@ const InputRoleForm = (props: InputRoleObj) => {
 		enabled: !!keywordRole,
 	});
 
-	const { data: dataSkill, isLoading: isLoadingSkill } = useQuery({
+	const { data: dataSkill, isFetching: isFetchingSkill } = useQuery({
 		queryKey: ['searchSkill', keywordSkill],
 		queryFn: () => getSkillKeyword(keywordSkill),
 		staleTime: Infinity,
@@ -81,7 +81,7 @@ const InputRoleForm = (props: InputRoleObj) => {
 								...role,
 								skills: role.skills?.filter(skill => skill.id !== deletedId),
 								skillIds: role.skillIds.filter(id => id !== deletedId),
-						  }
+							}
 						: role
 				),
 			}));
@@ -104,12 +104,13 @@ const InputRoleForm = (props: InputRoleObj) => {
 
 	const onChangeRole = (event: React.ChangeEvent<HTMLInputElement>) => {
 		event.preventDefault();
+		const roleKeyword = event.target.value;
 		setRoleData(prev => ({
 			...prev,
-			roleName: event.target.value,
+			roleName: roleKeyword,
 			count: prev.count,
 		}));
-		if (event.target.value === '') {
+		if (roleKeyword === '') {
 			setRoleData(prev => ({
 				...prev,
 				roleName: '',
@@ -121,13 +122,13 @@ const InputRoleForm = (props: InputRoleObj) => {
 					role.roleId === id
 						? {
 								...role,
-								roleName: event.target.value,
-						  }
+								roleName: roleKeyword,
+							}
 						: role
 				),
 			}));
 		}
-		setDropdown(prev => ({ ...prev, role: true }));
+		setDropdown(prev => ({ ...prev, role: roleKeyword.length > 0 }));
 	};
 	const onChangeCount = (event: React.ChangeEvent<HTMLInputElement>) => {
 		event.preventDefault();
@@ -241,7 +242,7 @@ const InputRoleForm = (props: InputRoleObj) => {
 										...role.skillIds,
 										...(role.skillIds.includes(Number(target.id)) ? [] : [Number(target.id)]),
 									],
-							  }
+								}
 							: role
 					),
 				}));
@@ -274,7 +275,7 @@ const InputRoleForm = (props: InputRoleObj) => {
 											...role.skillIds,
 											...(role.skillIds.includes(Number(target.id)) ? [] : [Number(target.id)]),
 										],
-								  }
+									}
 								: role
 						),
 					}));
@@ -391,11 +392,11 @@ const InputRoleForm = (props: InputRoleObj) => {
 					/>
 					{dropdown.role && (
 						<section className='dropdown'>
-							{isLoadingRoleQuery ? (
+							{isFetchingRole ? (
 								<article className='dropdown-loading'>
 									<span>검색중...</span>
 								</article>
-							) : (
+							) : dataRole && dataRole.length > 0 ? (
 								dataRole?.map((keyword: Keyword) => (
 									<span
 										key={keyword.id}
@@ -406,6 +407,10 @@ const InputRoleForm = (props: InputRoleObj) => {
 										{keyword.name}
 									</span>
 								))
+							) : (
+								<article className='dropdown-loading'>
+									<span>검색결과가 없습니다.</span>
+								</article>
 							)}
 						</section>
 					)}
@@ -480,7 +485,7 @@ const InputRoleForm = (props: InputRoleObj) => {
 					{dropdown.skill && (
 						<section className='dropdown-skill'>
 							<section className='list-skill'>
-								{!isLoadingSkill &&
+								{!isFetchingSkill &&
 									dataSkill?.map(elem => (
 										<span
 											key={elem.id}
@@ -491,7 +496,12 @@ const InputRoleForm = (props: InputRoleObj) => {
 											{elem.name}
 										</span>
 									))}
-								{!isLoadingSkill && dataSkill?.length === 0 && (
+								{!isFetchingSkill && keywordSkill?.length === 0 && (
+									<section className='no-result'>
+										<span className='body1-medium'>기술스택을 검색해주세요.</span>
+									</section>
+								)}
+								{!isFetchingSkill && dataSkill?.length === 0 && (
 									<section className='no-result'>
 										<span className='body1-medium'>검색 결과가 없습니다.</span>
 									</section>

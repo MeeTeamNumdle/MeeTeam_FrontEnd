@@ -83,10 +83,10 @@ const Header = () => {
 					<div className='header__logo' onClick={goRecruit}>
 						<img
 							className='logo'
-							src='logo_typo_large.webp'
-							srcSet='logo_typo_small.webp 600w,  logo_typo_medium.webp 900w, logo_typo_large.webp 1280w'
-							// eslint-disable-next-line react/no-unknown-property
-							fetchpriority='high'
+							src='/logo_typo_large.webp'
+							srcSet='/logo_typo_small.webp 600w, /logo_typo_medium.webp 900w, /logo_typo_large.webp 1280w'
+							loading='eager'
+							sizes='(max-width: 600px) 600px, (max-width: 900px) 900px, 1280px'
 							alt='logo_typo'
 						/>
 						{isLogin && <span className='university'>{userInfo?.university}</span>}

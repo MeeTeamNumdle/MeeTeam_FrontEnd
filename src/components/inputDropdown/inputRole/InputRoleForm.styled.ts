@@ -56,7 +56,6 @@ const InputRoleForm = styled.article<InputRoleForm>`
 
 	.dropdown-loading {
 		width: 100%;
-		height: 5rem;
 	}
 
 	.option {
